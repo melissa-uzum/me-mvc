@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Om kursen{% endblock %}
+
+{% block body %}
+    <div style="display: flex; gap: 2em;">
+        <div style="flex: 1;">
+            <h2>Kursen MVC</h2>
+            <p>Kursen Objektorienterade webbteknologier, a.k.a. mvc, fokuserar på objektorienterade programmeringstekniker i programmeringsspråket PHP. Klassiska objektorienterade konstruktioner hanteras tillsammans med objektorienterad programmering i webbaserat ramverk tillsammans med databaser samt enhetstestning.</p>
+            <p><a href="{{ course_link }}" target="_blank">Se kursens GitHub-repo</a></p>
+            <p><a href="{{ my_repo }}" target="_blank">Se mitt GitHub-repo</a></p>
+        </div>
+        <div style="flex: 1;">
+        <div class="about-img-wrapper">
+        <img src="{{ asset(image) }}" alt="Kod" class="about-img">
+        </div>
+        </div>
+    </div>
+{% endblock %}

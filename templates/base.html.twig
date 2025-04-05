@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Me-sida{% endblock %}</title>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+</head>
+
+<body>
+    <header>
+        <h1>Min MVC Me-sida</h1>
+    </header>
+
+<nav>
+    <a href="{{ path('home') }}">Hem</a> |
+    <a href="{{ path('about') }}">Om</a> |
+    <a href="{{ path('report') }}">Redovisning</a> |
+    <a href="{{ path('lucky') }}">Lucky</a> |
+    <a href="{{ path('api') }}">API</a>
+</nav>
+
+    <main>
+        {% block body %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; {{ "now"|date("Y") }} Melissa</p>
+    <div class="footer-links">
+        <a href="https://dbwebb.se/kurser/mvc-v2" target="_blank" rel="noopener noreferrer">
+            Kursens hemsida
+        </a>
+        <a href="https://github.com/dbwebb-se/mvc" target="_blank" rel="noopener noreferrer">
+            Kursens GitHub-repo
+        </a>
+        <a href="https://github.com/melissa-uzum/me-mvc" target="_blank" rel="noopener noreferrer">
+            Mitt GitHub-repo
+        </a>
+    </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Välkommen{% endblock %}
+
+{% block body %}
+    <div class="home">
+        <h1>Hej, {{ name }} här med sin fina Me-sida</h1>
+        <div class="profile-img-wrapper">
+        <img src="{{ asset(image) }}" alt="Bild på mig" width="200" class="profile-img">
+        </div>
+        <p>{{ text1 }}</p>
+        <p style="margin-top: 3em;">{{ text2 }}</p>
+    </div>
+{% endblock %}
