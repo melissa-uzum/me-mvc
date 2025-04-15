@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Kortlek{% endblock %}
+
+{% block body %}
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start;">
+
+    <div>
+        <h1>Kortlek i PHP & Symfony</h1>
+        <p>Välkommen till kortleksuppgiften! Här kan du testa olika funktioner för att hantera en kortlek:</p>
+
+        <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+            <a href="{{ path('card_deck') }}">➤ Visa hela kortleken</a>
+            <a href="{{ path('card_shuffle') }}">➤ Blanda kortleken</a>
+            <a href="{{ path('card_draw') }}">➤ Dra ett kort</a>
+            <a href="{{ path('session_view') }}">➤ Visa session</a>
+            <a href="{{ path('session_delete') }}">➤ Rensa session</a>
+            <a href="{{ path('card_draw_number', {'number': 3}) }}">➤ Dra 3 kort</a>
+            <a href="{{ path('card_deal', {'players': 2, 'cards': 5}) }}">➤ Dela ut 5 kort till 2 spelare</a>
+        </div>
+    </div>
+
+    <div>
+        <h2>UML-diagram</h2>
+        <p>Här är en översikt över hur kortklasserna är uppbyggda:</p>
+        <img src="{{ asset('images/card-uml.png') }}" alt="UML för kortklasser" style="max-width: 100%; border: 1px solid #ccc; margin-top: 1rem;">
+
+        <p><strong>Card</strong>: Grundklass för ett spelkort</p>
+        <p><strong>CardGraphic</strong>: Ärver från <code>Card</code> och lägger till grafiskt stöd</p>
+        <p><strong>DeckOfCards</strong>: Innehåller många <code>Card</code> (komposition)</p>
+        <p><strong>CardHand</strong>: Innehåller också många <code>Card</code> (komposition)</p>
+
+    </div>
+
+</div>
+
+{% endblock %}
