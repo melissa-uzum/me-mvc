@@ -2,11 +2,11 @@
 
 namespace App\Controller;
 
+use App\Card\DeckOfCards;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Card\DeckOfCards;
 
 class ApiCardController extends AbstractController
 {
@@ -14,7 +14,7 @@ class ApiCardController extends AbstractController
     public function apiDeck(): JsonResponse
     {
         $deck = new DeckOfCards();
-        $cards = array_map(fn($card) => (string) $card, $deck->getCards());
+        $cards = array_map(fn ($card) => (string) $card, $deck->getCards());
 
         return $this->json([
             'deck' => $cards,
@@ -22,14 +22,14 @@ class ApiCardController extends AbstractController
         ]);
     }
 
-        #[Route('/api/deck/shuffle', name: 'api_deck_shuffle', methods: ['POST'])]
+    #[Route('/api/deck/shuffle', name: 'api_deck_shuffle', methods: ['POST'])]
     public function apiShuffle(SessionInterface $session): JsonResponse
     {
         $deck = new DeckOfCards();
         $deck->shuffle();
         $session->set('deck', $deck);
 
-        $cards = array_map(fn($card) => (string) $card, $deck->getCards());
+        $cards = array_map(fn ($card) => (string) $card, $deck->getCards());
 
         return $this->json([
             'shuffled_deck' => $cards,
@@ -37,7 +37,7 @@ class ApiCardController extends AbstractController
         ]);
     }
 
-        #[Route('/api/deck/draw', name: 'api_draw_one', methods: ['POST'])]
+    #[Route('/api/deck/draw', name: 'api_draw_one', methods: ['POST'])]
     public function apiDrawOne(SessionInterface $session): JsonResponse
     {
         $deck = $session->get('deck') ?? new DeckOfCards();
@@ -45,12 +45,12 @@ class ApiCardController extends AbstractController
         $session->set('deck', $deck);
 
         return $this->json([
-            'drawn' => array_map(fn($card) => (string) $card, $drawn),
+            'drawn' => array_map(fn ($card) => (string) $card, $drawn),
             'remaining' => $deck->count(),
         ]);
     }
 
-        #[Route('/api/deck/draw/{number<\d+>}', name: 'api_draw_number', methods: ['POST'])]
+    #[Route('/api/deck/draw/{number<\d+>}', name: 'api_draw_number', methods: ['POST'])]
     public function apiDrawNumber(int $number, SessionInterface $session): JsonResponse
     {
         $deck = $session->get('deck') ?? new DeckOfCards();
@@ -60,36 +60,35 @@ class ApiCardController extends AbstractController
 
         return $this->json([
             'requested' => $number,
-            'drawn' => array_map(fn($card) => (string) $card, $drawn),
+            'drawn' => array_map(fn ($card) => (string) $card, $drawn),
             'remaining' => $deck->count(),
         ]);
     }
 
     #[Route('/api/deck/deal/{players<\d+>}/{cards<\d+>}', name: 'api_deal', methods: ['POST'])]
-public function apiDeal(int $players, int $cards, SessionInterface $session): JsonResponse
-{
-    $deck = $session->get('deck') ?? new DeckOfCards();
+    public function apiDeal(int $players, int $cards, SessionInterface $session): JsonResponse
+    {
+        $deck = $session->get('deck') ?? new DeckOfCards();
 
-    $total = $players * $cards;
-    if ($deck->count() < $total) {
+        $total = $players * $cards;
+        if ($deck->count() < $total) {
+            return $this->json([
+                'error' => 'Inte tillräckligt med kort i leken',
+                'remaining' => $deck->count(),
+            ], 400);
+        }
+
+        $hands = [];
+        for ($i = 1; $i <= $players; ++$i) {
+            $hand = $deck->draw($cards);
+            $hands["Spelare $i"] = array_map(fn ($card) => (string) $card, $hand);
+        }
+
+        $session->set('deck', $deck);
+
         return $this->json([
-            'error' => "Inte tillräckligt med kort i leken",
-            'remaining' => $deck->count()
-        ], 400);
+            'hands' => $hands,
+            'remaining' => $deck->count(),
+        ]);
     }
-
-    $hands = [];
-    for ($i = 1; $i <= $players; $i++) {
-        $hand = $deck->draw($cards);
-        $hands["Spelare $i"] = array_map(fn($card) => (string) $card, $hand);
-    }
-
-    $session->set('deck', $deck);
-
-    return $this->json([
-        'hands' => $hands,
-        'remaining' => $deck->count()
-    ]);
-}
-
 }

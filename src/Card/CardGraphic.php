@@ -6,6 +6,6 @@ class CardGraphic extends Card
 {
     public function getUnicode(): string
     {
-        return "[" . $this->getValue() . $this->getSuit() . "]";
+        return '['.$this->getValue().$this->getSuit().']';
     }
 }

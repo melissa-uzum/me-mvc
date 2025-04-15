@@ -2,12 +2,12 @@
 
 namespace App\Controller;
 
+use App\Card\CardHand;
+use App\Card\DeckOfCards;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
-use App\Card\DeckOfCards;
-use App\Card\CardHand;
+use Symfony\Component\Routing\Annotation\Route;
 
 class CardController extends AbstractController
 {
@@ -84,7 +84,25 @@ class CardController extends AbstractController
     #[Route('/session', name: 'session_view')]
     public function viewSession(SessionInterface $session): Response
     {
-        $all = $session->all();
+        $raw = $session->all();
+        $all = [];
+
+        foreach ($raw as $key => $value) {
+            if (is_object($value)) {
+                if (method_exists($value, '__toString')) {
+                    $all[$key] = (string) $value;
+                } elseif ('deck' === $key && method_exists($value, 'getCards')) {
+                    $all[$key] = array_map(
+                        fn ($card) => (string) $card,
+                        $value->getCards()
+                    );
+                } else {
+                    $all[$key] = 'Objekt av typen '.get_class($value);
+                }
+            } else {
+                $all[$key] = $value;
+            }
+        }
 
         return $this->render('card/session.html.twig', [
             'session' => $all,
@@ -114,14 +132,15 @@ class CardController extends AbstractController
 
         if ($available < $totalToDraw) {
             $this->addFlash('notice', "Det finns bara $available kort kvar, kan inte dela ut $totalToDraw.");
+
             return $this->redirectToRoute('card_index');
         }
 
         $hands = [];
 
-        for ($i = 0; $i < $players; $i++) {
+        for ($i = 0; $i < $players; ++$i) {
             $hand = new CardHand();
-            for ($j = 0; $j < $cards; $j++) {
+            for ($j = 0; $j < $cards; ++$j) {
                 $card = $deck->draw(1)[0];
                 $hand->add($card);
             }
@@ -134,7 +153,7 @@ class CardController extends AbstractController
             'hands' => $hands,
             'players' => $players,
             'cards' => $cards,
-            'remaining' => $deck->count()
+            'remaining' => $deck->count(),
         ]);
     }
 }

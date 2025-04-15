@@ -14,7 +14,7 @@ class AboutController extends AbstractController
         return $this->render('about/index.html.twig', [
             'image' => 'images/php.png',
             'course_link' => 'https://github.com/dbwebb-se/mvc',
-            'my_repo' => 'https://github.com/melissa-uzum/me-mvc'
+            'my_repo' => 'https://github.com/melissa-uzum/me-mvc',
         ]);
     }
 }

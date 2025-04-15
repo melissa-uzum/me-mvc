@@ -16,34 +16,34 @@ class ApiController extends AbstractController
                 [
                     'name' => 'GET /api/deck',
                     'path' => '/api/deck',
-                    'description' => 'Returnerar en sorterad kortlek som JSON.'
+                    'description' => 'Returnerar en sorterad kortlek som JSON.',
                 ],
                 [
                     'name' => 'POST /api/deck/shuffle',
                     'path' => '/api/deck/shuffle',
-                    'description' => 'Blandar kortleken och returnerar den som JSON. Kortleken sparas i sessionen.'
+                    'description' => 'Blandar kortleken och returnerar den som JSON. Kortleken sparas i sessionen.',
                 ],
                 [
                     'name' => 'POST /api/deck/draw',
                     'path' => '/api/deck/draw',
-                    'description' => 'Drar ett kort från kortleken. Returnerar kortet och antalet kvar i JSON-format.'
+                    'description' => 'Drar ett kort från kortleken. Returnerar kortet och antalet kvar i JSON-format.',
                 ],
                 [
                     'name' => 'POST /api/deck/draw/{number}',
                     'path' => '/api/deck/draw/3',
-                    'description' => 'Drar valfritt antal kort från kortleken och visar dem i JSON-format.'
+                    'description' => 'Drar valfritt antal kort från kortleken och visar dem i JSON-format.',
                 ],
                 [
                     'name' => 'POST /api/deck/deal/{players}/{cards}',
                     'path' => '/api/deck/deal/2/5',
-                    'description' => 'Delar ut kort till flera spelare. Returnerar varje spelares hand i JSON.'
+                    'description' => 'Delar ut kort till flera spelare. Returnerar varje spelares hand i JSON.',
                 ],
                 [
                     'name' => 'GET /api/quote',
                     'path' => '/api/quote',
-                    'description' => 'Returnerar ett slumpmässigt citat i JSON-format.'
+                    'description' => 'Returnerar ett slumpmässigt citat i JSON-format.',
                 ],
-            ]
+            ],
         ]);
     }
 }

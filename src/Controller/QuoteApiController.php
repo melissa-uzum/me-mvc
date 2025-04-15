@@ -11,11 +11,10 @@ class QuoteApiController
     public function quote(): JsonResponse
     {
         $quotes = [
-            "Code is like poetry, sometimes you understand it other times youre left confused..",
-            "Keep calm and commit often.",
-            "Symfony makes life easier - sort of.",
-            "Anything is possible with PHP and a cup of water (I dont drink coffee...).",
-
+            'Code is like poetry, sometimes you understand it other times youre left confused..',
+            'Keep calm and commit often.',
+            'Symfony makes life easier - sort of.',
+            'Anything is possible with PHP and a cup of water (I dont drink coffee...).',
         ];
 
         return new JsonResponse([
@@ -25,4 +24,3 @@ class QuoteApiController
         ]);
     }
 }
-
