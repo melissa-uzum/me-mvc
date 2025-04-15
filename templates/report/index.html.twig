@@ -41,10 +41,26 @@ TIL: Jag lärde mig hur Symfony strukturerar kod enligt MVC och hur man skapar r
     </section>
 
     <section id="kmom02">
-        <h2>Kmom02</h2>
-        <p>
-        
-        </p>
+    <h2>Kmom02</h2>
+    <p>
+    I detta kmom har vi jobbat vidare med objektorienterad programmering i PHP och fokuserat mer på att bygga en applikation enligt MVC-modellen i Symfony. Vi har även introducerats till nya objektorienterade konstruktioner som arv, komposition, interface och traits.
+    <br><br>
+    <strong>Arv</strong> innebär att en klass ärver egenskaper och metoder från en annan klass. I PHP används `extends` för detta. Det gör det lätt att återanvända kod, till exempel när flera kontroller ärver från Symfony:s bascontroller.<br>
+    <strong>Komposition</strong> innebär att en klass innehåller andra objekt som egenskaper. Istället för att ärva allt, använder man andra objekt inuti klassen. Det gör koden mer flexibel och lösare kopplad.<br>
+    <strong>Interface</strong> används för att definiera vilka metoder en klass måste implementera, utan att säga hur. Det är ett sätt att skapa en slags kontrakt. I PHP används `interface` och `implements`.<br>
+    <strong>Trait</strong> är ett sätt att återanvända kod i flera klasser utan arv. Det fungerar som en slags mixin och används med `use`. Det kan vara praktiskt för hjälpfunktioner eller gemensam funktionalitet.
+    <br><br>
+    Min implementation handlade om att skapa en kortlek med möjlighet att visa kort, dra kort, blanda och även visa det i ett API-format. Jag tycker ändå att jag löste uppgiften på ett bra sätt, men jag blev lite förvirrad då jag hade 2 terminaler öppna för MVC samt WEBAPP, så jag vart tvungen att flytta massor av filer för att komma upp i 10 commits!
+    <br><br>
+    Jag är ändå nöjd med min struktur i koden. Klasserna känns genomtänkta och följer en tydlig logik, även om det säkert går att förbättra hur vissa delar kommunicerar med varandra. Jag hade nog kunnat bryta ut logiken för kortleken ännu mer i egna hjälparklasser för att få bättre separation av ansvar. Stilen hade även kunnat förbättras men jag lade mer fokus på logik och kod än stil denna gång!
+    <br><br>
+    Att arbeta i Symfony med MVC börjar kännas mer bekvämt nu. Det känns ganska trevligt att arbeta med en strukturerad miljö där routing, controller och vyer är så tydligt separerade. Jag gillar att man snabbt kommer igång med hjälp av kommandon i terminalen och att mycket är förkonfigurerat åt en.
+    <br><br>
+    Jag uppskattar också hur Symfony gör det enkelt att arbeta med JSON-svar i API:er, särskilt med `JsonResponse`. Det var nytt för mig att jobba så strukturerat med API-endpoints, och det känns kul att förstå hur man kan bygga ut det till något större.
+    <br><br>
+    <strong>TIL:</strong> Jag lärde mig skillnaden mellan arv och komposition i praktiken och hur man använder interface och trait i PHP. Jag lärde mig också hur man bygger ett enkelt JSON-API i Symfony och hur man strukturerar det med controllers och routes.
+    <br><br>
+    </p>
     </section>
 
     <section id="kmom03">
