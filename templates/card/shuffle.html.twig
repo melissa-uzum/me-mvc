@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Blandad kortlek{% endblock %}
+
+{% block body %}
+    <h1>Blandad kortlek</h1>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 5px;">
+        {% for card in cards %}
+            <span style="font-size: 24px; border: 1px solid #ccc; padding: 8px; border-radius: 5px;">
+                {{ card.getUnicode() }}
+            </span>
+        {% endfor %}
+    </div>
+
+    <p><a href="{{ path('card_index') }}">Tillbaka till kort-menyn</a></p>
+{% endblock %}
