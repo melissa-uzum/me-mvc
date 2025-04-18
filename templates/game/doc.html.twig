@@ -1,0 +1,13 @@
+#[Route("/game/doc", name: "game_doc")]
+public function doc(): Response
+{
+    return $this->render('game/doc.html.twig');
+}
+Starta spel
+Dela ut 2 kort till spelare
+Visa spelarkort
+Spelare: välj "dra" eller "stanna"
+Om över 21 -> banken vinner
+Om stanna:
+    Banken drar tills den når minst 17 eller går över
+    Jämför händer -> avgör vinnare

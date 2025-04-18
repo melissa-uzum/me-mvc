@@ -1,0 +1,8 @@
+#[Route("/game/play", name: "game_play")]
+public function play(SessionInterface $session): Response
+{
+    // Starta ny omgång eller fortsätt från session
+    return $this->render('game/play.html.twig', [
+        'playerHand' => ..., 'bankHand' => ..., 'status' => ...
+    ]);
+}
