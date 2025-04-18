@@ -46,27 +46,33 @@
         <h3>Matchen är slut!</h3>
         <p>
             {% if playerMoney <= 0 %}
-                Du har förlorat alla pengar.
+                Du har förlorat alla pengar...
             {% elseif bankMoney <= 0 %}
                 Banken har slut på pengar. Du vann matchen!
             {% endif %}
         </p>
-        <form method="post" action="{{ path('game_reset') }}">
-            <button type="submit">Börja ny match</button>
-        </form>
+        <div class="game-buttons">
+            <form method="post" action="{{ path('game_reset') }}">
+                <button type="submit">Börja ny match</button>
+            </form>
+        </div>
     {% else %}
-        <form method="get" action="{{ path('game_bet') }}">
-            <button type="submit">Ny runda</button>
-        </form>
+        <div class="game-buttons">
+            <form method="get" action="{{ path('game_bet') }}">
+                <button type="submit">Ny runda</button>
+            </form>
+        </div>
     {% endif %}
 {% else %}
-    <form method="post" action="{{ path('game_draw') }}">
-        <button type="submit">Dra kort</button>
-    </form>
+    <div class="game-buttons">
+        <form method="post" action="{{ path('game_draw') }}">
+            <button type="submit">Dra kort</button>
+        </form>
 
-    <form method="post" action="{{ path('game_stand') }}">
-        <button type="submit">Stanna</button>
-    </form>
+        <form method="post" action="{{ path('game_stand') }}">
+            <button type="submit">Stanna</button>
+        </form>
+    </div>
 {% endif %}
 
 <p><a href="{{ path('game_start') }}">Tillbaka till start</a></p>

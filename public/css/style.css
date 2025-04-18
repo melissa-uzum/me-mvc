@@ -222,3 +222,75 @@ main p {
 .kmom-nav a:hover {
     text-decoration: underline;
 }
+
+.game-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 2em;
+    flex-wrap: wrap;
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+.game-buttons form {
+    display: inline;
+}
+
+.game-buttons button {
+    background: linear-gradient(45deg, #4f4cc6, #00c6ff);
+    color: white;
+    border: none;
+    padding: 0.8em 1.5em;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transition: background 0.3s, transform 0.2s;
+}
+
+.game-buttons button:hover {
+    background: linear-gradient(45deg, #00c6ff, #4f4cc6);
+    transform: scale(1.05);
+}
+
+h2 {
+    margin-top: 2em;
+    font-size: 1.8rem;
+    color: #4f4cc6;
+}
+
+h3 {
+    margin-top: 2em;
+    font-size: 1.5rem;
+    color: #666;
+}
+
+ul {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 1em;
+}
+
+li {
+    margin-bottom: 0.5em;
+}
+
+form input[type="number"] {
+    padding: 0.6em;
+    font-size: 1.1rem;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    width: 100px;
+    text-align: center;
+    margin-right: 1em;
+}
+
+form.bet-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    margin-top: 2em;
+    flex-wrap: wrap;
+}
