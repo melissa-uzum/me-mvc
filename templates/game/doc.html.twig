@@ -3,19 +3,17 @@
 {% block title %}Dokumentation – Spel 21{% endblock %}
 
 {% block body %}
-<h1>Dokumentation: Kortspel 21</h1>
+<div class="two-columns">
 
-<p>
-    Detta är dokumentationssidan för mitt kortspel <strong>21 (Tjugoett)</strong>.
-    Här beskriver jag hur spelet fungerar och hur jag har löst det tekniskt.
-</p>
+    <div>
+        <h1>Dokumentation: Kortspel 21</h1>
+        <p>
+            Detta är dokumentationssidan för mitt kortspel <strong>21 (Tjugoett)</strong>.
+            Här beskriver jag kortfattat hur spelet fungerar och hur jag har löst denna uppgift.
+        </p>
 
-<h2>Flödesschema</h2>
-<p>Flödesschemat visar hur en spelrunda fungerar:</p>
-<img src="{{ asset('images/flow-chart.png') }}" alt="Flödesschema för 21-spelet" style="max-width:100%; height:auto;">
-
-<h2>Pseudokod</h2>
-<pre>
+        <h2>Pseudokod</h2>
+        <pre>
 Starta spelet
   Dela ut 0 kort till bank och spelare
   Spelaren drar första kortet
@@ -29,31 +27,35 @@ Om spelaren stannar
   Jämför poäng:
     - Banken vinner om lika eller högre
     - Spelaren vinner om banken spricker eller har lägre poäng
-</pre>
+        </pre>
 
-<h2>Klasser</h2>
-<ul>
-    <li><strong>Card</strong> – Representerar ett spelkort (färg och valör)</li>
-    <li><strong>CardHand</strong> – Håller en spelares eller bankens kort</li>
-    <li><strong>DeckOfCards</strong> – En hel kortlek som kan blandas och dras ifrån</li>
-    <li><strong>Game21</strong> – Håller all spelmekanik för 21-spelet</li>
-</ul>
+        <h2>Vad betyder att "spricka"?</h2>
+        <p>
+            Att <strong>spricka</strong> innebär att en spelares eller bankens kortvärde går över 21.
+            I spelet 21 leder det alltid till en förlust:
+        </p>
+        <ul>
+            <li>Om <strong>spelaren spricker</strong> → banken vinner direkt</li>
+            <li>Om <strong>banken spricker</strong> → spelaren vinner</li>
+        </ul>
+        <p>Wikipedia: Är summan större än 21 har spelaren <strong>spruckigt</strong> eller <strong>blivit tjock</strong> och förlorar sin insats till banken</p>
 
-<h2>Vad betyder att "spricka"?</h2>
-<p>
-    Att <strong>spricka</strong> innebär att en spelares eller bankens kortvärde går över 21.
-    I spelet 21 leder det alltid till en förlust:
-</p>
-<ul>
-    <li>Om <strong>spelaren spricker</strong> vinner banken direkt</li>
-    <li>Om <strong>banken spricker</strong> vinner spelaren</li>
-</ul>
-<p>
-    Detta är ett centralt begrepp i spelet och gör att det alltid finns en risk när man väljer att dra fler kort.
-</p>
-<p>
-    Wikipedia: "Är summan större än 21 har spelaren <strong>spruckit</strong> eller <strong>blivit tjock</strong> och förlorar sin insats till banken."
-</p>
+        <p><a href="{{ path('game_start') }}">Tillbaka till spelets startsida</a></p>
+    </div>
 
-<p><a href="{{ path('game_start') }}">Tillbaka till spelets startsida</a></p>
+    <div>
+        <h2>Flödesschema</h2>
+        <p>Flödesschemat visar hur en spelrunda fungerar:</p>
+        <img src="{{ asset('images/flow-chart.png') }}" alt="Flödesschema för 21-spelet" style="max-width: 100%; border: 1px solid #ccc; margin-top: 1rem;">
+
+        <h2>Klasser</h2>
+        <ul>
+            <li><strong>Card</strong> – Representerar ett spelkort (färg och valör)</li>
+            <li><strong>CardHand</strong> – Håller en spelares eller bankens kort</li>
+            <li><strong>DeckOfCards</strong> – En hel kortlek som kan blandas och dras ifrån</li>
+            <li><strong>Game21</strong> – Håller all spelmekanik för 21-spelet</li>
+        </ul>
+    </div>
+
+</div>
 {% endblock %}
