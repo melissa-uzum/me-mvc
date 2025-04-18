@@ -13,12 +13,60 @@ class Game21
     private CardHand $bank;
     private bool $playerStands = false;
 
+    private int $playerMoney = 100;
+    private int $bankMoney = 100;
+    private int $bet = 0;
+
     public function __construct()
     {
         $this->deck = new DeckOfCards();
         $this->deck->shuffle();
         $this->player = new CardHand();
         $this->bank = new CardHand();
+    }
+
+    public function placeBet(int $amount): void
+    {
+        if ($amount > $this->playerMoney || $amount > $this->bankMoney || $amount <= 0) {
+            throw new \InvalidArgumentException("Ogiltig insats.");
+        }
+
+        $this->bet = $amount;
+    }
+
+    public function getBet(): int
+    {
+        return $this->bet;
+    }
+
+    public function getPlayerMoney(): int
+    {
+        return $this->playerMoney;
+    }
+
+    public function getBankMoney(): int
+    {
+        return $this->bankMoney;
+    }
+
+    public function applyResult(): void
+    {
+        $winner = $this->getWinner();
+
+        if ($winner === "player") {
+            $this->playerMoney += $this->bet;
+            $this->bankMoney -= $this->bet;
+        } elseif ($winner === "bank") {
+            $this->playerMoney -= $this->bet;
+            $this->bankMoney += $this->bet;
+        }
+
+        $this->bet = 0;
+    }
+
+    public function isMatchOver(): bool
+    {
+        return $this->playerMoney <= 0 || $this->bankMoney <= 0;
     }
 
     public function playerDraw(): void
@@ -89,7 +137,7 @@ class Game21
         return "none";
     }
 
-        private function calculateValue(CardHand $hand): int
+    private function calculateValue(CardHand $hand): int
     {
         $total = 0;
 
