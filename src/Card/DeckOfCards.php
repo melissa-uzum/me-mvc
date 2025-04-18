@@ -39,4 +39,9 @@ class DeckOfCards
     {
         return count($this->cards);
     }
+
+    public function drawOne(): Card
+    {
+        return array_shift($this->cards);
+    }
 }

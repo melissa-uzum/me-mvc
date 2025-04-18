@@ -23,7 +23,7 @@ class Game21
 
     public function playerDraw(): void
     {
-        $this->player->addCard($this->deck->draw());
+        $this->player->add($this->deck->draw());
     }
 
     public function playerStands(): void
@@ -39,7 +39,7 @@ class Game21
     public function bankTurn(): void
     {
         while ($this->getBankValue() < 17) {
-            $this->bank->addCard($this->deck->draw());
+            $this->bank->add($this->deck->draw());
         }
     }
 
@@ -89,16 +89,17 @@ class Game21
         return "none";
     }
 
-    private function calculateValue(CardHand $hand): int
+        private function calculateValue(CardHand $hand): int
     {
         $total = 0;
+
         foreach ($hand->getCards() as $card) {
-            $value = $card->getValue();
+            $value = $card->getNumericValue();
             $total += $value;
         }
 
         foreach ($hand->getCards() as $card) {
-            if ($card->getValue() === 1 && $total + 13 <= 21) {
+            if ($card->getNumericValue() === 1 && $total + 13 <= 21) {
                 $total += 13;
             }
         }
