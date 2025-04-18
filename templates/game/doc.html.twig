@@ -1,13 +1,43 @@
-#[Route("/game/doc", name: "game_doc")]
-public function doc(): Response
-{
-    return $this->render('game/doc.html.twig');
-}
-Starta spel
-Dela ut 2 kort till spelare
-Visa spelarkort
-Spelare: välj "dra" eller "stanna"
-Om över 21 -> banken vinner
-Om stanna:
-    Banken drar tills den når minst 17 eller går över
-    Jämför händer -> avgör vinnare
+{% extends 'base.html.twig' %}
+
+{% block title %}Dokumentation – Spel 21{% endblock %}
+
+{% block body %}
+<h1>Dokumentation: Kortspel 21</h1>
+
+<p>
+    Detta är dokumentationssidan för mitt kortspel <strong>21 (Tjugoett)</strong>.
+    Här beskriver jag hur spelet fungerar och hur jag har löst det tekniskt.
+</p>
+
+<h2>Flödesschema</h2>
+<p>Flödesschemat visar hur en spelrunda fungerar:</p>
+<img src="{{ asset('images/flow-chart.png') }}" alt="Flödesschema för 21-spelet" style="max-width:100%; height:auto;">
+
+<h2>Pseudokod</h2>
+<pre>
+Starta spelet
+  Dela ut 0 kort till bank och spelare
+  Spelaren drar första kortet
+
+Loop: så länge spelaren vill dra
+  Dra ett kort
+  Om spelarens poäng > 21 → banken vinner
+
+Om spelaren stannar
+  Banken drar tills den har minst 17
+  Jämför poäng:
+    - Banken vinner om lika eller högre
+    - Spelaren vinner om banken spricker eller har lägre poäng
+</pre>
+
+<h2>Klasser</h2>
+<ul>
+    <li><strong>Card</strong> – Representerar ett spelkort (färg och valör)</li>
+    <li><strong>CardHand</strong> – Håller en spelares eller bankens kort</li>
+    <li><strong>DeckOfCards</strong> – En hel kortlek som kan blandas och dras ifrån</li>
+    <li><strong>Game21</strong> – Håller all spelmekanik för 21-spelet</li>
+</ul>
+
+<p><a href="{{ path('game_start') }}">Tillbaka till spelets startsida</a></p>
+{% endblock %}

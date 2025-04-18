@@ -23,7 +23,7 @@ class Game21
 
     public function playerDraw(): void
     {
-        $this->player->add($this->deck->draw());
+        $this->player->add($this->deck->drawOne());
     }
 
     public function playerStands(): void
@@ -39,7 +39,7 @@ class Game21
     public function bankTurn(): void
     {
         while ($this->getBankValue() < 17) {
-            $this->bank->add($this->deck->draw());
+            $this->bank->add($this->deck->drawOne());
         }
     }
 

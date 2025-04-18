@@ -1,4 +1,29 @@
-<h1>Välkommen till 21-spelet</h1>
-<p>Målet är att få 21 eller så nära som möjligt utan att gå över. Ess är värt 1 eller 14.</p>
-<a href="{{ path('game_play') }}">Starta spel</a>
-<a href="{{ path('game_doc') }}">Läs spelregler och dokumentation</a>
+{% extends 'base.html.twig' %}
+
+{% block title %}Spel 21{% endblock %}
+
+{% block body %}
+<h1>Välkommen till spelet 21 (Tjugoett)</h1>
+
+<p>
+    Målet i spelet är att komma så nära summan 21 som möjligt, utan att gå över.
+    Du spelar mot banken. Du kan dra kort hur många gånger du vill.
+    När du väljer att stanna är det bankens tur.
+</p>
+
+<h2>Regler:</h2>
+<ul>
+    <li>Ess är värt 1 eller 14</li>
+    <li>Knekt = 11, Dam = 12, Kung = 13</li>
+    <li>Övriga kort har sina vanliga värden</li>
+    <li>Om du får mer än 21 förlorar du direkt</li>
+    <li>Banken drar kort tills den når minst 17</li>
+    <li>Vid lika vinner banken</li>
+</ul>
+
+<form action="{{ path('game_play') }}" method="get">
+    <button type="submit">Starta spelet</button>
+</form>
+
+<p><a href="{{ path('game_doc') }}">Läs dokumentation om spelet</a></p>
+{% endblock %}
