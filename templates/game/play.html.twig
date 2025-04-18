@@ -1,8 +1,51 @@
-#[Route("/game/play", name: "game_play")]
-public function play(SessionInterface $session): Response
-{
-    // Starta ny omgång eller fortsätt från session
-    return $this->render('game/play.html.twig', [
-        'playerHand' => ..., 'bankHand' => ..., 'status' => ...
-    ]);
-}
+{% extends 'base.html.twig' %}
+
+{% block title %}Spela 21{% endblock %}
+
+{% block body %}
+<h1>Spelet 21</h1>
+
+<h2>Spelare</h2>
+<p>
+    {% for card in playerHand %}
+        {{ card }}
+    {% endfor %}
+</p>
+<p>Poäng: {{ playerValue }}</p>
+
+{% if bankHand is not empty %}
+    <h2>Bank</h2>
+    <p>
+        {% for card in bankHand %}
+            {{ card }}
+        {% endfor %}
+    </p>
+    <p>Poäng: {{ bankValue }}</p>
+{% endif %}
+
+{% if gameOver %}
+    <h2>Resultat</h2>
+    <p>
+        {% if winner == 'player' %}
+            Du vann!
+        {% elseif winner == 'bank' %}
+            Banken vann.
+        {% else %}
+            Oavgjort!
+        {% endif %}
+    </p>
+    <form method="post" action="{{ path('game_reset') }}">
+        <button type="submit">Spela igen</button>
+    </form>
+{% else %}
+    <form method="post" action="{{ path('game_draw') }}">
+        <button type="submit">Dra kort</button>
+    </form>
+
+    <form method="post" action="{{ path('game_stand') }}">
+        <button type="submit">Stanna</button>
+    </form>
+{% endif %}
+
+<p><a href="{{ path('game_start') }}">Tillbaka till start</a></p>
+{% endblock %}
