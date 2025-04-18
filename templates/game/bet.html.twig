@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Satsa pengar{% endblock %}
+
+{% block body %}
+<h1>Satsa pengar</h1>
+
+<p>
+    Du har: <strong>{{ game.getPlayerMoney() }} kr</strong><br>
+    Banken har: <strong>{{ game.getBankMoney() }} kr</strong>
+</p>
+
+{% if error %}
+    <p style="color:red;">{{ error }}</p>
+{% endif %}
+
+<form method="post">
+    <label for="bet">Din insats:</label>
+    <input type="number" id="bet" name="bet" min="1" required>
+    <button type="submit">Spela</button>
+</form>
+
+<p><a href="{{ path('game_start') }}">Tillbaka</a></p>
+{% endblock %}

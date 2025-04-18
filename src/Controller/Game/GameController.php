@@ -26,7 +26,16 @@ class GameController extends AbstractController
     #[Route('/game/play', name: 'game_play')]
     public function play(SessionInterface $session): Response
     {
-        $game = $session->get('game21') ?? new Game21();
+        $game = $session->get('game21');
+
+        if ($game->isPlayerStanding() && !$game->isGameOver()) {
+            $game->bankTurn();
+        }
+
+        if ($game->isGameOver()) {
+            $game->applyResult();
+        }
+
         $session->set('game21', $game);
 
         return $this->render('game/play.html.twig', [
@@ -37,14 +46,17 @@ class GameController extends AbstractController
             'bankValue' => $game->isPlayerStanding() || $game->isGameOver()
                 ? $game->getBankValue() : null,
             'gameOver' => $game->isGameOver(),
+            'matchOver' => $game->isMatchOver(),
             'winner' => $game->getWinner(),
+            'playerMoney' => $game->getPlayerMoney(),
+            'bankMoney' => $game->getBankMoney(),
+            'bet' => $game->getBet(),
         ]);
     }
 
     #[Route('/game/draw', name: 'game_draw', methods: ['POST'])]
     public function draw(SessionInterface $session): Response
     {
-        /** @var Game21 $game */
         $game = $session->get('game21');
         $game->playerDraw();
 
@@ -55,10 +67,8 @@ class GameController extends AbstractController
     #[Route('/game/stand', name: 'game_stand', methods: ['POST'])]
     public function stand(SessionInterface $session): Response
     {
-        /** @var Game21 $game */
         $game = $session->get('game21');
         $game->playerStands();
-        $game->bankTurn();
 
         $session->set('game21', $game);
         return $this->redirectToRoute('game_play');
@@ -69,5 +79,33 @@ class GameController extends AbstractController
     {
         $session->remove('game21');
         return $this->redirectToRoute('game_play');
+    }
+
+    #[Route('/game/bet', name: 'game_bet')]
+    public function bet(SessionInterface $session, Request $request): Response
+    {
+        $game = $session->get('game21') ?? new Game21();
+
+        if ($request->isMethod('POST')) {
+            $bet = (int) $request->request->get('bet');
+
+            try {
+                $game->startNewRound();
+                $game->placeBet($bet);
+                $game->playerDraw();
+                $session->set('game21', $game);
+                return $this->redirectToRoute('game_play');
+            } catch (\InvalidArgumentException $e) {
+                return $this->render('game/bet.html.twig', [
+                    'game' => $game,
+                    'error' => $e->getMessage()
+                ]);
+            }
+        }
+
+        return $this->render('game/bet.html.twig', [
+            'game' => $game,
+            'error' => null
+        ]);
     }
 }

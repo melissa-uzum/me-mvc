@@ -12,6 +12,7 @@ class Game21
     private CardHand $player;
     private CardHand $bank;
     private bool $playerStands = false;
+    private bool $roundOver = false;
 
     private int $playerMoney = 100;
     private int $bankMoney = 100;
@@ -23,6 +24,15 @@ class Game21
         $this->deck->shuffle();
         $this->player = new CardHand();
         $this->bank = new CardHand();
+    }
+
+    public function startNewRound(): void
+    {
+        $this->deck->shuffle();
+        $this->player = new CardHand();
+        $this->bank = new CardHand();
+        $this->playerStands = false;
+        $this->roundOver = false;
     }
 
     public function placeBet(int $amount): void
@@ -51,6 +61,10 @@ class Game21
 
     public function applyResult(): void
     {
+        if ($this->roundOver) {
+            return;
+        }
+
         $winner = $this->getWinner();
 
         if ($winner === "player") {
@@ -62,6 +76,7 @@ class Game21
         }
 
         $this->bet = 0;
+        $this->roundOver = true;
     }
 
     public function isMatchOver(): bool
@@ -113,7 +128,15 @@ class Game21
 
     public function isGameOver(): bool
     {
-        return $this->getPlayerValue() > 21 || ($this->playerStands && $this->getBankValue() > 0);
+        if ($this->getPlayerValue() > 21) {
+            return true;
+        }
+
+        if ($this->playerStands && $this->getBankValue() > 0) {
+            return true;
+        }
+
+        return false;
     }
 
     public function getWinner(): string

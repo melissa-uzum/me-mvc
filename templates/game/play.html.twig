@@ -5,6 +5,13 @@
 {% block body %}
 <h1>Spelet 21</h1>
 
+<h3>Saldo</h3>
+<ul>
+    <li>Du har: <strong>{{ playerMoney }} kr</strong></li>
+    <li>Banken har: <strong>{{ bankMoney }} kr</strong></li>
+    <li>Insats: <strong>{{ bet }} kr</strong></li>
+</ul>
+
 <h2>Spelare</h2>
 <p>
     {% for card in playerHand %}
@@ -27,16 +34,31 @@
     <h2>Resultat</h2>
     <p>
         {% if winner == 'player' %}
-            Du vann!
+        Du vann!
         {% elseif winner == 'bank' %}
-            Banken vann.
+        Banken vann.
         {% else %}
-            Oavgjort!
+        Oavgjort!
         {% endif %}
     </p>
-    <form method="post" action="{{ path('game_reset') }}">
-        <button type="submit">Spela igen</button>
-    </form>
+
+    {% if matchOver %}
+        <h3>Matchen är slut!</h3>
+        <p>
+            {% if playerMoney <= 0 %}
+                Du har förlorat alla pengar.
+            {% elseif bankMoney <= 0 %}
+                Banken har slut på pengar. Du vann matchen!
+            {% endif %}
+        </p>
+        <form method="post" action="{{ path('game_reset') }}">
+            <button type="submit">Börja ny match</button>
+        </form>
+    {% else %}
+        <form method="get" action="{{ path('game_bet') }}">
+            <button type="submit">Ny runda</button>
+        </form>
+    {% endif %}
 {% else %}
     <form method="post" action="{{ path('game_draw') }}">
         <button type="submit">Dra kort</button>
