@@ -2,9 +2,8 @@
 
 namespace App\Game;
 
-use App\Card\DeckOfCards;
 use App\Card\CardHand;
-use App\Card\Card;
+use App\Card\DeckOfCards;
 
 class Game21
 {
@@ -17,6 +16,8 @@ class Game21
     private int $playerMoney = 100;
     private int $bankMoney = 100;
     private int $bet = 0;
+
+    private array $aceChoices = [];
 
     public function __construct()
     {
@@ -33,12 +34,13 @@ class Game21
         $this->bank = new CardHand();
         $this->playerStands = false;
         $this->roundOver = false;
+        $this->aceChoices = [];
     }
 
     public function placeBet(int $amount): void
     {
         if ($amount > $this->playerMoney || $amount > $this->bankMoney || $amount <= 0) {
-            throw new \InvalidArgumentException("Ogiltig insats.");
+            throw new \InvalidArgumentException('Ogiltig insats.');
         }
 
         $this->bet = $amount;
@@ -67,10 +69,10 @@ class Game21
 
         $winner = $this->getWinner();
 
-        if ($winner === "player") {
+        if ('player' === $winner) {
             $this->playerMoney += $this->bet;
             $this->bankMoney -= $this->bet;
-        } elseif ($winner === "bank") {
+        } elseif ('bank' === $winner) {
             $this->playerMoney -= $this->bet;
             $this->bankMoney += $this->bet;
         }
@@ -86,7 +88,31 @@ class Game21
 
     public function playerDraw(): void
     {
-        $this->player->add($this->deck->drawOne());
+        $card = $this->deck->drawOne();
+        $this->player->add($card);
+
+        if ($card->isAce()) {
+            $index = count($this->player->getCards()) - 1;
+            if (!isset($this->aceChoices[$index])) {
+                $this->aceChoices[$index] = null;
+            }
+        }
+    }
+
+    public function setAceValue(int $index, int $value): void
+    {
+        if (!in_array($value, [1, 14])) {
+            return;
+        }
+
+        if (isset($this->aceChoices[$index])) {
+            $this->aceChoices[$index] = $value;
+        }
+    }
+
+    public function getAceChoices(): array
+    {
+        return $this->aceChoices;
     }
 
     public function playerStands(): void
@@ -118,12 +144,12 @@ class Game21
 
     public function getPlayerValue(): int
     {
-        return $this->calculateValue($this->player);
+        return $this->calculateValue($this->player, true);
     }
 
     public function getBankValue(): int
     {
-        return $this->calculateValue($this->bank);
+        return $this->calculateValue($this->bank, false);
     }
 
     public function isGameOver(): bool
@@ -142,36 +168,37 @@ class Game21
     public function getWinner(): string
     {
         if ($this->getPlayerValue() > 21) {
-            return "bank";
+            return 'bank';
         }
 
         if ($this->getBankValue() > 21) {
-            return "player";
+            return 'player';
         }
 
         if ($this->playerStands) {
             if ($this->getBankValue() >= $this->getPlayerValue()) {
-                return "bank";
+                return 'bank';
             } else {
-                return "player";
+                return 'player';
             }
         }
 
-        return "none";
+        return 'none';
     }
 
-    private function calculateValue(CardHand $hand): int
+    private function calculateValue(CardHand $hand, bool $isPlayer): int
     {
         $total = 0;
 
-        foreach ($hand->getCards() as $card) {
-            $value = $card->getNumericValue();
-            $total += $value;
-        }
-
-        foreach ($hand->getCards() as $card) {
-            if ($card->getNumericValue() === 1 && $total + 13 <= 21) {
-                $total += 13;
+        foreach ($hand->getCards() as $index => $card) {
+            if ($card->isAce() && $isPlayer) {
+                if (isset($this->aceChoices[$index]) && in_array($this->aceChoices[$index], [1, 14])) {
+                    $total += $this->aceChoices[$index];
+                }
+            } elseif ($card->isAce()) {
+                $total += ($total + 14 <= 21) ? 14 : 1;
+            } else {
+                $total += $card->getNumericValue();
             }
         }
 

@@ -64,9 +64,23 @@ TIL: Jag lärde mig hur Symfony strukturerar kod enligt MVC och hur man skapar r
     </section>
 
     <section id="kmom03">
-        <h2>Kmom03</h2>
-        <p>
-        </p>
+    <h2>Kmom03</h2>
+    <p>
+    I detta kmom har vi byggt ett komplett kortspelet 21.
+    <br><br>
+    Att börja med att modellera spelet med flödesdiagram och pseudokod kändes faktiskt väldigt hjälpsamt, det gjorde att man hade en ram man kunde utgå från och bygga upp. Det blev mycket enklare att förstå hela spelprocessen i förväg, innan man ens började skriva kod. Det blev tydligare vilka metoder som behövdes och hur logiken borde vara uppbyggd. Jag tror absolut att det stöder problemlösning och planering särskilt i lite större applikationer där man lätt kan tappa bort sig annars. Jag gjorde även ett UML men det vart extremt stort, men båda dessa diagram underlättade processen enormt.
+    <br><br>
+    Min implementation bygger på klasser som `Game21`, `Card`, `CardHand`, `DeckOfCards` samt `CardGraphic`, så både nya men vi återanvänder även andra. Spelaren spelar mot banken, man kan dra kort, stanna, välja ess-värde, satsa pengar och spela flera rundor i rad tills någon förlorar allt. Jag tycker att jag lyckades ganska bra. Det var mycket logik att hålla reda på, men jag fick till en struktur där både vy, controller och modell samarbetade på ett tydligt sätt.
+    <br><br>
+    Jag är ganska nöjd med resultatet, även om det finns delar som skulle kunna förbättras. En förbättring kunde vara att bryta ut vissa delar av spelmekaniken till hjälparklasser eller services. Koden i `Game21`-klassen är ganska stor. Jag kunde också ha jobbat mer med att återanvända logik samt dela up CSS koden.
+    <br><br>
+    Symfony känns mer och mer trevligt att jobba i. Jag börjar förstå hur routing, controllers och templates hänger ihop, och hur man kan jobba modulärt och organiserat. Jag gillar särskilt hur tydligt man kan separera delar i sina egna mappar. Det känns också smidigt att arbeta med sessionsdata, och att ha allt förberett för att bygga ut appen med fler features.
+    <br><br>
+    Att använda Symfony för att skapa JSON-endpoints var också trevligt. Jag byggde en `/api/game`-rutt som visar aktuell spelstatus i JSON-format.
+    <br><br>
+    <strong>TIL:</strong> Jag lärde mig hur viktigt det är att börja med att modellera sin applikation med flödesdiagram och pseudokod innan man kastar sig in i själva kodningen. Det gav mig en klar struktur att följa och underlättade mycket när jag implementerade spelets olika steg.
+    <br><br>
+    </p>
     </section>
 
     <section id="kmom04">

@@ -304,3 +304,134 @@ form.bet-form {
     margin: 0 auto;
     text-align: left;
 }
+
+.game-button {
+    background: linear-gradient(45deg, #4f4cc6, #00c6ff);
+    color: white;
+    border: none;
+    padding: 0.8em 1.5em;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transition: background 0.3s, transform 0.2s;
+}
+
+.game-button:hover {
+    background: linear-gradient(45deg, #00c6ff, #4f4cc6);
+    transform: scale(1.05);
+}
+
+.game-link {
+    display: inline-block;
+    background: linear-gradient(45deg, #4f4cc6, #00c6ff);
+    color: white;
+    text-decoration: none;
+    padding: 0.8em 1.5em;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transition: background 0.3s, transform 0.2s;
+    margin-top: 1.5em;
+}
+
+.game-link:hover {
+    background: linear-gradient(45deg, #00c6ff, #4f4cc6);
+    transform: scale(1.05);
+    text-decoration: none;
+}
+
+.game-hands {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 4rem;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}
+
+.player-hand,
+.bank-hand {
+    flex: 1 1 300px;
+    background-color: #f3f3f3;
+    padding: 1em;
+    border-radius: 1em;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    min-width: 280px;
+}
+
+.player-hand h2,
+.bank-hand h2 {
+    margin-bottom: 0.5em;
+    text-align: center;
+    color: #4f4cc6;
+}
+
+.bet-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    margin-top: 2em;
+    flex-wrap: wrap;
+}
+
+.bet-status {
+    display: flex;
+    justify-content: center;
+    gap: 4em;
+    margin-top: 1.5em;
+    flex-wrap: wrap;
+    font-size: 1.2rem;
+}
+
+.saldo-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background-color: #f3f3f3;
+    padding: 1.5em;
+    border-radius: 1em;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    min-width: 250px;
+    flex: 1 1 280px;
+}
+
+.saldo-box h3 {
+    margin-bottom: 1em;
+    font-size: 1.5rem;
+    color: #4f4cc6;
+}
+
+.saldo-box div {
+    margin-bottom: 0.5em;
+    font-size: 1.1rem;
+}
+
+.result-saldo-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+    align-items: flex-start;
+    margin-top: 2em;
+    flex-wrap: wrap;
+    text-align: left;
+}
+
+.result-box,
+.saldo-box {
+    background-color: #f3f3f3;
+    padding: 1.5em;
+    border-radius: 1em;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    min-width: 250px;
+    flex: 1 1 280px;
+}
+
+.result-box h2,
+.saldo-box h3 {
+    margin-top: 0;
+    color: #4f4cc6;
+}

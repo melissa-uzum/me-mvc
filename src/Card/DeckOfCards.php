@@ -42,6 +42,31 @@ class DeckOfCards
 
     public function drawOne(): Card
     {
-        return array_shift($this->cards);
+        if (empty($this->cards)) {
+            $this->reset();
+        }
+
+        $card = array_shift($this->cards);
+
+        if (!$card instanceof Card) {
+            throw new \RuntimeException('Kunde inte dra ett kort.');
+        }
+
+        return $card;
+    }
+
+    public function reset(): void
+    {
+        $this->cards = [];
+        $suits = ['♠', '♥', '♦', '♣'];
+        $values = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+
+        foreach ($suits as $suit) {
+            foreach ($values as $value) {
+                $this->cards[] = new Card($suit, $value);
+            }
+        }
+
+        $this->shuffle();
     }
 }

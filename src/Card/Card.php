@@ -27,15 +27,20 @@ class Card
     {
         return "{$this->value}{$this->suit}";
     }
-    public function getNumericValue(): int
-{
-    return match ($this->value) {
-        "E" => 1,
-        "J" => 11,
-        "Q" => 12,
-        "K" => 13,
-        default => (int) $this->value,
-    };
-}
 
+    public function getNumericValue(): int
+    {
+        return match ($this->value) {
+            'A' => 1,
+            'J' => 11,
+            'Q' => 12,
+            'K' => 13,
+            default => (int) $this->value,
+        };
+    }
+
+    public function isAce(): bool
+    {
+        return 'A' === $this->value;
+    }
 }

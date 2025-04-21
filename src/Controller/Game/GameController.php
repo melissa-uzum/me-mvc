@@ -6,8 +6,8 @@ use App\Game\Game21;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\Routing\Annotation\Route;
 
 class GameController extends AbstractController
 {
@@ -27,6 +27,11 @@ class GameController extends AbstractController
     public function play(SessionInterface $session): Response
     {
         $game = $session->get('game21');
+
+        if (!$game) {
+            $game = new Game21();
+            $session->set('game21', $game);
+        }
 
         if ($game->isPlayerStanding() && !$game->isGameOver()) {
             $game->bankTurn();
@@ -51,6 +56,7 @@ class GameController extends AbstractController
             'playerMoney' => $game->getPlayerMoney(),
             'bankMoney' => $game->getBankMoney(),
             'bet' => $game->getBet(),
+            'aceChoices' => $game->getAceChoices(),
         ]);
     }
 
@@ -61,6 +67,7 @@ class GameController extends AbstractController
         $game->playerDraw();
 
         $session->set('game21', $game);
+
         return $this->redirectToRoute('game_play');
     }
 
@@ -71,6 +78,7 @@ class GameController extends AbstractController
         $game->playerStands();
 
         $session->set('game21', $game);
+
         return $this->redirectToRoute('game_play');
     }
 
@@ -78,6 +86,7 @@ class GameController extends AbstractController
     public function reset(SessionInterface $session): Response
     {
         $session->remove('game21');
+
         return $this->redirectToRoute('game_play');
     }
 
@@ -92,20 +101,35 @@ class GameController extends AbstractController
             try {
                 $game->startNewRound();
                 $game->placeBet($bet);
-                $game->playerDraw();
                 $session->set('game21', $game);
+
                 return $this->redirectToRoute('game_play');
             } catch (\InvalidArgumentException $e) {
                 return $this->render('game/bet.html.twig', [
                     'game' => $game,
-                    'error' => $e->getMessage()
+                    'error' => $e->getMessage(),
                 ]);
             }
         }
 
         return $this->render('game/bet.html.twig', [
             'game' => $game,
-            'error' => null
+            'error' => null,
         ]);
+    }
+
+    #[Route('/game/ace', name: 'game_ace', methods: ['POST'])]
+    public function ace(Request $request, SessionInterface $session): Response
+    {
+        $game = $session->get('game21');
+
+        $index = (int) $request->request->get('index');
+        $value = (int) $request->request->get('value');
+
+        $game->setAceValue($index, $value);
+
+        $session->set('game21', $game);
+
+        return $this->redirectToRoute('game_play');
     }
 }

@@ -47,14 +47,15 @@
         "twig/extra-bundle": "^2.12|^3.0",
         "twig/twig": "^2.12|^3.0"
     },
-    "config": {
-        "allow-plugins": {
-            "php-http/discovery": true,
-            "symfony/flex": true,
-            "symfony/runtime": true
-        },
-        "bump-after-update": true,
-        "sort-packages": true
+    "require-dev": {
+        "phpunit/phpunit": "^9.5",
+        "symfony/browser-kit": "7.2.*",
+        "symfony/css-selector": "7.2.*",
+        "symfony/debug-bundle": "7.2.*",
+        "symfony/maker-bundle": "^1.0",
+        "symfony/phpunit-bridge": "^7.2",
+        "symfony/stopwatch": "7.2.*",
+        "symfony/web-profiler-bundle": "7.2.*"
     },
     "autoload": {
         "psr-4": {
@@ -77,48 +78,48 @@
         "symfony/polyfill-php82": "*"
     },
     "scripts": {
-    "csfix": "PHP_CS_FIXER_IGNORE_ENV=1 tools/php-cs-fixer/vendor/bin/php-cs-fixer fix src",
-    "csfix:dry": "PHP_CS_FIXER_IGNORE_ENV=1 tools/php-cs-fixer/vendor/bin/php-cs-fixer fix src --dry-run -v"
-},
-"extra": {
-    "symfony": {
-        "allow-contrib": false,
-        "require": "7.2.*"
+        "csfix": "PHP_CS_FIXER_IGNORE_ENV=1 tools/php-cs-fixer/vendor/bin/php-cs-fixer fix src",
+        "csfix:dry": "PHP_CS_FIXER_IGNORE_ENV=1 tools/php-cs-fixer/vendor/bin/php-cs-fixer fix src --dry-run -v",
+        "phpmd": "tools/phpmd/vendor/bin/phpmd src text tools/phpmd/phpmd.xml || true",
+        "phpstan": "tools/phpstan/vendor/bin/phpstan analyse -c tools/phpstan/phpstan.neon || true",
+        "lint": [
+            "@csfix:dry",
+            "@phpmd",
+            "@phpstan"
+        ],
+        "post-install-cmd": [
+            "@auto-scripts"
+        ],
+        "post-update-cmd": [
+            "@auto-scripts"
+        ]
     },
-    "auto-scripts": {
-        "cache:clear": "symfony-cmd",
-        "assets:install %PUBLIC_DIR%": "symfony-cmd",
-        "importmap:install": "symfony-cmd"
-    }
-},
-"scripts-descriptions": {
-    "csfix": "Fixar kodstil i src/",
-    "csfix:dry": "Kontrollerar kodstil utan att ändra något"
-},
-"post-install-cmd": [
-    "@auto-scripts"
-],
-"post-update-cmd": [
-    "@auto-scripts"
-],
-
-    "conflict": {
-        "symfony/symfony": "*"
+    "scripts-descriptions": {
+        "csfix": "Fixar kodstil i src/",
+        "csfix:dry": "Kontrollerar kodstil utan att ändra något",
+        "phpmd": "Kör PHP Mess Detector med konfigfilen",
+        "phpstan": "Kör PHPStan med konfigfilen",
+        "lint": "Kör samtliga linterverktyg: php-cs-fixer (dry), phpmd, phpstan"
     },
     "extra": {
         "symfony": {
             "allow-contrib": false,
             "require": "7.2.*"
+        },
+        "auto-scripts": {
+            "cache:clear": "symfony-cmd",
+            "assets:install %PUBLIC_DIR%": "symfony-cmd",
+            "importmap:install": "symfony-cmd"
         }
     },
-    "require-dev": {
-        "phpunit/phpunit": "^9.5",
-        "symfony/browser-kit": "7.2.*",
-        "symfony/css-selector": "7.2.*",
-        "symfony/debug-bundle": "7.2.*",
-        "symfony/maker-bundle": "^1.0",
-        "symfony/phpunit-bridge": "^7.2",
-        "symfony/stopwatch": "7.2.*",
-        "symfony/web-profiler-bundle": "7.2.*"
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": true,
+            "symfony/flex": true,
+            "symfony/runtime": true
+        }
+    },
+    "conflict": {
+        "symfony/symfony": "*"
     }
 }

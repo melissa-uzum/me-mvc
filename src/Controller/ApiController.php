@@ -43,6 +43,11 @@ class ApiController extends AbstractController
                     'path' => '/api/quote',
                     'description' => 'Returnerar ett slumpmässigt citat i JSON-format.',
                 ],
+                [
+                    'name' => 'GET /api/game',
+                    'path' => '/api/game',
+                    'description' => 'Returnerar aktuell ställning för spelet 21 som JSON.',
+                ],
             ],
         ]);
     }

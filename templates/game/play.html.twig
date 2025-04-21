@@ -5,75 +5,105 @@
 {% block body %}
 <h1>Spelet 21</h1>
 
-<h3>Saldo</h3>
-<ul>
-    <li>Du har: <strong>{{ playerMoney }} kr</strong></li>
-    <li>Banken har: <strong>{{ bankMoney }} kr</strong></li>
-    <li>Insats: <strong>{{ bet }} kr</strong></li>
-</ul>
+<div class="game-hands">
+    {% if playerHand is not empty %}
+        <div class="player-hand">
+            <h2>Spelare</h2>
+            <p>
+                {% for card in playerHand %}
+                    {{ card }}
+                    {% if card.value == 'A' and not gameOver %}
+                        {% set index = loop.index0 %}
+                        {% if aceChoices[index] is null %}
+                            <form method="post" action="{{ path('game_ace') }}" style="display:inline-block; margin-left: 1em;">
+                                <input type="hidden" name="index" value="{{ index }}">
+                                <select name="value">
+                                    <option value="1">1</option>
+                                    <option value="14">14</option>
+                                </select>
+                                <button type="submit" class="game-button">Välj</button>
+                            </form>
+                        {% else %}
+                            <span style="margin-left: 1em;">(Ess värde: {{ aceChoices[index] }})</span>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            </p>
+            <p><strong>Poäng:</strong> {{ playerValue }}</p>
+        </div>
+    {% endif %}
 
-<h2>Spelare</h2>
-<p>
-    {% for card in playerHand %}
-        {{ card }}
-    {% endfor %}
-</p>
-<p>Poäng: {{ playerValue }}</p>
-
-{% if bankHand is not empty %}
-    <h2>Bank</h2>
-    <p>
-        {% for card in bankHand %}
-            {{ card }}
-        {% endfor %}
-    </p>
-    <p>Poäng: {{ bankValue }}</p>
-{% endif %}
+    {% if bankHand is not empty %}
+        <div class="bank-hand">
+            <h2>Bank</h2>
+            <p>
+                {% for card in bankHand %}
+                    {{ card }}
+                {% endfor %}
+            </p>
+            <p><strong>Poäng:</strong> {{ bankValue }}</p>
+        </div>
+    {% endif %}
+</div>
 
 {% if gameOver %}
-    <h2>Resultat</h2>
-    <p>
-        {% if winner == 'player' %}
-        Du vann!
-        {% elseif winner == 'bank' %}
-        Banken vann.
-        {% else %}
-        Oavgjort!
-        {% endif %}
-    </p>
+    <div class="result-saldo-wrapper">
+        <div class="result-box">
+            <h2>Resultat</h2>
+            <p>
+                {% if winner == 'player' %}
+                    Du vann!
+                {% elseif winner == 'bank' %}
+                    Banken vann.
+                {% else %}
+                    Oavgjort!
+                {% endif %}
+            </p>
+
+            {% if matchOver %}
+                <h3>Matchen är slut!</h3>
+                <p>
+                    {% if playerMoney <= 0 %}
+                        Du har förlorat alla pengar...
+                    {% elseif bankMoney <= 0 %}
+                        Banken har slut på pengar. Du vann matchen!
+                    {% endif %}
+                </p>
+            {% endif %}
+        </div>
+
+        <div class="saldo-box">
+            <h3>Saldo</h3>
+            <div><strong>Du har:</strong> {{ playerMoney }} kr</div>
+            <div><strong>Banken har:</strong> {{ bankMoney }} kr</div>
+            <div><strong>Insats:</strong> {{ bet }} kr</div>
+        </div>
+    </div>
 
     {% if matchOver %}
-        <h3>Matchen är slut!</h3>
-        <p>
-            {% if playerMoney <= 0 %}
-                Du har förlorat alla pengar...
-            {% elseif bankMoney <= 0 %}
-                Banken har slut på pengar. Du vann matchen!
-            {% endif %}
-        </p>
         <div class="game-buttons">
             <form method="post" action="{{ path('game_reset') }}">
-                <button type="submit">Börja ny match</button>
+                <button type="submit" class="game-button">Börja ny match</button>
             </form>
         </div>
     {% else %}
         <div class="game-buttons">
             <form method="get" action="{{ path('game_bet') }}">
-                <button type="submit">Ny runda</button>
+                <button type="submit" class="game-button">Ny runda</button>
             </form>
         </div>
     {% endif %}
 {% else %}
     <div class="game-buttons">
         <form method="post" action="{{ path('game_draw') }}">
-            <button type="submit">Dra kort</button>
+            <button type="submit" class="game-button">Dra kort</button>
         </form>
 
         <form method="post" action="{{ path('game_stand') }}">
-            <button type="submit">Stanna</button>
+            <button type="submit" class="game-button">Stanna</button>
         </form>
     </div>
 {% endif %}
 
-<p><a href="{{ path('game_start') }}">Tillbaka till start</a></p>
+<p><a href="{{ path('game_start') }}" class="game-link">Tillbaka till start</a></p>
 {% endblock %}
