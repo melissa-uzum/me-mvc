@@ -7,12 +7,19 @@
     <p>Här hittar du de JSON-routes som denna webbplats erbjuder:</p>
 
     <ul>
-        {% for route in routes %}
+    {% for route in routes %}
+        {% if route.method == 'GET' %}
             <li>
                 <strong>{{ route.name }}</strong><br>
-                <code>{{ route.path }}</code><br>
+                <code><a href="{{ route.path }}">{{ route.path }}</a></code><br>
                 <em>{{ route.description }}</em>
             </li>
-        {% endfor %}
-    </ul>
+        {% endif %}
+    {% endfor %}
+</ul>
+
+
+
+
+
 {% endblock %}

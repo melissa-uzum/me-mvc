@@ -7,7 +7,7 @@
 
     {% if drawn is not empty %}
         <p style="font-size: 32px;">
-            {{ drawn[0].getUnicode() }}
+            {{ drawn[0].getUnicode()|raw }}
         </p>
     {% else %}
         <p>Det finns inga kort kvar i leken.</p>

@@ -17,7 +17,11 @@
                 <li>
                     <strong>{{ key }}</strong>:
                     {% if key == 'deck' and value is iterable %}
-                        <p>{{ value|join(', ') }}</p>
+                        <div style="display: flex; flex-wrap: wrap; gap: 5px;">
+                            {% for card in value %}
+                            {{ card.getUnicode()|raw }}
+                        {% endfor %}
+                        </div>
                         <p><em>{{ value|length }} kort kvar i leken.</em></p>
                     {% else %}
                         <pre>{{ value|json_encode(constant('JSON_PRETTY_PRINT') b-or constant('JSON_UNESCAPED_UNICODE')) }}</pre>

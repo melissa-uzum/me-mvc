@@ -5,9 +5,12 @@ namespace App\Card;
 class DeckOfCards
 {
     private array $cards = [];
+    private bool $graphic;
 
     public function __construct(bool $graphic = true)
     {
+        $this->graphic = $graphic;
+
         $suits = ['♠', '♥', '♦', '♣'];
         $values = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
 
@@ -63,7 +66,9 @@ class DeckOfCards
 
         foreach ($suits as $suit) {
             foreach ($values as $value) {
-                $this->cards[] = new Card($suit, $value);
+                $this->cards[] = $this->graphic
+                    ? new CardGraphic($suit, $value)
+                    : new Card($suit, $value);
             }
         }
 

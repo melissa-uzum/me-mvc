@@ -435,3 +435,18 @@ form.bet-form {
     margin-top: 0;
     color: #4f4cc6;
 }
+
+.card {
+    font-size: 24px;
+    border: 1px solid #ccc;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+.red-card {
+    color: red;
+}
+
+.black-card {
+    color: black;
+}

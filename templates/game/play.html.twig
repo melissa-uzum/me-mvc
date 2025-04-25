@@ -11,8 +11,8 @@
             <h2>Spelare</h2>
             <p>
                 {% for card in playerHand %}
-                    {{ card }}
-                    {% if card.value == 'A' and not gameOver %}
+                    {{ card.getUnicode()|raw }}
+                    {% if card.getValue() == 'A' %}
                         {% set index = loop.index0 %}
                         {% if aceChoices[index] is null %}
                             <form method="post" action="{{ path('game_ace') }}" style="display:inline-block; margin-left: 1em;">
@@ -38,7 +38,7 @@
             <h2>Bank</h2>
             <p>
                 {% for card in bankHand %}
-                    {{ card }}
+                    {{ card.getUnicode()|raw }}
                 {% endfor %}
             </p>
             <p><strong>Poäng:</strong> {{ bankValue }}</p>

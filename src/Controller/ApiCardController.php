@@ -22,7 +22,7 @@ class ApiCardController extends AbstractController
         ]);
     }
 
-    #[Route('/api/deck/shuffle', name: 'api_deck_shuffle', methods: ['POST'])]
+    #[Route('/api/deck/shuffle', name: 'api_deck_shuffle', methods: ['GET', 'POST'])]
     public function apiShuffle(SessionInterface $session): JsonResponse
     {
         $deck = new DeckOfCards();
@@ -37,7 +37,7 @@ class ApiCardController extends AbstractController
         ]);
     }
 
-    #[Route('/api/deck/draw', name: 'api_draw_one', methods: ['POST'])]
+    #[Route('/api/deck/draw', name: 'api_draw_one', methods: ['GET', 'POST'])]
     public function apiDrawOne(SessionInterface $session): JsonResponse
     {
         $deck = $session->get('deck') ?? new DeckOfCards();
@@ -50,7 +50,7 @@ class ApiCardController extends AbstractController
         ]);
     }
 
-    #[Route('/api/deck/draw/{number<\d+>}', name: 'api_draw_number', methods: ['POST'])]
+    #[Route('/api/deck/draw/{number<\d+>}', name: 'api_draw_number', methods: ['GET', 'POST'])]
     public function apiDrawNumber(int $number, SessionInterface $session): JsonResponse
     {
         $deck = $session->get('deck') ?? new DeckOfCards();
@@ -65,7 +65,7 @@ class ApiCardController extends AbstractController
         ]);
     }
 
-    #[Route('/api/deck/deal/{players<\d+>}/{cards<\d+>}', name: 'api_deal', methods: ['POST'])]
+    #[Route('/api/deck/deal/{players<\d+>}/{cards<\d+>}', name: 'api_deal', methods: ['GET', 'POST'])]
     public function apiDeal(int $players, int $cards, SessionInterface $session): JsonResponse
     {
         $deck = $session->get('deck') ?? new DeckOfCards();

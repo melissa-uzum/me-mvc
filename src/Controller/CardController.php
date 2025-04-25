@@ -20,27 +20,55 @@ class CardController extends AbstractController
     #[Route('/card/deck', name: 'card_deck')]
     public function deck(SessionInterface $session): Response
     {
-        $deck = new DeckOfCards();
+        $deck = $session->get('deck');
+
+        if (!$deck instanceof DeckOfCards) {
+            $deck = new DeckOfCards(true);
+        }
+
         $cards = $deck->getCards();
-        $session->set('deck', $deck);
+
+        usort($cards, function ($a, $b) {
+            $suitOrder = ['♠' => 0, '♥' => 1, '♦' => 2, '♣' => 3];
+            $valueOrder = ['A' => 1, '2' => 2, '3' => 3, '4' => 4, '5' => 5,
+                        '6' => 6, '7' => 7, '8' => 8, '9' => 9, '10' => 10,
+                        'J' => 11, 'Q' => 12, 'K' => 13];
+
+            $aSuit = $a->getSuit();
+            $bSuit = $b->getSuit();
+
+            if ($suitOrder[$aSuit] === $suitOrder[$bSuit]) {
+                return $valueOrder[$a->getValue()] <=> $valueOrder[$b->getValue()];
+            }
+
+            return $suitOrder[$aSuit] <=> $suitOrder[$bSuit];
+        });
+
 
         return $this->render('card/deck.html.twig', [
             'cards' => $cards,
         ]);
     }
 
+
     #[Route('/card/deck/shuffle', name: 'card_shuffle')]
     public function shuffle(SessionInterface $session): Response
     {
-        $deck = new DeckOfCards();
+        $deck = $session->get('deck');
+
+        if (!$deck instanceof DeckOfCards) {
+            $deck = new DeckOfCards(true);
+        }
+
         $deck->shuffle();
+
         $session->set('deck', $deck);
-        $cards = $deck->getCards();
 
         return $this->render('card/shuffle.html.twig', [
-            'cards' => $cards,
+            'cards' => $deck->getCards(),
         ]);
     }
+
 
     #[Route('/card/deck/draw', name: 'card_draw')]
     public function draw(SessionInterface $session): Response
@@ -48,7 +76,7 @@ class CardController extends AbstractController
         $deck = $session->get('deck');
 
         if (!$deck instanceof DeckOfCards) {
-            $deck = new DeckOfCards();
+            $deck = new DeckOfCards(true);
         }
 
         $drawn = $deck->draw(1);
@@ -66,7 +94,7 @@ class CardController extends AbstractController
         $deck = $session->get('deck');
 
         if (!$deck instanceof DeckOfCards) {
-            $deck = new DeckOfCards();
+            $deck = new DeckOfCards(true);
         }
 
         $drawCount = min($number, $deck->count());
@@ -89,15 +117,12 @@ class CardController extends AbstractController
 
         foreach ($raw as $key => $value) {
             if (is_object($value)) {
-                if (method_exists($value, '__toString')) {
+                if ($key === 'deck' && method_exists($value, 'getCards')) {
+                    $all[$key] = $value->getCards();
+                } elseif (method_exists($value, '__toString')) {
                     $all[$key] = (string) $value;
-                } elseif ('deck' === $key && method_exists($value, 'getCards')) {
-                    $all[$key] = array_map(
-                        fn ($card) => (string) $card,
-                        $value->getCards()
-                    );
                 } else {
-                    $all[$key] = 'Objekt av typen '.get_class($value);
+                    $all[$key] = 'Objekt av typen ' . get_class($value);
                 }
             } else {
                 $all[$key] = $value;
@@ -108,6 +133,7 @@ class CardController extends AbstractController
             'session' => $all,
         ]);
     }
+
 
     #[Route('/session/delete', name: 'session_delete')]
     public function deleteSession(SessionInterface $session): Response
@@ -124,7 +150,7 @@ class CardController extends AbstractController
         $deck = $session->get('deck');
 
         if (!$deck instanceof DeckOfCards) {
-            $deck = new DeckOfCards();
+            $deck = new DeckOfCards(true);
         }
 
         $totalToDraw = $players * $cards;

@@ -12,16 +12,14 @@ class Game21
     private CardHand $bank;
     private bool $playerStands = false;
     private bool $roundOver = false;
-
     private int $playerMoney = 100;
     private int $bankMoney = 100;
     private int $bet = 0;
-
     private array $aceChoices = [];
 
     public function __construct()
     {
-        $this->deck = new DeckOfCards();
+        $this->deck = new DeckOfCards(true);
         $this->deck->shuffle();
         $this->player = new CardHand();
         $this->bank = new CardHand();
@@ -29,6 +27,7 @@ class Game21
 
     public function startNewRound(): void
     {
+        $this->deck = new DeckOfCards(true);
         $this->deck->shuffle();
         $this->player = new CardHand();
         $this->bank = new CardHand();
@@ -42,7 +41,6 @@ class Game21
         if ($amount > $this->playerMoney || $amount > $this->bankMoney || $amount <= 0) {
             throw new \InvalidArgumentException('Ogiltig insats.');
         }
-
         $this->bet = $amount;
     }
 
@@ -66,17 +64,14 @@ class Game21
         if ($this->roundOver) {
             return;
         }
-
         $winner = $this->getWinner();
-
-        if ('player' === $winner) {
+        if ($winner === 'player') {
             $this->playerMoney += $this->bet;
             $this->bankMoney -= $this->bet;
-        } elseif ('bank' === $winner) {
+        } elseif ($winner === 'bank') {
             $this->playerMoney -= $this->bet;
             $this->bankMoney += $this->bet;
         }
-
         $this->bet = 0;
         $this->roundOver = true;
     }
@@ -90,10 +85,9 @@ class Game21
     {
         $card = $this->deck->drawOne();
         $this->player->add($card);
-
         if ($card->isAce()) {
             $index = count($this->player->getCards()) - 1;
-            if (!isset($this->aceChoices[$index])) {
+            if (!array_key_exists($index, $this->aceChoices)) {
                 $this->aceChoices[$index] = null;
             }
         }
@@ -104,8 +98,8 @@ class Game21
         if (!in_array($value, [1, 14])) {
             return;
         }
-
-        if (isset($this->aceChoices[$index])) {
+        $card = $this->player->getCards()[$index] ?? null;
+        if ($card && $card->isAce()) {
             $this->aceChoices[$index] = $value;
         }
     }
@@ -157,11 +151,9 @@ class Game21
         if ($this->getPlayerValue() > 21) {
             return true;
         }
-
         if ($this->playerStands && $this->getBankValue() > 0) {
             return true;
         }
-
         return false;
     }
 
@@ -170,11 +162,9 @@ class Game21
         if ($this->getPlayerValue() > 21) {
             return 'bank';
         }
-
         if ($this->getBankValue() > 21) {
             return 'player';
         }
-
         if ($this->playerStands) {
             if ($this->getBankValue() >= $this->getPlayerValue()) {
                 return 'bank';
@@ -182,18 +172,18 @@ class Game21
                 return 'player';
             }
         }
-
         return 'none';
     }
 
     private function calculateValue(CardHand $hand, bool $isPlayer): int
     {
         $total = 0;
-
         foreach ($hand->getCards() as $index => $card) {
             if ($card->isAce() && $isPlayer) {
-                if (isset($this->aceChoices[$index]) && in_array($this->aceChoices[$index], [1, 14])) {
+                if (isset($this->aceChoices[$index])) {
                     $total += $this->aceChoices[$index];
+                } else {
+                    continue;
                 }
             } elseif ($card->isAce()) {
                 $total += ($total + 14 <= 21) ? 14 : 1;
@@ -201,7 +191,6 @@ class Game21
                 $total += $card->getNumericValue();
             }
         }
-
         return $total;
     }
 }

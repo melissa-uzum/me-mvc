@@ -126,9 +126,10 @@ class GameController extends AbstractController
         $index = (int) $request->request->get('index');
         $value = (int) $request->request->get('value');
 
-        $game->setAceValue($index, $value);
-
-        $session->set('game21', $game);
+        if ($game && in_array($value, [1, 14])) {
+            $game->setAceValue($index, $value);
+            $session->set('game21', $game);
+        }
 
         return $this->redirectToRoute('game_play');
     }
