@@ -13,6 +13,18 @@ class Card
         $this->value = $value;
     }
 
+    public function getSortOrder(): int
+    {
+        $suitOrder = [
+            '♥' => 1,
+            '♦' => 2,
+            '♣' => 3,
+            '♠' => 4,
+        ];
+
+        return $suitOrder[$this->suit] * 100 + $this->getNumericValue();
+    }
+
     public function getSuit(): string
     {
         return $this->suit;

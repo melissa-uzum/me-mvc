@@ -11,16 +11,23 @@ use Symfony\Component\Routing\Annotation\Route;
 class ApiCardController extends AbstractController
 {
     #[Route('/api/deck', name: 'api_deck', methods: ['GET'])]
-    public function apiDeck(): JsonResponse
+    public function apiDeck(SessionInterface $session): JsonResponse
     {
-        $deck = new DeckOfCards();
-        $cards = array_map(fn ($card) => (string) $card, $deck->getCards());
+        $deck = $session->get('deck') ?? new DeckOfCards();
+        $cards = $deck->getCards();
+
+        usort($cards, function ($a, $b) {
+            return $a->getSortOrder() <=> $b->getSortOrder();
+        });
+
+        $cardsArray = array_map(fn($card) => (string) $card, $cards);
 
         return $this->json([
-            'deck' => $cards,
-            'count' => count($cards),
+            'deck' => $cardsArray,
+            'count' => count($cardsArray),
         ]);
     }
+
 
     #[Route('/api/deck/shuffle', name: 'api_deck_shuffle', methods: ['GET', 'POST'])]
     public function apiShuffle(SessionInterface $session): JsonResponse
