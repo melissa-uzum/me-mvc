@@ -20,7 +20,7 @@ class ApiCardController extends AbstractController
             return $a->getSortOrder() <=> $b->getSortOrder();
         });
 
-        $cardsArray = array_map(fn($card) => (string) $card, $cards);
+        $cardsArray = array_map(fn ($card) => (string) $card, $cards);
 
         return $this->json([
             'deck' => $cardsArray,
