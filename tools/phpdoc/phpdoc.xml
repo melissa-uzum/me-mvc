@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<phpdocumentor configVersion="3"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://docs.phpdoc.org/phpdoc.xsd">
+
+    <paths>
+        <output>tools/phpdoc/docs/api</output>
+    </paths>
+
+    <settings>
+        <setting name="visibility" value="public,protected" />
+    </settings>
+
+    <versions>
+        <version number="1.0.0">
+            <api>
+                <source dsn="../../src" />
+            </api>
+        </version>
+    </versions>
+
+    <title>Card Game API</title>
+</phpdocumentor>

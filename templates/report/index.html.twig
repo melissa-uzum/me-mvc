@@ -41,53 +41,66 @@ TIL: Jag lärde mig hur Symfony strukturerar kod enligt MVC och hur man skapar r
     </section>
 
     <section id="kmom02">
-    <h2>Kmom02</h2>
-    <p>
-    I detta kmom har vi jobbat vidare med objektorienterad programmering i PHP och fokuserat mer på att bygga en applikation enligt MVC-modellen i Symfony. Vi har även introducerats till nya objektorienterade konstruktioner som arv, komposition, interface och traits.
-    <br><br>
-    <strong>Arv</strong> innebär att en klass ärver egenskaper och metoder från en annan klass. I PHP används `extends` för detta. Det gör det lätt att återanvända kod, till exempel när flera kontroller ärver från Symfony:s bascontroller.<br>
-    <strong>Komposition</strong> innebär att en klass innehåller andra objekt som egenskaper. Istället för att ärva allt, använder man andra objekt inuti klassen. Det gör koden mer flexibel och lösare kopplad.<br>
-    <strong>Interface</strong> används för att definiera vilka metoder en klass måste implementera, utan att säga hur. Det är ett sätt att skapa en slags kontrakt. I PHP används `interface` och `implements`.<br>
-    <strong>Trait</strong> är ett sätt att återanvända kod i flera klasser utan arv. Det fungerar som en slags mixin och används med `use`. Det kan vara praktiskt för hjälpfunktioner eller gemensam funktionalitet.
-    <br><br>
-    Min implementation handlade om att skapa en kortlek med möjlighet att visa kort, dra kort, blanda och även visa det i ett API-format. Jag tycker ändå att jag löste uppgiften på ett bra sätt, men jag blev lite förvirrad då jag hade 2 terminaler öppna för MVC samt WEBAPP, så jag vart tvungen att flytta massor av filer för att komma upp i 10 commits!
-    <br><br>
-    Jag är ändå nöjd med min struktur i koden. Klasserna känns genomtänkta och följer en tydlig logik, även om det säkert går att förbättra hur vissa delar kommunicerar med varandra. Jag hade nog kunnat bryta ut logiken för kortleken ännu mer i egna hjälparklasser för att få bättre separation av ansvar. Stilen hade även kunnat förbättras men jag lade mer fokus på logik och kod än stil denna gång!
-    <br><br>
-    Att arbeta i Symfony med MVC börjar kännas mer bekvämt nu. Det känns ganska trevligt att arbeta med en strukturerad miljö där routing, controller och vyer är så tydligt separerade. Jag gillar att man snabbt kommer igång med hjälp av kommandon i terminalen och att mycket är förkonfigurerat åt en.
-    <br><br>
-    Jag uppskattar också hur Symfony gör det enkelt att arbeta med JSON-svar i API:er, särskilt med `JsonResponse`. Det var nytt för mig att jobba så strukturerat med API-endpoints, och det känns kul att förstå hur man kan bygga ut det till något större.
-    <br><br>
-    <strong>TIL:</strong> Jag lärde mig skillnaden mellan arv och komposition i praktiken och hur man använder interface och trait i PHP. Jag lärde mig också hur man bygger ett enkelt JSON-API i Symfony och hur man strukturerar det med controllers och routes.
-    <br><br>
-    </p>
-    </section>
+        <h2>Kmom02</h2>
+        <p>
+        I detta kmom har vi jobbat vidare med objektorienterad programmering i PHP och fokuserat mer på att bygga en applikation enligt MVC-modellen i Symfony. Vi har även introducerats till nya objektorienterade konstruktioner som arv, komposition, interface och traits.
+        <br><br>
+        <strong>Arv</strong> innebär att en klass ärver egenskaper och metoder från en annan klass. I PHP används `extends` för detta. Det gör det lätt att återanvända kod, till exempel när flera kontroller ärver från Symfony:s bascontroller.<br>
+        <strong>Komposition</strong> innebär att en klass innehåller andra objekt som egenskaper. Istället för att ärva allt, använder man andra objekt inuti klassen. Det gör koden mer flexibel och lösare kopplad.<br>
+        <strong>Interface</strong> används för att definiera vilka metoder en klass måste implementera, utan att säga hur. Det är ett sätt att skapa en slags kontrakt. I PHP används `interface` och `implements`.<br>
+        <strong>Trait</strong> är ett sätt att återanvända kod i flera klasser utan arv. Det fungerar som en slags mixin och används med `use`. Det kan vara praktiskt för hjälpfunktioner eller gemensam funktionalitet.
+        <br><br>
+        Min implementation handlade om att skapa en kortlek med möjlighet att visa kort, dra kort, blanda och även visa det i ett API-format. Jag tycker ändå att jag löste uppgiften på ett bra sätt, men jag blev lite förvirrad då jag hade 2 terminaler öppna för MVC samt WEBAPP, så jag vart tvungen att flytta massor av filer för att komma upp i 10 commits!
+        <br><br>
+        Jag är ändå nöjd med min struktur i koden. Klasserna känns genomtänkta och följer en tydlig logik, även om det säkert går att förbättra hur vissa delar kommunicerar med varandra. Jag hade nog kunnat bryta ut logiken för kortleken ännu mer i egna hjälparklasser för att få bättre separation av ansvar. Stilen hade även kunnat förbättras men jag lade mer fokus på logik och kod än stil denna gång!
+        <br><br>
+        Att arbeta i Symfony med MVC börjar kännas mer bekvämt nu. Det känns ganska trevligt att arbeta med en strukturerad miljö där routing, controller och vyer är så tydligt separerade. Jag gillar att man snabbt kommer igång med hjälp av kommandon i terminalen och att mycket är förkonfigurerat åt en.
+        <br><br>
+        Jag uppskattar också hur Symfony gör det enkelt att arbeta med JSON-svar i API:er, särskilt med `JsonResponse`. Det var nytt för mig att jobba så strukturerat med API-endpoints, och det känns kul att förstå hur man kan bygga ut det till något större.
+        <br><br>
+        <strong>TIL:</strong> Jag lärde mig skillnaden mellan arv och komposition i praktiken och hur man använder interface och trait i PHP. Jag lärde mig också hur man bygger ett enkelt JSON-API i Symfony och hur man strukturerar det med controllers och routes.
+        <br><br>
+        </p>
+        </section>
 
-    <section id="kmom03">
-    <h2>Kmom03</h2>
-    <p>
-    I detta kmom har vi byggt ett komplett kortspelet 21.
-    <br><br>
-    Att börja med att modellera spelet med flödesdiagram och pseudokod kändes faktiskt väldigt hjälpsamt, det gjorde att man hade en ram man kunde utgå från och bygga upp. Det blev mycket enklare att förstå hela spelprocessen i förväg, innan man ens började skriva kod. Det blev tydligare vilka metoder som behövdes och hur logiken borde vara uppbyggd. Jag tror absolut att det stöder problemlösning och planering särskilt i lite större applikationer där man lätt kan tappa bort sig annars. Jag gjorde även ett UML men det vart extremt stort, men båda dessa diagram underlättade processen enormt.
-    <br><br>
-    Min implementation bygger på klasser som `Game21`, `Card`, `CardHand`, `DeckOfCards` samt `CardGraphic`, så både nya men vi återanvänder även andra. Spelaren spelar mot banken, man kan dra kort, stanna, välja ess-värde, satsa pengar och spela flera rundor i rad tills någon förlorar allt. Jag tycker att jag lyckades ganska bra. Det var mycket logik att hålla reda på, men jag fick till en struktur där både vy, controller och modell samarbetade på ett tydligt sätt.
-    <br><br>
-    Jag är ganska nöjd med resultatet, även om det finns delar som skulle kunna förbättras. En förbättring kunde vara att bryta ut vissa delar av spelmekaniken till hjälparklasser eller services. Koden i `Game21`-klassen är ganska stor. Jag kunde också ha jobbat mer med att återanvända logik samt dela up CSS koden.
-    <br><br>
-    Symfony känns mer och mer trevligt att jobba i. Jag börjar förstå hur routing, controllers och templates hänger ihop, och hur man kan jobba modulärt och organiserat. Jag gillar särskilt hur tydligt man kan separera delar i sina egna mappar. Det känns också smidigt att arbeta med sessionsdata, och att ha allt förberett för att bygga ut appen med fler features.
-    <br><br>
-    Att använda Symfony för att skapa JSON-endpoints var också trevligt. Jag byggde en `/api/game`-rutt som visar aktuell spelstatus i JSON-format.
-    <br><br>
-    <strong>TIL:</strong> Jag lärde mig hur viktigt det är att börja med att modellera sin applikation med flödesdiagram och pseudokod innan man kastar sig in i själva kodningen. Det gav mig en klar struktur att följa och underlättade mycket när jag implementerade spelets olika steg.
-    <br><br>
-    </p>
-    </section>
+        <section id="kmom03">
+        <h2>Kmom03</h2>
+        <p>
+        I detta kmom har vi byggt ett komplett kortspelet 21.
+        <br><br>
+        Att börja med att modellera spelet med flödesdiagram och pseudokod kändes faktiskt väldigt hjälpsamt, det gjorde att man hade en ram man kunde utgå från och bygga upp. Det blev mycket enklare att förstå hela spelprocessen i förväg, innan man ens började skriva kod. Det blev tydligare vilka metoder som behövdes och hur logiken borde vara uppbyggd. Jag tror absolut att det stöder problemlösning och planering särskilt i lite större applikationer där man lätt kan tappa bort sig annars. Jag gjorde även ett UML men det vart extremt stort, men båda dessa diagram underlättade processen enormt.
+        <br><br>
+        Min implementation bygger på klasser som `Game21`, `Card`, `CardHand`, `DeckOfCards` samt `CardGraphic`, så både nya men vi återanvänder även andra. Spelaren spelar mot banken, man kan dra kort, stanna, välja ess-värde, satsa pengar och spela flera rundor i rad tills någon förlorar allt. Jag tycker att jag lyckades ganska bra. Det var mycket logik att hålla reda på, men jag fick till en struktur där både vy, controller och modell samarbetade på ett tydligt sätt.
+        <br><br>
+        Jag är ganska nöjd med resultatet, även om det finns delar som skulle kunna förbättras. En förbättring kunde vara att bryta ut vissa delar av spelmekaniken till hjälparklasser eller services. Koden i `Game21`-klassen är ganska stor. Jag kunde också ha jobbat mer med att återanvända logik samt dela up CSS koden.
+        <br><br>
+        Symfony känns mer och mer trevligt att jobba i. Jag börjar förstå hur routing, controllers och templates hänger ihop, och hur man kan jobba modulärt och organiserat. Jag gillar särskilt hur tydligt man kan separera delar i sina egna mappar. Det känns också smidigt att arbeta med sessionsdata, och att ha allt förberett för att bygga ut appen med fler features.
+        <br><br>
+        Att använda Symfony för att skapa JSON-endpoints var också trevligt. Jag byggde en `/api/game`-rutt som visar aktuell spelstatus i JSON-format.
+        <br><br>
+        <strong>TIL:</strong> Jag lärde mig hur viktigt det är att börja med att modellera sin applikation med flödesdiagram och pseudokod innan man kastar sig in i själva kodningen. Det gav mig en klar struktur att följa och underlättade mycket när jag implementerade spelets olika steg.
+        <br><br>
+        </p>
+        </section>
 
-    <section id="kmom04">
+        <section id="kmom04">
         <h2>Kmom04</h2>
         <p>
+        I detta kmom har jag jobbat med att skriva tester med PHPUnit och att dokumentera min kod med PHPDoc.
+        <br><br>
+        Vi har arbetat med att skriva test kod vid tiggare kurser så det var inte helt nytt, men det är alltid kul. Det hjälpte mig att förstå vad som faktiskt händer i mina metoder och gjorde att jag hittade några saker jag kunde förbättra. Jag tycker att phpunit är ett bra verktyg när man väl fått in grunderna, och det var tydligt att se vilka tester som gick igenom och vad som eventuellt fallerade. Det tog sin lilla tid att komma igång men gick ändå relativt smidigt då. Jag följde dokumentationen.
+        <br><br>
+        Jag tror jag lyckades få mer än 90% kodtäckning på alla mina modellklasser och det kändes bra att kunna se att koden verkligen testas ordentligt. Att se resultatet i HTML-rapporten gjorde det också lättare att få en överblick över vad som var täckt och vad som eventuellt saknades. Riktigt coolt när alla checkar var gröna!
+        <br><br>
+        Jag tycker min kod är ganska testbar. Det finns vissa delar, särskilt i spelets flöde, som var svårare att isolera i tester. Men jag försökte hålla mina metoder små och tydliga, vilket gjorde det lättare att skriva tester. Jag skrev även om en liten del av koden i `Game21` för att göra vissa delar enklare att testa, till exempel separerade jag ut vissa logikbitar som annars låg inuti andra metoder.
+        <br><br>
+        Jag tycker absolut att testbar kod hänger ihop med ren kod. När man skriver kod med testning i åtanke så blir det oftare mer uppdelat, tydligt och lättare att förstå. Det hjälper en inte använda sig an onödiga metoder och med hjälp at test resultaten kan koden förbättras. Coolt!
+        <br><br>
+        <strong>TIL:</strong> Jag lärde mig hur man skriver tester med PHPUnit, hur man tolkar kodtäckningsrapporter och hur viktigt det är att skriva testbar kod. Jag lärde mig också att generera dokumentation med PHPDoc och att dokumentation kan göra det lättare att förstå sin egen och andras kod.
+        <br><br>
         </p>
     </section>
+
 
     <section id="kmom05">
         <h2>Kmom05</h2>
