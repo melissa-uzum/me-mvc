@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ book.title }}{% endblock %}
+
+{% block body %}
+    <h1 style="text-decoration: underline;">{{ book.title }}</h1>
+
+    <img src="{{ asset('images/' ~ book.image) }}" alt="{{ book.title }}" style="max-width: 200px;">
+
+    <ul class="book-details">
+        <li><strong>Författare:</strong> {{ book.author }}</li>
+        <li><strong>ISBN:</strong> {{ book.isbn }}</li>
+        <li><strong>Språk:</strong> {{ book.language }}</li>
+        <li><strong>Sidor:</strong> {{ book.pages }}</li>
+        <li><strong>Utgivningsdatum:</strong> {{ book.publishedAt|date('Y-m-d') }}</li>
+        <li><strong>Förlag:</strong> {{ book.publisher }}</li>
+    </ul>
+
+
+    <a href="{{ path('app_book_edit', {'id': book.id}) }}" class="btn-link">Redigera</a>
+
+    {{ include('book/_delete_form.html.twig') }}
+
+    <a href="{{ path('app_book_index') }}" class="btn-link">Tillbaka till listan</a>
+{% endblock %}

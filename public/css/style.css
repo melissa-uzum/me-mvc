@@ -450,3 +450,205 @@ form.bet-form {
 .black-card {
     color: black;
 }
+
+.table {
+    color: #fff;
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2rem;
+    background-color: #6e6e6e;
+    border: 1px solid #333;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+
+    thead {
+        background-color: #414141;
+        color: #f0f0f0;
+        text-align: left;
+    }
+
+    th,
+    td {
+        padding: 1rem;
+        border-bottom: 1px solid #333;
+    }
+
+    tr:last-child td {
+        border-bottom: none;
+    }
+
+    a {
+        color: #fff;
+        text-decoration: none;
+        font-weight: 500;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+a.btn-new {
+    display: inline-block;
+    margin-top: 1.5rem;
+    padding: 0.5rem 1rem;
+    background-color: #fff;
+    color: #fff;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+
+    &:hover {
+        background-color: #fff;
+    }
+}
+
+form {
+    margin: 2rem auto;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.05);
+    font-size: 1rem;
+    color: #4f4cc6;
+
+    label {
+        display: block;
+        margin-bottom: 0.3rem;
+        font-weight: 600;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="date"],
+    textarea,
+    select {
+        width: 100%;
+        padding: 0.6rem;
+        margin-bottom: 1rem;
+        border: 1px solid #752b77;
+        border-radius: 5px;
+        background-color: #f0f0f0;
+        color: #000;
+        font-size: 1rem;
+    }
+
+    button,
+    .btn {
+        display: inline-block;
+        padding: 0.6rem 1.2rem;
+        background-color: #fff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        text-decoration: none;
+        cursor: pointer;
+        font-weight: bold;
+        margin-top: 1rem;
+
+        &:hover {
+            background-color: #fff;
+        }
+    }
+
+    a {
+        display: inline-block;
+        margin-top: 1rem;
+        color: #fff;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+.btn-link,
+button.btn-link {
+    display: inline-block;
+    padding: 0.6rem 1.2rem;
+    background-color: #3b82f6;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 0.5rem 0;
+    text-align: center;
+
+    &:hover {
+        background-color: #2563eb;
+    }
+}
+
+form.delete-form {
+    margin: 1rem 0;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    text-align: center;
+}
+
+form.delete-form .btn-link {
+    padding: 0.75rem 1.5rem;
+    font-size: 1.1rem;
+    line-height: 1.4;
+    font-weight: bold;
+    text-align: center;
+}
+
+.btn-link:hover {
+    background-color: #2563eb;
+    text-decoration: none;
+}
+
+.book-details {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    text-align: left;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+
+    li {
+        padding: 0.5rem 0;
+        border-bottom: 1px solid #444;
+
+        strong {
+            display: inline-block;
+            min-width: 140px;
+            color: #2e2e2e;
+        }
+    }
+
+    li:last-child {
+        border-bottom: none;
+    }
+}
+
+form button.btn-link {
+    padding: 0.75rem 1.5rem;
+    font-size: 1.1rem;
+    line-height: 1.4;
+    font-weight: bold;
+    border-radius: 6px;
+    text-align: center;
+    background-color: #3b82f6;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+    width: auto;
+    min-width: 150px;
+
+    &:hover {
+        background-color: #2563eb;
+    }
+}

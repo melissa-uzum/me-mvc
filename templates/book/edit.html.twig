@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Redigera bok{% endblock %}
+
+{% block body %}
+    <h1>Redigera bok</h1>
+
+    {{ include('book/_form.html.twig', {'form': form, 'button_label': 'Uppdatera'}) }}
+
+    <a href="{{ path('app_book_index') }}" class="btn-link">Tillbaka till listan</a>
+
+    {{ include('book/_delete_form.html.twig') }}
+{% endblock %}

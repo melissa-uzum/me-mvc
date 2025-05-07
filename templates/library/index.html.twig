@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bibliotek{% endblock %}
+
+{% block body %}
+    <h1>Välkommen till biblioteket!</h1>
+    <p>Här kan du bläddra, lägga till, redigera och ta bort böcker.</p>
+
+    <a href="{{ path('app_book_index') }}" class="btn-link">Gå till boklistan</a>
+{% endblock %}
