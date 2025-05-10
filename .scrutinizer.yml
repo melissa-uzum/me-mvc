@@ -10,15 +10,3 @@ filter:
 
 tools:
   php_analyzer: true
-  php_cpd: true
-  php_code_sniffer: true
-  php_loc: true
-  php_pdepend: true
-
-checks:
-  php:
-    duplication: true
-    code_rating: true
-    unused_variables: true
-    naming_conventions: true
-    empty_statements: true
