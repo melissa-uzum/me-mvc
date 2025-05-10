@@ -1,13 +1,12 @@
 build:
   environment:
     php:
-      version: 8.1
+      version: 8.2
 
 filter:
   paths:
     - src/
     - tests/
-
 
 tools:
   php_analyzer: true
