@@ -1,4 +1,8 @@
 build:
+  dependencies:
+    before:
+      - echo "Skip composer install to avoid dependency lock issues"
+
   environment:
     php:
       version: 8.2
