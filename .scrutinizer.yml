@@ -1,16 +1,30 @@
-build:
-  dependencies:
-    before:
-      - echo "Skip composer install to avoid dependency lock issues"
-
-  environment:
-    php:
-      version: 8.2
+imports:
+  - php
 
 filter:
-  paths:
-    - src/
-    - tests/
+  excluded_paths: [vendor/*, test/*]
 
-tools:
-  php_analyzer: true
+build:
+  image: default-bionic
+
+  dependencies:
+    override:
+      - composer install --no-scripts --no-interaction
+
+  nodes:
+    my-tests:
+      environment:
+        php:
+          version: 8.3.3
+
+    analysis:
+      tests:
+        override:
+          - php-scrutinizer-run
+
+  tests:
+    override:
+      - command: "composer phpunit"
+        coverage:
+          file: "docs/coverage.clover"
+          format: "php-clover"

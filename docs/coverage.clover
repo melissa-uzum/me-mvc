@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1746655719">
-  <project timestamp="1746655719">
+<coverage generated="1746903183">
+  <project timestamp="1746903183">
     <file name="/Users/melissa/dbwebb-kurser/mvc/me/report/src/Card/Card.php">
       <class name="App\Card\Card" namespace="global">
         <metrics complexity="7" methods="7" coveredmethods="7" conditionals="0" coveredconditionals="0" statements="20" coveredstatements="20" elements="27" coveredelements="27"/>
@@ -597,6 +597,16 @@
       <line num="34" type="stmt" count="0"/>
       <metrics loc="37" ncloc="37" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="19" coveredstatements="0" elements="20" coveredelements="0"/>
     </file>
+    <file name="/Users/melissa/dbwebb-kurser/mvc/me/report/src/Controller/MetricsController.php">
+      <class name="App\Controller\MetricsController" namespace="global">
+        <metrics complexity="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="0" elements="4" coveredelements="0"/>
+      </class>
+      <line num="11" type="method" name="index" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="14" type="stmt" count="0"/>
+      <line num="15" type="stmt" count="0"/>
+      <line num="16" type="stmt" count="0"/>
+      <metrics loc="19" ncloc="19" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="0" elements="4" coveredelements="0"/>
+    </file>
     <file name="/Users/melissa/dbwebb-kurser/mvc/me/report/src/Controller/QuoteApiController.php">
       <class name="App\Controller\QuoteApiController" namespace="global">
         <metrics complexity="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="11" coveredstatements="0" elements="12" coveredelements="0"/>
@@ -806,6 +816,6 @@
       <line num="16" type="stmt" count="0"/>
       <metrics loc="44" ncloc="18" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="0" elements="2" coveredelements="0"/>
     </file>
-    <metrics files="21" loc="1622" ncloc="1441" classes="20" methods="95" coveredmethods="27" conditionals="0" coveredconditionals="0" statements="584" coveredstatements="96" elements="679" coveredelements="123"/>
+    <metrics files="22" loc="1641" ncloc="1460" classes="21" methods="96" coveredmethods="27" conditionals="0" coveredconditionals="0" statements="587" coveredstatements="96" elements="683" coveredelements="123"/>
   </project>
 </coverage>
