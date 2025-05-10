@@ -1,0 +1,15 @@
+filter:
+    paths:
+        - src/
+        - tests/
+tools:
+    php_code_sniffer: true
+    php_cpd: true
+    php_loc: true
+    php_pdepend: true
+    php_analyzer: true
+checks:
+    php:
+        code_rating: true
+        duplication: true
+        unused_code: true

@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Kodkvalitet - Metrics{% endblock %}
+
+{% block body %}
+<h1>Metricsanalys av kodkvalitet</h1>
+
+<section>
+    <h2>Introduktion – 6C om kodkvalitet</h2>
+    <p>
+        Denna analys utgår från de sex C:na för att mäta och förbättra kodkvalitet i ett PHP-projekt:
+    </p>
+    <ul>
+        <li><strong>Codestyle:</strong> Att följa PSR-standarder ger enhetlig och lättläst kod. Exempelvis används namespaces och klassnamngivning konsekvent i detta projekt.</li>
+        <li><strong>Coverage:</strong> Kodtäckning visar hur stor del av koden som testas automatiskt. I denna analys saknas JUnit-data, vilket indikerar låg eller obefintlig testtäckning.</li>
+        <li><strong>Complexity:</strong> Den cyklomatiska komplexiteten i <code>Game21</code> är hela 28, vilket gör klassen svår att underhålla och testa.</li>
+        <li><strong>Cohesion:</strong> Ett lågt LCOM-värde (snitt 1.05) tyder på att klasserna har relativt sammanhängande ansvar, vilket är positivt.</li>
+        <li><strong>Coupling:</strong> Hög koppling mellan klasser kan göra koden skör. <code>CardController</code> visar högt beroende till andra delar av systemet.</li>
+        <li><strong>CRAP:</strong> CRAP-index är en kombination av låg täckning och hög komplexitet. Två varningar flaggas som "Probably bugged", vilket bör undersökas.</li>
+    </ul>
+</section>
+<section>
+    <h2>PhpMetrics</h2>
+    <p>
+        PhpMetrics har analyserat projektets kod och visualiserat flera nyckelmått som rör komplexitet, koppling och underhållbarhet. Här är tre identifierade förbättringsområden:
+    </p>
+
+    <h3>1. CardController</h3>
+    <p>
+        Denna klass har ett Weighted Method Count (WMC) på 26 och cyklomatisk komplexitet på 19. Det innebär att klassen innehåller många metoder och komplex logik, vilket påverkar <strong>Complexity</strong> och <strong>Coupling</strong> negativt. Klassen flaggas också i rapporten som "Probably bugged".
+    </p>
+
+    <h3>2. Game21</h3>
+    <p>
+        Klassen Game21 har mycket hög komplexitet (WMC 41, cyclomatic complexity 28). Det gör den svår att testa, vilket bidrar till ett högt CRAP-index. Detta påverkar både <strong>Complexity</strong> och <strong>Coverage</strong> (som saknas helt).</p>
+
+    <h3>3. LibraryController</h3>
+    <p>
+        Denna klass har hög relativ strukturell komplexitet (225) och hög volym (516). Det antyder låg <strong>Cohesion</strong> och att klassen har för många ansvarsområden.
+    </p>
+
+    <h3>Representativ bild</h3>
+    <p>
+        Här är ett litet utdrag från rapporten som visualiserar klassernas komplexitet med färgade cirklar. Stora röda cirklar signalerar låg underhållbarhet vilket inte är bra:
+    </p>
+    <img src="{{ asset('img/phpmetrics-maintainability.png') }}" alt="Maintainability chart från PhpMetrics" style="max-width: 100%; border: 1px solid #ccc;">
+</section>
+
