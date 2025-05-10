@@ -8,5 +8,6 @@ filter:
     - src/
     - tests/
 
+
 tools:
   php_analyzer: true
