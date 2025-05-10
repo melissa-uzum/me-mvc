@@ -9,14 +9,16 @@ filter:
     - tests/
 
 tools:
-  php_code_sniffer: true
+  php_analyzer: true
   php_cpd: true
+  php_code_sniffer: true
   php_loc: true
   php_pdepend: true
-  php_analyzer: true
 
 checks:
   php:
-    code_rating: true
     duplication: true
-    unused_code: true
+    code_rating: true
+    unused_variables: true
+    naming_conventions: true
+    empty_statements: true
