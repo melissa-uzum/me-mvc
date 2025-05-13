@@ -2,7 +2,16 @@ imports:
   - php
 
 filter:
-  excluded_paths: [vendor/*, test/*]
+  paths:
+    - src/*
+  excluded_paths:
+    - vendor/*
+    - test/*
+    - var/*
+    - bin/*
+    - config/*
+    - docs/*
+    - public/*
 
 build:
   image: default-bionic
@@ -24,9 +33,9 @@ build:
         override:
           - php-scrutinizer-run
 
-  tests:
-    override:
-      - command: "composer phpunit"
-        coverage:
-          file: "docs/coverage.clover"
-          format: "php-clover"
+tests:
+  override:
+    - command: "composer phpunit"
+      coverage:
+        file: "docs/coverage.clover"
+        format: "php-clover"
