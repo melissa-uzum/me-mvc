@@ -49,7 +49,7 @@
 <div class="page">
     <div class="content content-first">
         <div class="report-details">
-            Created at 2025-05-10 13:35:08        , with PHPMetrics v2.8.2 (<a href="https://twitter.com/Halleck45">Jean-François Lépine</a>).
+            Created at 2025-05-13 12:31:28        , with PHPMetrics v2.8.2 (<a href="https://twitter.com/Halleck45">Jean-François Lépine</a>).
         </div>
 
         
@@ -93,7 +93,7 @@
                             <path d="M0 0h24v24H0z" fill="none">
                             <path d="M20 8h-2.81c-.45-.78-1.07-1.45-1.82-1.96L17 4.41 15.59 3l-2.17 2.17C12.96 5.06 12.49 5 12 5c-.49 0-.96.06-1.41.17L8.41 3 7 4.41l1.62 1.63C7.88 6.55 7.26 7.22 6.81 8H4v2h2.09c-.05.33-.09.66-.09 1v1H4v2h2v1c0 .34.04.67.09 1H4v2h2.81c1.04 1.79 2.97 3 5.19 3s4.15-1.21 5.19-3H20v-2h-2.09c.05-.33.09-.66.09-1v-1h2v-2h-2v-1c0-.34-.04-.67-.09-1H20V8zm-6 8h-4v-2h4v2zm0-4h-4v-2h4v2z">
                         </svg>
-                        Violations (4)
+                        Violations (3)
                     </a>
                 </li>
                                     <li>
@@ -321,7 +321,37 @@
         "relations": []
     },
     {
-        "name": "\\App\\Game\\Game21",
+        "name": "\\App\\Game\\GameState",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\App\\Game\\Wallet",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\App\\Game\\ScoreCalculator",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\App\\Game\\GameBank",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\App\\Game\\GameRules",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\App\\Game\\GameResultService",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\App\\Game\\GameBet",
         "size": 3000,
         "relations": []
     },
@@ -329,6 +359,33 @@
         "name": "\\InvalidArgumentException",
         "size": 3000,
         "relations": []
+    },
+    {
+        "name": "\\App\\Game\\PayoutCalculator",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\App\\Game\\AceHandler",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\App\\Game\\Game21",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\App\\Game\\GamePlayer",
+        "size": 3000,
+        "relations": [
+            "\\App\\Card\\CardHand",
+            "\\App\\Game\\AceHandler",
+            "\\App\\Game\\Wallet",
+            "\\App\\Card\\DeckOfCards",
+            "\\App\\Card\\Card",
+            "\\App\\Game\\ScoreCalculator"
+        ]
     },
     {
         "name": "\\App\\Controller\\HomeController",
@@ -362,15 +419,18 @@
         "relations": [
             "\\Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController",
             "\\Symfony\\Component\\HttpFoundation\\Response",
-            "\\Symfony\\Component\\HttpFoundation\\Session\\SessionInterface",
-            "\\App\\Card\\DeckOfCards",
-            "\\App\\Card\\CardHand"
+            "\\App\\Service\\CardGameService"
         ]
     },
     {
-        "name": "\\Symfony\\Component\\HttpFoundation\\Session\\SessionInterface",
+        "name": "\\App\\Service\\CardGameService",
         "size": 3000,
-        "relations": []
+        "relations": [
+            "\\Symfony\\Component\\HttpFoundation\\RequestStack",
+            "\\App\\Service\\CardUtilityService",
+            "\\App\\Service\\CardDealerService",
+            "\\App\\Card\\DeckOfCards"
+        ]
     },
     {
         "name": "\\App\\Controller\\ApiController",
@@ -379,13 +439,21 @@
             "\\Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController",
             "\\Symfony\\Component\\HttpFoundation\\Response",
             "\\Symfony\\Component\\HttpFoundation\\JsonResponse",
-            "\\App\\Repository\\BookRepository"
+            "\\App\\Repository\\BookRepository",
+            "\\App\\Service\\BookTransformer"
         ]
     },
     {
         "name": "\\Symfony\\Component\\HttpFoundation\\JsonResponse",
         "size": 3000,
         "relations": []
+    },
+    {
+        "name": "\\App\\Service\\BookTransformer",
+        "size": 3000,
+        "relations": [
+            "\\App\\Entity\\Book"
+        ]
     },
     {
         "name": "\\App\\Controller\\QuoteApiController",
@@ -410,14 +478,28 @@
             "\\Symfony\\Component\\HttpFoundation\\Response",
             "\\App\\Repository\\BookRepository",
             "\\Symfony\\Component\\HttpFoundation\\Request",
-            "\\Doctrine\\ORM\\EntityManagerInterface",
-            "\\App\\Entity\\Book"
+            "\\App\\Service\\BookFormHandler",
+            "\\App\\Entity\\Book",
+            "\\Doctrine\\ORM\\EntityManagerInterface"
         ]
     },
     {
         "name": "\\Symfony\\Component\\HttpFoundation\\Request",
         "size": 3000,
         "relations": []
+    },
+    {
+        "name": "\\App\\Service\\BookFormHandler",
+        "size": 3000,
+        "relations": [
+            "\\Symfony\\Component\\Form\\FormFactoryInterface",
+            "\\Doctrine\\ORM\\EntityManagerInterface",
+            "\\Symfony\\Component\\Routing\\Generator\\UrlGeneratorInterface",
+            "\\Symfony\\Component\\HttpFoundation\\Response",
+            "\\Symfony\\Component\\HttpFoundation\\Request",
+            "\\App\\Entity\\Book",
+            "\\Symfony\\Component\\HttpFoundation\\RedirectResponse"
+        ]
     },
     {
         "name": "\\Doctrine\\ORM\\EntityManagerInterface",
@@ -443,14 +525,31 @@
         ]
     },
     {
+        "name": "\\Symfony\\Component\\HttpFoundation\\Session\\SessionInterface",
+        "size": 3000,
+        "relations": []
+    },
+    {
         "name": "\\App\\Controller\\Game\\GameController",
         "size": 3000,
         "relations": [
             "\\Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController",
             "\\Symfony\\Component\\HttpFoundation\\Response",
-            "\\Symfony\\Component\\HttpFoundation\\Session\\SessionInterface",
-            "\\App\\Game\\Game21",
+            "\\App\\Service\\GameService",
+            "\\App\\Service\\GameViewBuilder",
             "\\Symfony\\Component\\HttpFoundation\\Request"
+        ]
+    },
+    {
+        "name": "\\App\\Service\\GameService",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\App\\Service\\GameViewBuilder",
+        "size": 3000,
+        "relations": [
+            "\\App\\Service\\GameService"
         ]
     },
     {
@@ -459,6 +558,68 @@
         "relations": [
             "\\Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController",
             "\\Symfony\\Component\\HttpFoundation\\Response"
+        ]
+    },
+    {
+        "name": "\\App\\Controller\\SessionController",
+        "size": 3000,
+        "relations": [
+            "\\Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController",
+            "\\Symfony\\Component\\HttpFoundation\\Response",
+            "\\Symfony\\Component\\HttpFoundation\\Session\\SessionInterface"
+        ]
+    },
+    {
+        "name": "\\App\\Controller\\Api\\ApiDeckAction",
+        "size": 3000,
+        "relations": [
+            "\\App\\Service\\Deck\\GetDeckResponder",
+            "\\App\\Service\\Deck\\ShuffleDeckResponder",
+            "\\App\\Service\\Deck\\DrawOneCardResponder",
+            "\\App\\Service\\Deck\\DrawNumberResponder",
+            "\\App\\Service\\Deck\\DealCardsResponder",
+            "\\Symfony\\Component\\HttpFoundation\\JsonResponse"
+        ]
+    },
+    {
+        "name": "\\App\\Service\\Deck\\GetDeckResponder",
+        "size": 3000,
+        "relations": [
+            "\\App\\Service\\DeckApiService",
+            "\\Symfony\\Component\\HttpFoundation\\JsonResponse"
+        ]
+    },
+    {
+        "name": "\\App\\Service\\Deck\\ShuffleDeckResponder",
+        "size": 3000,
+        "relations": [
+            "\\App\\Service\\DeckApiService",
+            "\\Symfony\\Component\\HttpFoundation\\JsonResponse",
+            "\\App\\Card\\DeckOfCards"
+        ]
+    },
+    {
+        "name": "\\App\\Service\\Deck\\DrawOneCardResponder",
+        "size": 3000,
+        "relations": [
+            "\\App\\Service\\DeckApiService",
+            "\\Symfony\\Component\\HttpFoundation\\JsonResponse"
+        ]
+    },
+    {
+        "name": "\\App\\Service\\Deck\\DrawNumberResponder",
+        "size": 3000,
+        "relations": [
+            "\\App\\Service\\DeckApiService",
+            "\\Symfony\\Component\\HttpFoundation\\JsonResponse"
+        ]
+    },
+    {
+        "name": "\\App\\Service\\Deck\\DealCardsResponder",
+        "size": 3000,
+        "relations": [
+            "\\App\\Service\\DeckApiService",
+            "\\Symfony\\Component\\HttpFoundation\\JsonResponse"
         ]
     },
     {
@@ -478,14 +639,47 @@
         "relations": []
     },
     {
-        "name": "\\App\\Controller\\ApiCardController",
+        "name": "\\App\\Service\\CardUtilityService",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\App\\Service\\DeckApiService",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\Symfony\\Component\\HttpFoundation\\RequestStack",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\App\\Service\\DeckService",
         "size": 3000,
         "relations": [
-            "\\Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController",
-            "\\Symfony\\Component\\HttpFoundation\\JsonResponse",
             "\\Symfony\\Component\\HttpFoundation\\Session\\SessionInterface",
             "\\App\\Card\\DeckOfCards"
         ]
+    },
+    {
+        "name": "\\App\\Service\\CardDealerService",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\Symfony\\Component\\Form\\FormFactoryInterface",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\Symfony\\Component\\Routing\\Generator\\UrlGeneratorInterface",
+        "size": 3000,
+        "relations": []
+    },
+    {
+        "name": "\\Symfony\\Component\\HttpFoundation\\RedirectResponse",
+        "size": 3000,
+        "relations": []
     },
     {
         "name": "\\App\\Kernel",

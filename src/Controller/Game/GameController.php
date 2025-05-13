@@ -2,107 +2,96 @@
 
 namespace App\Controller\Game;
 
-use App\Game\Game21;
+use App\Service\GameService;
+use App\Service\GameViewBuilder;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * Kontroller för webbspelet 21 (Blackjack-variant).
+ */
 class GameController extends AbstractController
 {
+    /**
+     * Startvy för spelet.
+     */
     #[Route('/game', name: 'game_start')]
     public function start(): Response
     {
         return $this->render('game/index.html.twig');
     }
 
+    /**
+     * Dokumentationssida för spelet.
+     */
     #[Route('/game/doc', name: 'game_doc')]
     public function doc(): Response
     {
         return $this->render('game/doc.html.twig');
     }
 
+    /**
+     * Huvudvy där spelet spelas.
+     *
+     * @param GameService $gameService Tjänst för spelhantering.
+     * @param GameViewBuilder $gameViewBuilder Bygger vyn med spelets tillstånd.
+     */
     #[Route('/game/play', name: 'game_play')]
-    public function play(SessionInterface $session): Response
+    public function play(GameService $gameService, GameViewBuilder $gameViewBuilder): Response
     {
-        $game = $session->get('game21');
+        $gameService->processGame();
 
-        if (!$game) {
-            $game = new Game21();
-            $session->set('game21', $game);
-        }
-
-        if ($game->isPlayerStanding() && !$game->isGameOver()) {
-            $game->bankTurn();
-        }
-
-        if ($game->isGameOver()) {
-            $game->applyResult();
-        }
-
-        $session->set('game21', $game);
-
-        return $this->render('game/play.html.twig', [
-            'playerHand' => $game->getPlayerHand()->getCards(),
-            'bankHand' => $game->isPlayerStanding() || $game->isGameOver()
-                ? $game->getBankHand()->getCards() : [],
-            'playerValue' => $game->getPlayerValue(),
-            'bankValue' => $game->isPlayerStanding() || $game->isGameOver()
-                ? $game->getBankValue() : null,
-            'gameOver' => $game->isGameOver(),
-            'matchOver' => $game->isMatchOver(),
-            'winner' => $game->getWinner(),
-            'playerMoney' => $game->getPlayerMoney(),
-            'bankMoney' => $game->getBankMoney(),
-            'bet' => $game->getBet(),
-            'aceChoices' => $game->getAceChoices(),
-        ]);
+        return $this->render('game/play.html.twig', $gameViewBuilder->build());
     }
 
+    /**
+     * Låter spelaren dra ett kort.
+     */
     #[Route('/game/draw', name: 'game_draw', methods: ['POST'])]
-    public function draw(SessionInterface $session): Response
+    public function draw(GameService $gameService): Response
     {
-        $game = $session->get('game21');
-        $game->playerDraw();
-
-        $session->set('game21', $game);
-
+        $gameService->playerDraw();
         return $this->redirectToRoute('game_play');
     }
 
+    /**
+     * Låter spelaren stanna.
+     */
     #[Route('/game/stand', name: 'game_stand', methods: ['POST'])]
-    public function stand(SessionInterface $session): Response
+    public function stand(GameService $gameService): Response
     {
-        $game = $session->get('game21');
-        $game->playerStands();
-
-        $session->set('game21', $game);
-
+        $gameService->playerStands();
         return $this->redirectToRoute('game_play');
     }
 
+    /**
+     * Återställer spelet helt.
+     */
     #[Route('/game/reset', name: 'game_reset', methods: ['POST'])]
-    public function reset(SessionInterface $session): Response
+    public function reset(GameService $gameService): Response
     {
-        $session->remove('game21');
-
+        $gameService->resetGame();
         return $this->redirectToRoute('game_play');
     }
 
+    /**
+     * Låter spelaren lägga en insats och startar en ny runda.
+     *
+     * @param Request $request HTTP-förfrågan med insatsvärde.
+     * @param GameService $gameService Tjänst för att hantera spelinstanser.
+     */
     #[Route('/game/bet', name: 'game_bet')]
-    public function bet(SessionInterface $session, Request $request): Response
+    public function bet(Request $request, GameService $gameService): Response
     {
-        $game = $session->get('game21') ?? new Game21();
+        $game = $gameService->getGame();
 
         if ($request->isMethod('POST')) {
             $bet = (int) $request->request->get('bet');
 
             try {
-                $game->startNewRound();
-                $game->placeBet($bet);
-                $session->set('game21', $game);
-
+                $gameService->startNewRoundWithBet($bet);
                 return $this->redirectToRoute('game_play');
             } catch (\InvalidArgumentException $e) {
                 return $this->render('game/bet.html.twig', [
@@ -118,17 +107,20 @@ class GameController extends AbstractController
         ]);
     }
 
+    /**
+     * Sätter spelarens valda ess-värde (1 eller 14).
+     *
+     * @param Request $request POST-data med index och värde.
+     * @param GameService $gameService Tjänst som hanterar spelet.
+     */
     #[Route('/game/ace', name: 'game_ace', methods: ['POST'])]
-    public function ace(Request $request, SessionInterface $session): Response
+    public function ace(Request $request, GameService $gameService): Response
     {
-        $game = $session->get('game21');
-
         $index = (int) $request->request->get('index');
         $value = (int) $request->request->get('value');
 
-        if ($game && in_array($value, [1, 14])) {
-            $game->setAceValue($index, $value);
-            $session->set('game21', $game);
+        if (in_array($value, [1, 14])) {
+            $gameService->setAceValue($index, $value);
         }
 
         return $this->redirectToRoute('game_play');

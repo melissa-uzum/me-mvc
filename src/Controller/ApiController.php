@@ -3,11 +3,15 @@
 namespace App\Controller;
 
 use App\Repository\BookRepository;
+use App\Service\BookTransformer;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
+/**
+ * API-kontroller som hanterar JSON-endpoints för kortlek, spel och böcker.
+ */
 class ApiController extends AbstractController
 {
     #[Route('/api', name: 'api')]
@@ -73,29 +77,21 @@ class ApiController extends AbstractController
         ]);
     }
 
+    /**
+     * Returnerar alla böcker i biblioteket som JSON.
+     */
     #[Route('/api/library/books', name: 'api_library_books', methods: ['GET'])]
-    public function getAllBooks(BookRepository $bookRepository): JsonResponse
+    public function getAllBooks(BookRepository $bookRepository, BookTransformer $transformer): JsonResponse
     {
         $books = $bookRepository->findAll();
-
-        $data = array_map(function ($book) {
-            return [
-                'title' => $book->getTitle(),
-                'isbn' => $book->getIsbn(),
-                'author' => $book->getAuthor(),
-                'image' => $book->getImage(),
-                'language' => $book->getLanguage(),
-                'pages' => $book->getPages(),
-                'published_at' => $book->getPublishedAt()?->format('Y-m-d'),
-                'publisher' => $book->getPublisher(),
-            ];
-        }, $books);
-
-        return $this->json($data);
+        return $this->json($transformer->transformMany($books));
     }
 
+    /**
+     * Returnerar en bok baserat på ISBN, eller 404 om den inte hittas.
+     */
     #[Route('/api/library/book/{isbn}', name: 'api_library_book', methods: ['GET'])]
-    public function getBookByIsbn(string $isbn, BookRepository $bookRepository): JsonResponse
+    public function getBookByIsbn(string $isbn, BookRepository $bookRepository, BookTransformer $transformer): JsonResponse
     {
         $book = $bookRepository->findOneBy(['isbn' => $isbn]);
 
@@ -103,15 +99,6 @@ class ApiController extends AbstractController
             return $this->json(['error' => 'Book not found'], 404);
         }
 
-        return $this->json([
-            'title' => $book->getTitle(),
-            'isbn' => $book->getIsbn(),
-            'author' => $book->getAuthor(),
-            'image' => $book->getImage(),
-            'language' => $book->getLanguage(),
-            'pages' => $book->getPages(),
-            'published_at' => $book->getPublishedAt()?->format('Y-m-d'),
-            'publisher' => $book->getPublisher(),
-        ]);
+        return $this->json($transformer->transform($book));
     }
 }

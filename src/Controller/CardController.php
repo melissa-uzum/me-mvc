@@ -2,13 +2,14 @@
 
 namespace App\Controller;
 
-use App\Card\CardHand;
-use App\Card\DeckOfCards;
+use App\Service\CardGameService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * Kontroller som hanterar kortleksfunktioner: visa, blanda, dra, dela.
+ */
 class CardController extends AbstractController
 {
     #[Route('/card', name: 'card_index')]
@@ -18,168 +19,58 @@ class CardController extends AbstractController
     }
 
     #[Route('/card/deck', name: 'card_deck')]
-    public function deck(SessionInterface $session): Response
+    public function deck(CardGameService $cardGame): Response
     {
-        $deck = $session->get('deck');
-
-        if (!$deck instanceof DeckOfCards) {
-            $deck = new DeckOfCards(true);
-        }
-
-        $cards = $deck->getCards();
-
-        usort($cards, function ($a, $b) {
-            $suitOrder = ['♠' => 0, '♥' => 1, '♦' => 2, '♣' => 3];
-            $valueOrder = ['A' => 1, '2' => 2, '3' => 3, '4' => 4, '5' => 5,
-                        '6' => 6, '7' => 7, '8' => 8, '9' => 9, '10' => 10,
-                        'J' => 11, 'Q' => 12, 'K' => 13];
-
-            $aSuit = $a->getSuit();
-            $bSuit = $b->getSuit();
-
-            if ($suitOrder[$aSuit] === $suitOrder[$bSuit]) {
-                return $valueOrder[$a->getValue()] <=> $valueOrder[$b->getValue()];
-            }
-
-            return $suitOrder[$aSuit] <=> $suitOrder[$bSuit];
-        });
-
-
         return $this->render('card/deck.html.twig', [
-            'cards' => $cards,
+            'cards' => $cardGame->getSortedDeck(),
         ]);
     }
-
 
     #[Route('/card/deck/shuffle', name: 'card_shuffle')]
-    public function shuffle(SessionInterface $session): Response
+    public function shuffle(CardGameService $cardGame): Response
     {
-        $deck = $session->get('deck');
-
-        if (!$deck instanceof DeckOfCards) {
-            $deck = new DeckOfCards(true);
-        }
-
-        $deck->shuffle();
-
-        $session->set('deck', $deck);
-
         return $this->render('card/shuffle.html.twig', [
-            'cards' => $deck->getCards(),
+            'cards' => $cardGame->shuffleDeck(),
         ]);
     }
 
-
     #[Route('/card/deck/draw', name: 'card_draw')]
-    public function draw(SessionInterface $session): Response
+    public function draw(CardGameService $cardGame): Response
     {
-        $deck = $session->get('deck');
-
-        if (!$deck instanceof DeckOfCards) {
-            $deck = new DeckOfCards(true);
-        }
-
-        $drawn = $deck->draw(1);
-        $session->set('deck', $deck);
-
         return $this->render('card/draw.html.twig', [
-            'drawn' => $drawn,
-            'remaining' => $deck->count(),
+            'drawn' => $cardGame->drawCards(1),
+            'remaining' => $cardGame->getDeckCount(),
         ]);
     }
 
     #[Route('/card/deck/draw/{number<\d+>}', name: 'card_draw_number')]
-    public function drawNumber(int $number, SessionInterface $session): Response
+    public function drawNumber(int $number, CardGameService $cardGame): Response
     {
-        $deck = $session->get('deck');
-
-        if (!$deck instanceof DeckOfCards) {
-            $deck = new DeckOfCards(true);
-        }
-
-        $drawCount = min($number, $deck->count());
-        $drawn = $deck->draw($drawCount);
-        $session->set('deck', $deck);
+        $drawn = $cardGame->drawCards($number);
 
         return $this->render('card/draw-number.html.twig', [
             'drawn' => $drawn,
             'requested' => $number,
-            'drawn_count' => $drawCount,
-            'remaining' => $deck->count(),
+            'drawn_count' => count($drawn),
+            'remaining' => $cardGame->getDeckCount(),
         ]);
-    }
-
-    #[Route('/session', name: 'session_view')]
-    public function viewSession(SessionInterface $session): Response
-    {
-        $raw = $session->all();
-        $all = [];
-
-        foreach ($raw as $key => $value) {
-            if (is_object($value)) {
-                if ($key === 'deck' && method_exists($value, 'getCards')) {
-                    $all[$key] = $value->getCards();
-                } elseif (method_exists($value, '__toString')) {
-                    $all[$key] = (string) $value;
-                } else {
-                    $all[$key] = 'Objekt av typen ' . get_class($value);
-                }
-            } else {
-                $all[$key] = $value;
-            }
-        }
-
-        return $this->render('card/session.html.twig', [
-            'session' => $all,
-        ]);
-    }
-
-
-    #[Route('/session/delete', name: 'session_delete')]
-    public function deleteSession(SessionInterface $session): Response
-    {
-        $session->clear();
-        $this->addFlash('notice', 'Sessionen har rensats.');
-
-        return $this->redirectToRoute('session_view');
     }
 
     #[Route('/card/deck/deal/{players<\d+>}/{cards<\d+>}', name: 'card_deal')]
-    public function deal(int $players, int $cards, SessionInterface $session): Response
+    public function deal(int $players, int $cards, CardGameService $cardGame): Response
     {
-        $deck = $session->get('deck');
+        $hands = $cardGame->dealToPlayers($players, $cards);
 
-        if (!$deck instanceof DeckOfCards) {
-            $deck = new DeckOfCards(true);
-        }
-
-        $totalToDraw = $players * $cards;
-        $available = $deck->count();
-
-        if ($available < $totalToDraw) {
-            $this->addFlash('notice', "Det finns bara $available kort kvar, kan inte dela ut $totalToDraw.");
-
+        if ($hands === null) {
+            $this->addFlash('notice', "Inte tillräckligt med kort för att dela ut $cards kort till $players spelare.");
             return $this->redirectToRoute('card_index');
         }
-
-        $hands = [];
-
-        for ($i = 0; $i < $players; ++$i) {
-            $hand = new CardHand();
-            for ($j = 0; $j < $cards; ++$j) {
-                $card = $deck->draw(1)[0];
-                $hand->add($card);
-            }
-            $hands[] = $hand;
-        }
-
-        $session->set('deck', $deck);
 
         return $this->render('card/deal.html.twig', [
             'hands' => $hands,
             'players' => $players,
             'cards' => $cards,
-            'remaining' => $deck->count(),
+            'remaining' => $cardGame->getDeckCount(),
         ]);
     }
 }

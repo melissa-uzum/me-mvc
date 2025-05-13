@@ -47,8 +47,7 @@ class Game21Test extends TestCase
     {
         $game = new Game21();
         $game->playerDraw();
-        $hand = $game->getPlayerHand()->getCards();
-        $this->assertCount(1, $hand);
+        $this->assertCount(1, $game->getPlayerHand()->getCards());
     }
 
     /**
@@ -62,8 +61,7 @@ class Game21Test extends TestCase
         $index = array_key_first($game->getAceChoices());
         if ($index !== null) {
             $game->setAceValue($index, 14);
-            $choices = $game->getAceChoices();
-            $this->assertEquals(14, $choices[$index]);
+            $this->assertEquals(14, $game->getAceChoices()[$index]);
         } else {
             $this->assertTrue(true);
         }
@@ -89,7 +87,6 @@ class Game21Test extends TestCase
         $game->placeBet(10);
         $game->playerDraw();
         $game->playerStands();
-
         $game->startNewRound();
 
         $this->assertEquals(0, $game->getBet());
@@ -107,15 +104,43 @@ class Game21Test extends TestCase
         $game->playerStands();
 
         $reflection = new \ReflectionClass($game);
-        $method = $reflection->getMethod('calculateValue');
-        $method->setAccessible(true);
-        $handProp = $reflection->getProperty('bank');
-        $handProp->setAccessible(true);
-        $bank = $handProp->getValue($game);
+        $bankProp = $reflection->getProperty('bank');
+        $bankProp->setAccessible(true);
+        $bank = $bankProp->getValue($game);
         $bank->add(new \App\Card\Card('♠', '2'));
 
         $game->applyResult();
 
         $this->assertEquals(200, $game->getPlayerMoney() + $game->getBankMoney());
+    }
+
+    /**
+     * Testar att rätt sträng returneras baserat på vinnaree.
+     */
+    public function testGetWinnerStringReturnsExpected(): void
+    {
+        $game = new Game21();
+        $this->assertEquals("Spelet pågår...", $game->getWinnerString());
+
+        $reflection = new \ReflectionClass($game);
+        $standProp = $reflection->getProperty('playerStands');
+        $standProp->setAccessible(true);
+        $standProp->setValue($game, true);
+
+        $this->assertStringContainsString('vinner', $game->getWinnerString());
+    }
+
+    /**
+     * Testar att rätt array returneras för spelare och bank.
+     */
+    public function testGetPlayerAndBankValuesReturnsArray(): void
+    {
+        $game = new Game21();
+        $values = $game->getPlayerAndBankValues();
+
+        $this->assertArrayHasKey('player', $values);
+        $this->assertArrayHasKey('bank', $values);
+        $this->assertIsInt($values['player']);
+        $this->assertIsInt($values['bank']);
     }
 }

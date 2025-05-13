@@ -21,17 +21,7 @@ class DeckOfCards
     public function __construct(bool $graphic = true)
     {
         $this->graphic = $graphic;
-
-        $suits = ['♠', '♥', '♦', '♣'];
-        $values = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
-
-        foreach ($suits as $suit) {
-            foreach ($values as $value) {
-                $this->cards[] = $graphic
-                    ? new CardGraphic($suit, $value)
-                    : new Card($suit, $value);
-            }
-        }
+        $this->buildDeck();
     }
 
     /**
@@ -98,6 +88,15 @@ class DeckOfCards
      */
     public function reset(): void
     {
+        $this->buildDeck();
+        $this->shuffle();
+    }
+
+    /**
+     * Skapar en ny kortuppsättning baserat på val av grafisk kortlek.
+     */
+    private function buildDeck(): void
+    {
         $this->cards = [];
         $suits = ['♠', '♥', '♦', '♣'];
         $values = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
@@ -109,7 +108,5 @@ class DeckOfCards
                     : new Card($suit, $value);
             }
         }
-
-        $this->shuffle();
     }
 }

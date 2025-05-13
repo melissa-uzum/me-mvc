@@ -8,41 +8,120 @@
 <section>
     <h2>Introduktion – 6C om kodkvalitet</h2>
     <p>
-        Denna analys utgår från de sex C:na för att mäta och förbättra kodkvalitet i ett PHP-projekt:
+        Denna analys utgår från de sex C:na för att mäta och förbättra kodkvalitet i vårt PHP-projekt:
     </p>
     <ul>
-        <li><strong>Codestyle:</strong> Att följa PSR-standarder ger enhetlig och lättläst kod. Exempelvis används namespaces och klassnamngivning konsekvent i detta projekt.</li>
-        <li><strong>Coverage:</strong> Kodtäckning visar hur stor del av koden som testas automatiskt. I denna analys saknas JUnit-data, vilket indikerar låg eller obefintlig testtäckning.</li>
-        <li><strong>Complexity:</strong> Den cyklomatiska komplexiteten i <code>Game21</code> är hela 28, vilket gör klassen svår att underhålla och testa.</li>
-        <li><strong>Cohesion:</strong> Ett lågt LCOM-värde (snitt 1.05) tyder på att klasserna har relativt sammanhängande ansvar, vilket är positivt.</li>
-        <li><strong>Coupling:</strong> Hög koppling mellan klasser kan göra koden skör. <code>CardController</code> visar högt beroende till andra delar av systemet.</li>
-        <li><strong>CRAP:</strong> CRAP-index är en kombination av låg täckning och hög komplexitet. Två varningar flaggas som "Probably bugged", vilket bör undersökas.</li>
+        <li><strong>Codestyle:</strong> Att följa PSR-standarder ger enhetlig och lättläst kod.</li>
+        <li><strong>Coverage:</strong> Kodtäckning visar hur stor del av koden som testas automatiskt. Här saknas JUnit-data.</li>
+        <li><strong>Complexity:</strong> Klassen <code>Game21</code> hade hög cyklomatisk komplexitet (28).</li>
+        <li><strong>Cohesion:</strong> Låg LCOM tyder på bra sammanhållning i de flesta klasser.</li>
+        <li><strong>Coupling:</strong> Hög koppling i t.ex. <code>CardController</code> gör underhåll svårare.</li>
+        <li><strong>CRAP:</strong> Kombinerar låg täckning och hög komplexitet, två metoder markerade som riskfyllda.</li>
     </ul>
 </section>
+
 <section>
     <h2>PhpMetrics</h2>
     <p>
-        PhpMetrics har analyserat projektets kod och visualiserat flera nyckelmått som rör komplexitet, koppling och underhållbarhet. Här är tre identifierade förbättringsområden:
+        PhpMetrics har analyserat projektets kod och visualiserat flera nyckelmått, resultatet är lätt att förstå då det kommer i circlar med olika färger samt text sammanfattning. Här är tre områden med förbättringspotential:
     </p>
 
     <h3>1. CardController</h3>
     <p>
-        Denna klass har ett Weighted Method Count (WMC) på 26 och cyklomatisk komplexitet på 19. Det innebär att klassen innehåller många metoder och komplex logik, vilket påverkar <strong>Complexity</strong> och <strong>Coupling</strong> negativt. Klassen flaggas också i rapporten som "Probably bugged".
+        Hög metodkomplexitet (WMC 26) och cyklomatisk komplexitet 19. Flaggas som “Probably bugged”.
     </p>
 
     <h3>2. Game21</h3>
     <p>
-        Klassen Game21 har mycket hög komplexitet (WMC 41, cyclomatic complexity 28). Det gör den svår att testa, vilket bidrar till ett högt CRAP-index. Detta påverkar både <strong>Complexity</strong> och <strong>Coverage</strong> (som saknas helt).</p>
+        En av de mest komplexa klasserna i hela projektet (WMC 41, CRAP-score högt).
+    </p>
 
     <h3>3. LibraryController</h3>
     <p>
-        Denna klass har hög relativ strukturell komplexitet (225) och hög volym (516). Det antyder låg <strong>Cohesion</strong> och att klassen har för många ansvarsområden.
+        Stor klass med låg cohesion och hög volym (516 rader), vilket tyder på dålig ansvarsuppdelning.
     </p>
 
-    <h3>Representativ bild</h3>
-    <p>
-        Här är ett litet utdrag från rapporten som visualiserar klassernas komplexitet med färgade cirklar. Stora röda cirklar signalerar låg underhållbarhet vilket inte är bra:
-    </p>
-    <img src="{{ asset('img/phpmetrics-maintainability.png') }}" alt="Maintainability chart från PhpMetrics" style="max-width: 100%; border: 1px solid #ccc;">
+    <img src="{{ asset('images/before.png') }}" alt="Före" style="max-width: 100%; border: 1px solid #ccc;">
 </section>
 
+<section>
+    <h2>Scrutinizer</h2>
+    <p>
+        Scrutinizer analyserar kodstil, komplexitet och beroenden. Första inspektionen:
+    </p>
+    <ul>
+        <li><strong>Build:</strong> <span style="color:green">✔ Passed</span></li>
+        <li><strong>Coverage:</strong> 19 %</li>
+        <li><strong>Quality Score:</strong> 6.64</li>
+    </ul>
+
+    <p>Exempel på kritiska varningar:</p>
+    <ul>
+        <li><code>AbstractUnicodeStringFixer</code>: bryter mot kodstil.</li>
+        <li><code>ClassExistenceResource</code>: beroendeproblem.</li>
+        <li><code>StrictUnifiedDiffOutputBuilder</code>: komplex implementation.</li>
+    </ul>
+
+    <h3>Badges</h3>
+    <p>
+        <img src="https://scrutinizer-ci.com/g/melissa-uzum/me-mvc/badges/build.png" alt="Build Status">
+        <img src="https://scrutinizer-ci.com/g/melissa-uzum/me-mvc/badges/coverage.png" alt="Coverage">
+        <img src="https://scrutinizer-ci.com/g/melissa-uzum/me-mvc/badges/quality-score.png" alt="Quality Score">
+    </p>
+</section>
+
+<section>
+    <h2>Förbättringar</h2>
+    <p>Tre valda förbättringsområden:</p>
+    <ol>
+        <li><strong>Refaktorera Game21</strong>: minska ansvar och komplexitet.</li>
+        <li><strong>Öka testtäckningen</strong>: skriva tester för kontrollklasser och modeller.</li>
+        <li><strong>Förbättra kodstil</strong>: använda PHP CS Fixer.</li>
+    </ol>
+</section>
+
+<section>
+    <h2>Diskussion</h2>
+    <p>
+        Jag har lärt mig att mätvärden från verktyg som PhpMetrics och Scrutinizer kan användas praktiskt för att identifiera förbättringsområden. Refaktorering gav bättre kodstruktur.
+    </p>
+    <p>
+        Att bryta upp stora klasser är ett effektivt sätt att minska komplexitet. Det tar tid, men det är värt det.
+    </p>
+</section>
+
+<section>
+    <h2>Före- och efteranalys</h2>
+    <p>
+        Nedan visas projektets kodstruktur före och efter senaste refaktoreringen.
+    </p>
+
+    <h3>Före</h3>
+    <p>Game21 var en stor klass med för mycket ansvar.</p>
+    <img src="{{ asset('images/before.png') }}" alt="Före" style="max-width: 100%; border: 1px solid #ccc;">
+    <img src="{{ asset('images/metrics-before.png') }}" alt="Metrics före" style="max-width: 100%; border: 1px solid #ccc; margin-top: 1em;">
+
+    <h3>Efter</h3>
+    <p>Klassen Game21 har delats upp i mindre komponenter, t.ex. <code>GamePlayer</code>, <code>GameState</code> och <code>ScoreCalculator</code>.</p>
+    <img src="{{ asset('images/after.png') }}" alt="Efter" style="max-width: 100%; border: 1px solid #ccc;">
+    <img src="{{ asset('images/metrics-after.png') }}" alt="Metrics efter" style="max-width: 100%; border: 1px solid #ccc; margin-top: 1em;">
+
+    <h3>Sammanfattning av mätvärden</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Mätvärde</th>
+                <th>Före</th>
+                <th>Efter</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>WMC (Game21)</td><td>52</td><td>27</td></tr>
+            <tr><td>Antal klasser</td><td>22</td><td>47</td></tr>
+            <tr><td>Genomsnittlig komplexitet</td><td>5.00</td><td>2.89</td></tr>
+            <tr><td>Violations</td><td>4</td><td>3</td></tr>
+            <tr><td>Röda bubblor</td><td>Flera</td><td>Färre</td></tr>
+        </tbody>
+    </table>
+</section>
+{% endblock %}
