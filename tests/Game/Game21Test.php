@@ -122,7 +122,6 @@ class Game21Test extends TestCase
         $game = new Game21();
         $this->assertEquals("Spelet pågår...", $game->getWinnerString());
 
-        $reflection = new \ReflectionClass($game);
         $game->playerStands();
 
         $this->assertStringContainsString('vinner', $game->getWinnerString());
