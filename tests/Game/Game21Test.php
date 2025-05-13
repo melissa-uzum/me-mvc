@@ -4,6 +4,7 @@ namespace App\Tests\Game;
 
 use PHPUnit\Framework\TestCase;
 use App\Game\Game21;
+use App\Card\Card;
 
 /**
  * Enhetstester för Game21-klassen.
@@ -107,7 +108,7 @@ class Game21Test extends TestCase
         $bankProp = $reflection->getProperty('bank');
         $bankProp->setAccessible(true);
         $bank = $bankProp->getValue($game);
-        $bank->addCard(new \App\Card\Card('♠', '2'));
+        $bank->addCard(new Card('♠', '2'));
 
         $game->applyResult();
 
@@ -115,14 +116,26 @@ class Game21Test extends TestCase
     }
 
     /**
-     * Testar att rätt sträng returneras baserat på vinnaree.
+     * Testar att rätt sträng returneras baserat på vinnare.
      */
     public function testGetWinnerStringReturnsExpected(): void
     {
         $game = new Game21();
+
+        // Kontroll innan spelet är över
         $this->assertEquals("Spelet pågår...", $game->getWinnerString());
 
+        // Gör att spelet avslutas
+        $game->placeBet(10);
         $game->playerStands();
+
+        $reflection = new \ReflectionClass($game);
+        $bankProp = $reflection->getProperty('bank');
+        $bankProp->setAccessible(true);
+        $bank = $bankProp->getValue($game);
+        $bank->addCard(new Card('♠', '2'));
+
+        $game->applyResult();
 
         $this->assertStringContainsString('vinner', $game->getWinnerString());
     }
