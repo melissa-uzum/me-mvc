@@ -42,6 +42,7 @@ class Game21
         $this->player->resetHand();
         $this->bank->resetHand();
         $this->state->reset();
+        $this->bet->reset();
     }
 
     /**

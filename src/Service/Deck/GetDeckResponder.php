@@ -12,7 +12,8 @@ class GetDeckResponder
 {
     public function __construct(
         private DeckApiService $deckService
-    ) {}
+    ) {
+    }
 
     /**
      * Returnerar den aktuella kortleken i sorterad ordning.
@@ -24,7 +25,7 @@ class GetDeckResponder
         $deck = $this->deckService->getDeck();
         $cards = $deck->getCards();
 
-        usort($cards, fn($a, $b) => $a->getSortOrder() <=> $b->getSortOrder());
+        usort($cards, fn ($a, $b) => $a->getSortOrder() <=> $b->getSortOrder());
 
         return $this->createResponse($cards);
     }

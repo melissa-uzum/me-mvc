@@ -12,7 +12,8 @@ class DrawOneCardResponder
 {
     public function __construct(
         private DeckApiService $deckService
-    ) {}
+    ) {
+    }
 
     /**
      * Anropas för att dra ett kort från kortleken.

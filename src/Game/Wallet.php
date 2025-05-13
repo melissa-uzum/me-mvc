@@ -7,6 +7,9 @@ namespace App\Game;
  */
 class Wallet
 {
+    /**
+     * Det aktuella saldot i plånboken.
+     */
     private int $amount;
 
     /**
@@ -17,14 +20,6 @@ class Wallet
     public function __construct(int $initialAmount = 100)
     {
         $this->amount = $initialAmount;
-    }
-
-    /**
-     * Återställer beloppet vid uppvakning från session.
-     */
-    public function __wakeup(): void
-    {
-        $this->amount ??= 100;
     }
 
     /**

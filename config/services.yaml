@@ -9,6 +9,7 @@ services:
     _defaults:
         autowire: true
         autoconfigure: true
+        public: false
 
     session:
         class: Symfony\Component\HttpFoundation\Session\SessionInterface
@@ -18,6 +19,13 @@ services:
         resource: '../src/Service/Deck'
 
     App\Controller\Api\ApiDeckAction:
+        public: true
+        arguments:
+            $getDeck: '@App\Service\Deck\GetDeckResponder'
+            $shuffleDeck: '@App\Service\Deck\ShuffleDeckResponder'
+            $drawOne: '@App\Service\Deck\DrawOneCardResponder'
+            $drawNumber: '@App\Service\Deck\DrawNumberResponder'
+            $dealCards: '@App\Service\Deck\DealCardsResponder'
         tags: ['controller.service_arguments']
 
     App\Service\GameService:

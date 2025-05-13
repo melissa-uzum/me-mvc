@@ -78,6 +78,7 @@
         "symfony/polyfill-php82": "*"
     },
     "scripts": {
+        "metrics": "phpmetrics --report-html=metrics-report/ src/",
         "phpunit": "XDEBUG_MODE=coverage vendor/bin/phpunit",
         "phpdoc": "phpdoc -d src -t docs/api",
         "csfix": "PHP_CS_FIXER_IGNORE_ENV=1 tools/php-cs-fixer/vendor/bin/php-cs-fixer fix src",

@@ -26,7 +26,7 @@ final class BookController extends AbstractController
     #[Route('/new', name: 'app_book_new', methods: ['GET', 'POST'])]
     public function new(Request $request, BookFormHandler $handler): Response
     {
-        return $handler->handle($request, new Book(), 'book/new.html.twig', true, fn($tpl, $data) => $this->render($tpl, $data));
+        return $handler->handle($request, new Book(), 'book/new.html.twig', true, fn ($tpl, $data) => $this->render($tpl, $data));
     }
 
     #[Route('/{id}', name: 'app_book_show', methods: ['GET'])]
@@ -38,7 +38,7 @@ final class BookController extends AbstractController
     #[Route('/{id}/edit', name: 'app_book_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Book $book, BookFormHandler $handler): Response
     {
-        return $handler->handle($request, $book, 'book/edit.html.twig', false, fn($tpl, $data) => $this->render($tpl, $data));
+        return $handler->handle($request, $book, 'book/edit.html.twig', false, fn ($tpl, $data) => $this->render($tpl, $data));
     }
 
     #[Route('/{id}', name: 'app_book_delete', methods: ['POST'])]

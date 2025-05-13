@@ -9,14 +9,16 @@ use App\Service\Deck\DrawNumberResponder;
 use App\Service\Deck\DealCardsResponder;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * API-kontroller för kortleksoperationer.
  *
  * Tillhandahåller endpoints för att hämta, blanda, dra och dela ut kort.
  */
+
 #[Route('/api/deck')]
-class ApiDeckAction
+class ApiDeckAction extends AbstractController
 {
     public function __construct(
         private GetDeckResponder $getDeck,
@@ -24,7 +26,8 @@ class ApiDeckAction
         private DrawOneCardResponder $drawOne,
         private DrawNumberResponder $drawNumber,
         private DealCardsResponder $dealCards
-    ) {}
+    ) {
+    }
 
     /**
      * Returnerar aktuell kortlek, sorterad.

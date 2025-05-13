@@ -13,7 +13,8 @@ class ShuffleDeckResponder
 {
     public function __construct(
         private DeckApiService $deckService
-    ) {}
+    ) {
+    }
 
     /**
      * Blandar en ny kortlek och returnerar resultatet.

@@ -8,14 +8,28 @@ use App\Card\DeckOfCards;
 
 /**
  * Representerar spelaren i spelet 21.
- * Hanterar spelarens hand, essval och pengar.
+ * Hanterar spelarens hand, val för ess och plånbok.
  */
 class GamePlayer
 {
+    /**
+     * Spelarens aktuella hand.
+     */
     private CardHand $hand;
+
+    /**
+     * Hanterare för spelarens essval.
+     */
     private AceHandler $aceHandler;
+
+    /**
+     * Spelarens plånbok.
+     */
     private Wallet $wallet;
 
+    /**
+     * Initierar spelarens hand, esshanterare och plånbok.
+     */
     public function __construct()
     {
         $this->hand = new CardHand();
@@ -23,15 +37,8 @@ class GamePlayer
         $this->wallet = new Wallet();
     }
 
-    public function __wakeup(): void
-    {
-        $this->hand ??= new CardHand();
-        $this->aceHandler ??= new AceHandler();
-        $this->wallet ??= new Wallet();
-    }
-
     /**
-     * Drar ett kort från kortleken och lägger till i handen.
+     * Drar ett kort från kortleken och lägger till i spelarens hand.
      */
     public function draw(DeckOfCards $deck): void
     {
@@ -40,7 +47,7 @@ class GamePlayer
     }
 
     /**
-     * Lägger till ett kort i handen och spårar eventuella ess.
+     * Lägger till ett kort i handen och spårar om det är ett ess.
      */
     public function addCard(Card $card): void
     {
@@ -49,9 +56,9 @@ class GamePlayer
     }
 
     /**
-     * Sätter spelarens valda värde för ett ess.
+     * Sätter spelarens val för essets värde (1 eller 14).
      *
-     * @param int $index Index för esset.
+     * @param int $index Index för kortet i handen.
      * @param int $value Antingen 1 eller 14.
      */
     public function setAceValue(int $index, int $value): void
@@ -60,9 +67,8 @@ class GamePlayer
         $this->aceHandler->track($this->hand);
     }
 
-
     /**
-     * Returnerar alla valda ess-värden.
+     * Returnerar alla essval som spelaren gjort.
      *
      * @return array<int, int|null>
      */
@@ -72,7 +78,7 @@ class GamePlayer
     }
 
     /**
-     * Returnerar spelarens totala handvärde.
+     * Returnerar spelarens totala poängvärde.
      */
     public function getValue(): int
     {
@@ -81,7 +87,7 @@ class GamePlayer
     }
 
     /**
-     * Återställer spelarens hand och essval.
+     * Återställer spelarens hand och essval inför en ny runda.
      */
     public function resetHand(): void
     {
@@ -98,7 +104,7 @@ class GamePlayer
     }
 
     /**
-     * Returnerar spelarens plånbok.
+     * Returnerar spelarens Wallet-objekt.
      */
     public function getWallet(): Wallet
     {
@@ -106,7 +112,7 @@ class GamePlayer
     }
 
     /**
-     * Returnerar spelarens aktuella saldo.
+     * Returnerar spelarens nuvarande saldo.
      */
     public function getMoney(): int
     {
@@ -114,7 +120,7 @@ class GamePlayer
     }
 
     /**
-     * Justerar spelarens pengar.
+     * Justerar spelarens pengar (kan vara negativt eller positivt).
      */
     public function adjustMoney(int $amount): void
     {

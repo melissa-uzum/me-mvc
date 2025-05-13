@@ -121,6 +121,11 @@ Search.appendIndex(
             "summary": "\u00C5terst\u00E4ll\u0020och\u0020blanda\u0020kortleken.",
             "url": "classes/App-Card-DeckOfCards.html#method_reset"
         },                {
+            "fqsen": "\\App\\Card\\DeckOfCards\u003A\u003AbuildDeck\u0028\u0029",
+            "name": "buildDeck",
+            "summary": "Skapar\u0020en\u0020ny\u0020kortupps\u00E4ttning\u0020baserat\u0020p\u00E5\u0020val\u0020av\u0020grafisk\u0020kortlek.",
+            "url": "classes/App-Card-DeckOfCards.html#method_buildDeck"
+        },                {
             "fqsen": "\\App\\Card\\DeckOfCards\u003A\u003A\u0024cards",
             "name": "cards",
             "summary": "",
@@ -141,39 +146,59 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-Controller-AboutController.html#method_index"
         },                {
-            "fqsen": "\\App\\Controller\\ApiCardController",
-            "name": "ApiCardController",
-            "summary": "",
-            "url": "classes/App-Controller-ApiCardController.html"
+            "fqsen": "\\App\\Controller\\Api\\ApiDeckAction",
+            "name": "ApiDeckAction",
+            "summary": "API\u002Dkontroller\u0020f\u00F6r\u0020kortleksoperationer.",
+            "url": "classes/App-Controller-Api-ApiDeckAction.html"
         },                {
-            "fqsen": "\\App\\Controller\\ApiCardController\u003A\u003AapiDeck\u0028\u0029",
-            "name": "apiDeck",
+            "fqsen": "\\App\\Controller\\Api\\ApiDeckAction\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
             "summary": "",
-            "url": "classes/App-Controller-ApiCardController.html#method_apiDeck"
+            "url": "classes/App-Controller-Api-ApiDeckAction.html#method___construct"
         },                {
-            "fqsen": "\\App\\Controller\\ApiCardController\u003A\u003AapiShuffle\u0028\u0029",
-            "name": "apiShuffle",
-            "summary": "",
-            "url": "classes/App-Controller-ApiCardController.html#method_apiShuffle"
+            "fqsen": "\\App\\Controller\\Api\\ApiDeckAction\u003A\u003Adeck\u0028\u0029",
+            "name": "deck",
+            "summary": "Returnerar\u0020aktuell\u0020kortlek,\u0020sorterad.",
+            "url": "classes/App-Controller-Api-ApiDeckAction.html#method_deck"
         },                {
-            "fqsen": "\\App\\Controller\\ApiCardController\u003A\u003AapiDrawOne\u0028\u0029",
-            "name": "apiDrawOne",
-            "summary": "",
-            "url": "classes/App-Controller-ApiCardController.html#method_apiDrawOne"
+            "fqsen": "\\App\\Controller\\Api\\ApiDeckAction\u003A\u003Ashuffle\u0028\u0029",
+            "name": "shuffle",
+            "summary": "Blandar\u0020en\u0020ny\u0020kortlek\u0020och\u0020sparar\u0020den\u0020i\u0020sessionen.",
+            "url": "classes/App-Controller-Api-ApiDeckAction.html#method_shuffle"
         },                {
-            "fqsen": "\\App\\Controller\\ApiCardController\u003A\u003AapiDrawNumber\u0028\u0029",
-            "name": "apiDrawNumber",
+            "fqsen": "\\App\\Controller\\Api\\ApiDeckAction\u003A\u003A\u0024drawOne",
+            "name": "drawOne",
             "summary": "",
-            "url": "classes/App-Controller-ApiCardController.html#method_apiDrawNumber"
+            "url": "classes/App-Controller-Api-ApiDeckAction.html#property_drawOne"
         },                {
-            "fqsen": "\\App\\Controller\\ApiCardController\u003A\u003AapiDeal\u0028\u0029",
-            "name": "apiDeal",
+            "fqsen": "\\App\\Controller\\Api\\ApiDeckAction\u003A\u003A\u0024drawNumber",
+            "name": "drawNumber",
             "summary": "",
-            "url": "classes/App-Controller-ApiCardController.html#method_apiDeal"
+            "url": "classes/App-Controller-Api-ApiDeckAction.html#property_drawNumber"
+        },                {
+            "fqsen": "\\App\\Controller\\Api\\ApiDeckAction\u003A\u003Adeal\u0028\u0029",
+            "name": "deal",
+            "summary": "Delar\u0020ut\u0020ett\u0020antal\u0020kort\u0020till\u0020ett\u0020angivet\u0020antal\u0020spelare.",
+            "url": "classes/App-Controller-Api-ApiDeckAction.html#method_deal"
+        },                {
+            "fqsen": "\\App\\Controller\\Api\\ApiDeckAction\u003A\u003A\u0024getDeck",
+            "name": "getDeck",
+            "summary": "",
+            "url": "classes/App-Controller-Api-ApiDeckAction.html#property_getDeck"
+        },                {
+            "fqsen": "\\App\\Controller\\Api\\ApiDeckAction\u003A\u003A\u0024shuffleDeck",
+            "name": "shuffleDeck",
+            "summary": "",
+            "url": "classes/App-Controller-Api-ApiDeckAction.html#property_shuffleDeck"
+        },                {
+            "fqsen": "\\App\\Controller\\Api\\ApiDeckAction\u003A\u003A\u0024dealCards",
+            "name": "dealCards",
+            "summary": "",
+            "url": "classes/App-Controller-Api-ApiDeckAction.html#property_dealCards"
         },                {
             "fqsen": "\\App\\Controller\\ApiController",
             "name": "ApiController",
-            "summary": "",
+            "summary": "API\u002Dkontroller\u0020som\u0020hanterar\u0020JSON\u002Dendpoints\u0020f\u00F6r\u0020kortlek,\u0020spel\u0020och\u0020b\u00F6cker.",
             "url": "classes/App-Controller-ApiController.html"
         },                {
             "fqsen": "\\App\\Controller\\ApiController\u003A\u003Aindex\u0028\u0029",
@@ -183,12 +208,12 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Controller\\ApiController\u003A\u003AgetAllBooks\u0028\u0029",
             "name": "getAllBooks",
-            "summary": "",
+            "summary": "Returnerar\u0020alla\u0020b\u00F6cker\u0020i\u0020biblioteket\u0020som\u0020JSON.",
             "url": "classes/App-Controller-ApiController.html#method_getAllBooks"
         },                {
             "fqsen": "\\App\\Controller\\ApiController\u003A\u003AgetBookByIsbn\u0028\u0029",
             "name": "getBookByIsbn",
-            "summary": "",
+            "summary": "Returnerar\u0020en\u0020bok\u0020baserat\u0020p\u00E5\u0020ISBN,\u0020eller\u0020404\u0020om\u0020den\u0020inte\u0020hittas.",
             "url": "classes/App-Controller-ApiController.html#method_getBookByIsbn"
         },                {
             "fqsen": "\\App\\Controller\\BookController",
@@ -223,7 +248,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Controller\\CardController",
             "name": "CardController",
-            "summary": "",
+            "summary": "Kontroller\u0020som\u0020hanterar\u0020kortleksfunktioner\u003A\u0020visa,\u0020blanda,\u0020dra,\u0020dela.",
             "url": "classes/App-Controller-CardController.html"
         },                {
             "fqsen": "\\App\\Controller\\CardController\u003A\u003Aindex\u0028\u0029",
@@ -251,16 +276,6 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-Controller-CardController.html#method_drawNumber"
         },                {
-            "fqsen": "\\App\\Controller\\CardController\u003A\u003AviewSession\u0028\u0029",
-            "name": "viewSession",
-            "summary": "",
-            "url": "classes/App-Controller-CardController.html#method_viewSession"
-        },                {
-            "fqsen": "\\App\\Controller\\CardController\u003A\u003AdeleteSession\u0028\u0029",
-            "name": "deleteSession",
-            "summary": "",
-            "url": "classes/App-Controller-CardController.html#method_deleteSession"
-        },                {
             "fqsen": "\\App\\Controller\\CardController\u003A\u003Adeal\u0028\u0029",
             "name": "deal",
             "summary": "",
@@ -268,57 +283,57 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Controller\\Game\\GameApiController",
             "name": "GameApiController",
-            "summary": "",
+            "summary": "API\u002Dkontroller\u0020som\u0020returnerar\u0020status\u0020f\u00F6r\u0020spelet\u002021.",
             "url": "classes/App-Controller-Game-GameApiController.html"
         },                {
             "fqsen": "\\App\\Controller\\Game\\GameApiController\u003A\u003AgameStatus\u0028\u0029",
             "name": "gameStatus",
-            "summary": "",
+            "summary": "Returnerar\u0020aktuell\u0020status\u0020f\u00F6r\u0020spelet\u002021\u0020som\u0020JSON.",
             "url": "classes/App-Controller-Game-GameApiController.html#method_gameStatus"
         },                {
             "fqsen": "\\App\\Controller\\Game\\GameController",
             "name": "GameController",
-            "summary": "",
+            "summary": "Kontroller\u0020f\u00F6r\u0020webbspelet\u002021\u0020\u0028Blackjack\u002Dvariant\u0029.",
             "url": "classes/App-Controller-Game-GameController.html"
         },                {
             "fqsen": "\\App\\Controller\\Game\\GameController\u003A\u003Astart\u0028\u0029",
             "name": "start",
-            "summary": "",
+            "summary": "Startvy\u0020f\u00F6r\u0020spelet.",
             "url": "classes/App-Controller-Game-GameController.html#method_start"
         },                {
             "fqsen": "\\App\\Controller\\Game\\GameController\u003A\u003Adoc\u0028\u0029",
             "name": "doc",
-            "summary": "",
+            "summary": "Dokumentationssida\u0020f\u00F6r\u0020spelet.",
             "url": "classes/App-Controller-Game-GameController.html#method_doc"
         },                {
             "fqsen": "\\App\\Controller\\Game\\GameController\u003A\u003Aplay\u0028\u0029",
             "name": "play",
-            "summary": "",
+            "summary": "Huvudvy\u0020d\u00E4r\u0020spelet\u0020spelas.",
             "url": "classes/App-Controller-Game-GameController.html#method_play"
         },                {
             "fqsen": "\\App\\Controller\\Game\\GameController\u003A\u003Adraw\u0028\u0029",
             "name": "draw",
-            "summary": "",
+            "summary": "L\u00E5ter\u0020spelaren\u0020dra\u0020ett\u0020kort.",
             "url": "classes/App-Controller-Game-GameController.html#method_draw"
         },                {
             "fqsen": "\\App\\Controller\\Game\\GameController\u003A\u003Astand\u0028\u0029",
             "name": "stand",
-            "summary": "",
+            "summary": "L\u00E5ter\u0020spelaren\u0020stanna.",
             "url": "classes/App-Controller-Game-GameController.html#method_stand"
         },                {
             "fqsen": "\\App\\Controller\\Game\\GameController\u003A\u003Areset\u0028\u0029",
             "name": "reset",
-            "summary": "",
+            "summary": "\u00C5terst\u00E4ller\u0020spelet\u0020helt.",
             "url": "classes/App-Controller-Game-GameController.html#method_reset"
         },                {
             "fqsen": "\\App\\Controller\\Game\\GameController\u003A\u003Abet\u0028\u0029",
             "name": "bet",
-            "summary": "",
+            "summary": "L\u00E5ter\u0020spelaren\u0020l\u00E4gga\u0020en\u0020insats\u0020och\u0020startar\u0020en\u0020ny\u0020runda.",
             "url": "classes/App-Controller-Game-GameController.html#method_bet"
         },                {
             "fqsen": "\\App\\Controller\\Game\\GameController\u003A\u003Aace\u0028\u0029",
             "name": "ace",
-            "summary": "",
+            "summary": "S\u00E4tter\u0020spelarens\u0020valda\u0020ess\u002Dv\u00E4rde\u0020\u00281\u0020eller\u002014\u0029.",
             "url": "classes/App-Controller-Game-GameController.html#method_ace"
         },                {
             "fqsen": "\\App\\Controller\\HomeController",
@@ -356,6 +371,16 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-Controller-LuckyController.html#method_index"
         },                {
+            "fqsen": "\\App\\Controller\\MetricsController",
+            "name": "MetricsController",
+            "summary": "",
+            "url": "classes/App-Controller-MetricsController.html"
+        },                {
+            "fqsen": "\\App\\Controller\\MetricsController\u003A\u003Aindex\u0028\u0029",
+            "name": "index",
+            "summary": "",
+            "url": "classes/App-Controller-MetricsController.html#method_index"
+        },                {
             "fqsen": "\\App\\Controller\\QuoteApiController",
             "name": "QuoteApiController",
             "summary": "",
@@ -375,6 +400,21 @@ Search.appendIndex(
             "name": "index",
             "summary": "",
             "url": "classes/App-Controller-ReportController.html#method_index"
+        },                {
+            "fqsen": "\\App\\Controller\\SessionController",
+            "name": "SessionController",
+            "summary": "Kontroller\u0020f\u00F6r\u0020att\u0020visa\u0020och\u0020rensa\u0020sessionen\u0020\u0028f\u00F6r\u0020fels\u00F6kning\u0029.",
+            "url": "classes/App-Controller-SessionController.html"
+        },                {
+            "fqsen": "\\App\\Controller\\SessionController\u003A\u003Aview\u0028\u0029",
+            "name": "view",
+            "summary": "",
+            "url": "classes/App-Controller-SessionController.html#method_view"
+        },                {
+            "fqsen": "\\App\\Controller\\SessionController\u003A\u003Adelete\u0028\u0029",
+            "name": "delete",
+            "summary": "",
+            "url": "classes/App-Controller-SessionController.html#method_delete"
         },                {
             "fqsen": "\\App\\Entity\\Book",
             "name": "Book",
@@ -526,6 +566,46 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-Form-BookForm.html#method_configureOptions"
         },                {
+            "fqsen": "\\App\\Game\\AceHandler",
+            "name": "AceHandler",
+            "summary": "Hanterar\u0020val\u0020av\u0020ess\u002Dv\u00E4rden\u0020i\u0020spelarens\u0020hand.",
+            "url": "classes/App-Game-AceHandler.html"
+        },                {
+            "fqsen": "\\App\\Game\\AceHandler\u003A\u003Atrack\u0028\u0029",
+            "name": "track",
+            "summary": "Identifierar\u0020om\u0020det\u0020senaste\u0020kortet\u0020i\u0020handen\u0020\u00E4r\u0020ett\u0020ess\u0020och\u0020registrerar\u0020det.",
+            "url": "classes/App-Game-AceHandler.html#method_track"
+        },                {
+            "fqsen": "\\App\\Game\\AceHandler\u003A\u003AtrackAce\u0028\u0029",
+            "name": "trackAce",
+            "summary": "Registrerar\u0020ett\u0020ess\u0020vid\u0020en\u0020specifik\u0020position.",
+            "url": "classes/App-Game-AceHandler.html#method_trackAce"
+        },                {
+            "fqsen": "\\App\\Game\\AceHandler\u003A\u003AsetAceValue\u0028\u0029",
+            "name": "setAceValue",
+            "summary": "S\u00E4tter\u0020spelarens\u0020valda\u0020v\u00E4rde\u0020\u00281\u0020eller\u002014\u0029\u0020f\u00F6r\u0020ett\u0020ess\u0020vid\u0020en\u0020given\u0020position.",
+            "url": "classes/App-Game-AceHandler.html#method_setAceValue"
+        },                {
+            "fqsen": "\\App\\Game\\AceHandler\u003A\u003AgetAceValue\u0028\u0029",
+            "name": "getAceValue",
+            "summary": "H\u00E4mtar\u0020valt\u0020v\u00E4rde\u0020f\u00F6r\u0020ett\u0020ess.",
+            "url": "classes/App-Game-AceHandler.html#method_getAceValue"
+        },                {
+            "fqsen": "\\App\\Game\\AceHandler\u003A\u003AgetAll\u0028\u0029",
+            "name": "getAll",
+            "summary": "Returnerar\u0020alla\u0020valda\u0020ess\u002Dv\u00E4rden.",
+            "url": "classes/App-Game-AceHandler.html#method_getAll"
+        },                {
+            "fqsen": "\\App\\Game\\AceHandler\u003A\u003Areset\u0028\u0029",
+            "name": "reset",
+            "summary": "Nollst\u00E4ller\u0020alla\u0020val\u0020f\u00F6r\u0020ess.",
+            "url": "classes/App-Game-AceHandler.html#method_reset"
+        },                {
+            "fqsen": "\\App\\Game\\AceHandler\u003A\u003A\u0024aceChoices",
+            "name": "aceChoices",
+            "summary": "Sparar\u0020valda\u0020v\u00E4rden\u0020f\u00F6r\u0020varje\u0020ess\u0020i\u0020handen.",
+            "url": "classes/App-Game-AceHandler.html#property_aceChoices"
+        },                {
             "fqsen": "\\App\\Game\\Game21",
             "name": "Game21",
             "summary": "Hanterar\u0020spelet\u002021\u0020\u0028Blackjack\u002Dvariant\u0029\u0020mellan\u0020spelare\u0020och\u0020bank.",
@@ -538,7 +618,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Game\\Game21\u003A\u003AstartNewRound\u0028\u0029",
             "name": "startNewRound",
-            "summary": "Startar\u0020en\u0020ny\u0020runda\u0020och\u0020\u00E5terst\u00E4ller\u0020rundans\u0020tillst\u00E5nd.",
+            "summary": "Startar\u0020en\u0020ny\u0020runda\u0020och\u0020\u00E5terst\u00E4ller\u0020alla\u0020tillst\u00E5nd.",
             "url": "classes/App-Game-Game21.html#method_startNewRound"
         },                {
             "fqsen": "\\App\\Game\\Game21\u003A\u003AplaceBet\u0028\u0029",
@@ -553,32 +633,32 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Game\\Game21\u003A\u003AgetPlayerMoney\u0028\u0029",
             "name": "getPlayerMoney",
-            "summary": "Returnerar\u0020spelarens\u0020pengar.",
+            "summary": "Returnerar\u0020spelarens\u0020saldo.",
             "url": "classes/App-Game-Game21.html#method_getPlayerMoney"
         },                {
             "fqsen": "\\App\\Game\\Game21\u003A\u003AgetBankMoney\u0028\u0029",
             "name": "getBankMoney",
-            "summary": "Returnerar\u0020bankens\u0020pengar.",
+            "summary": "Returnerar\u0020bankens\u0020saldo.",
             "url": "classes/App-Game-Game21.html#method_getBankMoney"
         },                {
             "fqsen": "\\App\\Game\\Game21\u003A\u003AapplyResult\u0028\u0029",
             "name": "applyResult",
-            "summary": "Till\u00E4mpa\u0020rundans\u0020resultat\u0020och\u0020justera\u0020pengar.",
+            "summary": "Till\u00E4mpa\u0020rundans\u0020resultat\u0020och\u0020justera\u0020saldon.",
             "url": "classes/App-Game-Game21.html#method_applyResult"
         },                {
             "fqsen": "\\App\\Game\\Game21\u003A\u003AisMatchOver\u0028\u0029",
             "name": "isMatchOver",
-            "summary": "Kollar\u0020om\u0020matchen\u0020\u00E4r\u0020\u00F6ver\u0020\u0028n\u00E5gon\u0020har\u00200\u0020pengar\u0029.",
+            "summary": "Returnerar\u0020true\u0020om\u0020n\u00E5gon\u0020spelare\u0020har\u00200\u0020kronor.",
             "url": "classes/App-Game-Game21.html#method_isMatchOver"
         },                {
             "fqsen": "\\App\\Game\\Game21\u003A\u003AplayerDraw\u0028\u0029",
             "name": "playerDraw",
-            "summary": "L\u00E5ter\u0020spelaren\u0020dra\u0020ett\u0020kort.",
+            "summary": "L\u00E5ter\u0020spelaren\u0020dra\u0020ett\u0020kort.\u0020Om\u0020spelaren\u0020g\u00E5r\u0020\u00F6ver\u002021\u0020avslutas\u0020rundan.",
             "url": "classes/App-Game-Game21.html#method_playerDraw"
         },                {
             "fqsen": "\\App\\Game\\Game21\u003A\u003AsetAceValue\u0028\u0029",
             "name": "setAceValue",
-            "summary": "S\u00E4tter\u0020v\u00E4rdet\u0020f\u00F6r\u0020ett\u0020ess\u0020i\u0020spelarens\u0020hand.",
+            "summary": "S\u00E4tter\u0020essets\u0020v\u00E4rde\u0020\u00281\u0020eller\u002014\u0029\u0020i\u0020spelarens\u0020hand.",
             "url": "classes/App-Game-Game21.html#method_setAceValue"
         },                {
             "fqsen": "\\App\\Game\\Game21\u003A\u003AgetAceChoices\u0028\u0029",
@@ -586,19 +666,19 @@ Search.appendIndex(
             "summary": "Returnerar\u0020valda\u0020ess\u002Dv\u00E4rden.",
             "url": "classes/App-Game-Game21.html#method_getAceChoices"
         },                {
-            "fqsen": "\\App\\Game\\Game21\u003A\u003A\u0024playerStands",
+            "fqsen": "\\App\\Game\\Game21\u003A\u003AplayerStands\u0028\u0029",
             "name": "playerStands",
-            "summary": "",
-            "url": "classes/App-Game-Game21.html#property_playerStands"
+            "summary": "Markerar\u0020att\u0020spelaren\u0020valt\u0020att\u0020stanna.",
+            "url": "classes/App-Game-Game21.html#method_playerStands"
         },                {
             "fqsen": "\\App\\Game\\Game21\u003A\u003AisPlayerStanding\u0028\u0029",
             "name": "isPlayerStanding",
-            "summary": "Returnerar\u0020om\u0020spelaren\u0020har\u0020stannat.",
+            "summary": "Returnerar\u0020om\u0020spelaren\u0020har\u0020valt\u0020att\u0020stanna.",
             "url": "classes/App-Game-Game21.html#method_isPlayerStanding"
         },                {
             "fqsen": "\\App\\Game\\Game21\u003A\u003AbankTurn\u0028\u0029",
             "name": "bankTurn",
-            "summary": "L\u00E5ter\u0020banken\u0020dra\u0020kort\u0020tills\u0020v\u00E4rdet\u0020\u00E4r\u0020minst\u002017.",
+            "summary": "L\u00E5ter\u0020banken\u0020dra\u0020kort\u0020tills\u0020den\u0020n\u00E5r\u0020minst\u002017\u0020po\u00E4ng.",
             "url": "classes/App-Game-Game21.html#method_bankTurn"
         },                {
             "fqsen": "\\App\\Game\\Game21\u003A\u003AgetPlayerHand\u0028\u0029",
@@ -613,28 +693,43 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Game\\Game21\u003A\u003AgetPlayerValue\u0028\u0029",
             "name": "getPlayerValue",
-            "summary": "Ber\u00E4knar\u0020spelarens\u0020totala\u0020po\u00E4ng.",
+            "summary": "Returnerar\u0020spelarens\u0020totala\u0020po\u00E4ng.",
             "url": "classes/App-Game-Game21.html#method_getPlayerValue"
         },                {
             "fqsen": "\\App\\Game\\Game21\u003A\u003AgetBankValue\u0028\u0029",
             "name": "getBankValue",
-            "summary": "Ber\u00E4knar\u0020bankens\u0020totala\u0020po\u00E4ng.",
+            "summary": "Returnerar\u0020bankens\u0020totala\u0020po\u00E4ng.",
             "url": "classes/App-Game-Game21.html#method_getBankValue"
         },                {
             "fqsen": "\\App\\Game\\Game21\u003A\u003AisGameOver\u0028\u0029",
             "name": "isGameOver",
-            "summary": "Returnerar\u0020om\u0020spelet\u0020\u00E4r\u0020slut\u0020\u0028spelare\u0020stannar\u0020eller\u0020n\u00E5gon\u0020g\u00E5r\u0020\u00F6ver\u002021\u0029.",
+            "summary": "Returnerar\u0020true\u0020om\u0020spelet\u0020\u00E4r\u0020\u00F6ver.",
             "url": "classes/App-Game-Game21.html#method_isGameOver"
         },                {
             "fqsen": "\\App\\Game\\Game21\u003A\u003AgetWinner\u0028\u0029",
             "name": "getWinner",
-            "summary": "Returnerar\u0020vem\u0020som\u0020vinner\u0020rundan\u003A\u0020\u0027player\u0027,\u0020\u0027bank\u0027\u0020eller\u0020\u0027none\u0027.",
+            "summary": "Returnerar\u0020vinnaren\u0020av\u0020rundan\u003A\u0020\u0027player\u0027,\u0020\u0027bank\u0027\u0020eller\u0020\u0027none\u0027.",
             "url": "classes/App-Game-Game21.html#method_getWinner"
         },                {
-            "fqsen": "\\App\\Game\\Game21\u003A\u003AcalculateValue\u0028\u0029",
-            "name": "calculateValue",
-            "summary": "Intern\u0020metod\u0020f\u00F6r\u0020att\u0020r\u00E4kna\u0020ut\u0020en\u0020hands\u0020po\u00E4ng,\u0020hanterar\u0020ess.",
-            "url": "classes/App-Game-Game21.html#method_calculateValue"
+            "fqsen": "\\App\\Game\\Game21\u003A\u003AgetWinnerString\u0028\u0029",
+            "name": "getWinnerString",
+            "summary": "Returnerar\u0020ett\u0020meddelande\u0020om\u0020vem\u0020som\u0020vann.",
+            "url": "classes/App-Game-Game21.html#method_getWinnerString"
+        },                {
+            "fqsen": "\\App\\Game\\Game21\u003A\u003AgetPlayerAndBankValues\u0028\u0029",
+            "name": "getPlayerAndBankValues",
+            "summary": "Returnerar\u0020po\u00E4ngen\u0020f\u00F6r\u0020b\u00E5de\u0020spelare\u0020och\u0020bank.",
+            "url": "classes/App-Game-Game21.html#method_getPlayerAndBankValues"
+        },                {
+            "fqsen": "\\App\\Game\\Game21\u003A\u003AinitDeck\u0028\u0029",
+            "name": "initDeck",
+            "summary": "\u00C5terst\u00E4ller\u0020kortleken.",
+            "url": "classes/App-Game-Game21.html#method_initDeck"
+        },                {
+            "fqsen": "\\App\\Game\\Game21\u003A\u003AgetLastBet\u0028\u0029",
+            "name": "getLastBet",
+            "summary": "Returnerar\u0020den\u0020senaste\u0020insatsen.",
+            "url": "classes/App-Game-Game21.html#method_getLastBet"
         },                {
             "fqsen": "\\App\\Game\\Game21\u003A\u003A\u0024deck",
             "name": "deck",
@@ -651,30 +746,345 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-Game-Game21.html#property_bank"
         },                {
-            "fqsen": "\\App\\Game\\Game21\u003A\u003A\u0024roundOver",
-            "name": "roundOver",
-            "summary": "",
-            "url": "classes/App-Game-Game21.html#property_roundOver"
-        },                {
-            "fqsen": "\\App\\Game\\Game21\u003A\u003A\u0024playerMoney",
-            "name": "playerMoney",
-            "summary": "",
-            "url": "classes/App-Game-Game21.html#property_playerMoney"
-        },                {
-            "fqsen": "\\App\\Game\\Game21\u003A\u003A\u0024bankMoney",
-            "name": "bankMoney",
-            "summary": "",
-            "url": "classes/App-Game-Game21.html#property_bankMoney"
-        },                {
             "fqsen": "\\App\\Game\\Game21\u003A\u003A\u0024bet",
             "name": "bet",
             "summary": "",
             "url": "classes/App-Game-Game21.html#property_bet"
         },                {
-            "fqsen": "\\App\\Game\\Game21\u003A\u003A\u0024aceChoices",
-            "name": "aceChoices",
+            "fqsen": "\\App\\Game\\Game21\u003A\u003A\u0024state",
+            "name": "state",
             "summary": "",
-            "url": "classes/App-Game-Game21.html#property_aceChoices"
+            "url": "classes/App-Game-Game21.html#property_state"
+        },                {
+            "fqsen": "\\App\\Game\\Game21\u003A\u003A\u0024rules",
+            "name": "rules",
+            "summary": "",
+            "url": "classes/App-Game-Game21.html#property_rules"
+        },                {
+            "fqsen": "\\App\\Game\\GameBank",
+            "name": "GameBank",
+            "summary": "Representerar\u0020banken\u0020i\u0020spelet\u002021.",
+            "url": "classes/App-Game-GameBank.html"
+        },                {
+            "fqsen": "\\App\\Game\\GameBank\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Initierar\u0020bankens\u0020hand\u0020och\u0020pl\u00E5nbok.",
+            "url": "classes/App-Game-GameBank.html#method___construct"
+        },                {
+            "fqsen": "\\App\\Game\\GameBank\u003A\u003AgetHand\u0028\u0029",
+            "name": "getHand",
+            "summary": "Returnerar\u0020bankens\u0020aktuella\u0020hand.",
+            "url": "classes/App-Game-GameBank.html#method_getHand"
+        },                {
+            "fqsen": "\\App\\Game\\GameBank\u003A\u003Aplay\u0028\u0029",
+            "name": "play",
+            "summary": "L\u00E5ter\u0020banken\u0020dra\u0020kort\u0020tills\u0020totalv\u00E4rdet\u0020\u00E4r\u0020minst\u002017.",
+            "url": "classes/App-Game-GameBank.html#method_play"
+        },                {
+            "fqsen": "\\App\\Game\\GameBank\u003A\u003AgetTotalValue\u0028\u0029",
+            "name": "getTotalValue",
+            "summary": "Ber\u00E4knar\u0020den\u0020totala\u0020po\u00E4ngen\u0020f\u00F6r\u0020bankens\u0020hand.",
+            "url": "classes/App-Game-GameBank.html#method_getTotalValue"
+        },                {
+            "fqsen": "\\App\\Game\\GameBank\u003A\u003AgetValue\u0028\u0029",
+            "name": "getValue",
+            "summary": "Alias\u0020f\u00F6r\u0020getTotalValue\u0028\u0029\u0020\u2013\u0020anv\u00E4nds\u0020f\u00F6r\u0020enhetlig\u0020terminologi.",
+            "url": "classes/App-Game-GameBank.html#method_getValue"
+        },                {
+            "fqsen": "\\App\\Game\\GameBank\u003A\u003AresetHand\u0028\u0029",
+            "name": "resetHand",
+            "summary": "\u00C5terst\u00E4ller\u0020bankens\u0020hand\u0020inf\u00F6r\u0020en\u0020ny\u0020runda.",
+            "url": "classes/App-Game-GameBank.html#method_resetHand"
+        },                {
+            "fqsen": "\\App\\Game\\GameBank\u003A\u003AgetMoney\u0028\u0029",
+            "name": "getMoney",
+            "summary": "Returnerar\u0020bankens\u0020aktuella\u0020pengar.",
+            "url": "classes/App-Game-GameBank.html#method_getMoney"
+        },                {
+            "fqsen": "\\App\\Game\\GameBank\u003A\u003AadjustMoney\u0028\u0029",
+            "name": "adjustMoney",
+            "summary": "Justerar\u0020bankens\u0020saldo\u0020med\u0020angivet\u0020belopp.",
+            "url": "classes/App-Game-GameBank.html#method_adjustMoney"
+        },                {
+            "fqsen": "\\App\\Game\\GameBank\u003A\u003AgetWallet\u0028\u0029",
+            "name": "getWallet",
+            "summary": "Returnerar\u0020bankens\u0020Wallet\u002Dobjekt.",
+            "url": "classes/App-Game-GameBank.html#method_getWallet"
+        },                {
+            "fqsen": "\\App\\Game\\GameBank\u003A\u003AaddCard\u0028\u0029",
+            "name": "addCard",
+            "summary": "L\u00E4gger\u0020till\u0020ett\u0020kort\u0020i\u0020bankens\u0020hand.",
+            "url": "classes/App-Game-GameBank.html#method_addCard"
+        },                {
+            "fqsen": "\\App\\Game\\GameBank\u003A\u003A\u0024hand",
+            "name": "hand",
+            "summary": "Bankens\u0020aktuella\u0020hand\u0020med\u0020kort.",
+            "url": "classes/App-Game-GameBank.html#property_hand"
+        },                {
+            "fqsen": "\\App\\Game\\GameBank\u003A\u003A\u0024wallet",
+            "name": "wallet",
+            "summary": "Bankens\u0020pl\u00E5nbok\u0020f\u00F6r\u0020att\u0020h\u00E5lla\u0020reda\u0020p\u00E5\u0020pengar.",
+            "url": "classes/App-Game-GameBank.html#property_wallet"
+        },                {
+            "fqsen": "\\App\\Game\\GameBet",
+            "name": "GameBet",
+            "summary": "Hanterar\u0020satsningar\u0020i\u0020spelet\u002021.",
+            "url": "classes/App-Game-GameBet.html"
+        },                {
+            "fqsen": "\\App\\Game\\GameBet\u003A\u003AplaceBet\u0028\u0029",
+            "name": "placeBet",
+            "summary": "L\u00E4gger\u0020en\u0020insats\u0020om\u0020spelaren\u0020har\u0020tillr\u00E4ckligt\u0020med\u0020pengar.",
+            "url": "classes/App-Game-GameBet.html#method_placeBet"
+        },                {
+            "fqsen": "\\App\\Game\\GameBet\u003A\u003AgetBet\u0028\u0029",
+            "name": "getBet",
+            "summary": "Returnerar\u0020aktuell\u0020insats.",
+            "url": "classes/App-Game-GameBet.html#method_getBet"
+        },                {
+            "fqsen": "\\App\\Game\\GameBet\u003A\u003Areset\u0028\u0029",
+            "name": "reset",
+            "summary": "\u00C5terst\u00E4ller\u0020aktuell\u0020insats\u0020till\u0020noll.",
+            "url": "classes/App-Game-GameBet.html#method_reset"
+        },                {
+            "fqsen": "\\App\\Game\\GameBet\u003A\u003AapplyResult\u0028\u0029",
+            "name": "applyResult",
+            "summary": "F\u00F6rdelar\u0020vinsten\u0020beroende\u0020p\u00E5\u0020vem\u0020som\u0020vann\u0020rundan.",
+            "url": "classes/App-Game-GameBet.html#method_applyResult"
+        },                {
+            "fqsen": "\\App\\Game\\GameBet\u003A\u003APLAYER",
+            "name": "PLAYER",
+            "summary": "",
+            "url": "classes/App-Game-GameBet.html#constant_PLAYER"
+        },                {
+            "fqsen": "\\App\\Game\\GameBet\u003A\u003ABANK",
+            "name": "BANK",
+            "summary": "",
+            "url": "classes/App-Game-GameBet.html#constant_BANK"
+        },                {
+            "fqsen": "\\App\\Game\\GameBet\u003A\u003A\u0024bet",
+            "name": "bet",
+            "summary": "",
+            "url": "classes/App-Game-GameBet.html#property_bet"
+        },                {
+            "fqsen": "\\App\\Game\\GamePlayer",
+            "name": "GamePlayer",
+            "summary": "Representerar\u0020spelaren\u0020i\u0020spelet\u002021.",
+            "url": "classes/App-Game-GamePlayer.html"
+        },                {
+            "fqsen": "\\App\\Game\\GamePlayer\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Initierar\u0020spelarens\u0020hand,\u0020esshanterare\u0020och\u0020pl\u00E5nbok.",
+            "url": "classes/App-Game-GamePlayer.html#method___construct"
+        },                {
+            "fqsen": "\\App\\Game\\GamePlayer\u003A\u003Adraw\u0028\u0029",
+            "name": "draw",
+            "summary": "Drar\u0020ett\u0020kort\u0020fr\u00E5n\u0020kortleken\u0020och\u0020l\u00E4gger\u0020till\u0020i\u0020spelarens\u0020hand.",
+            "url": "classes/App-Game-GamePlayer.html#method_draw"
+        },                {
+            "fqsen": "\\App\\Game\\GamePlayer\u003A\u003AaddCard\u0028\u0029",
+            "name": "addCard",
+            "summary": "L\u00E4gger\u0020till\u0020ett\u0020kort\u0020i\u0020handen\u0020och\u0020sp\u00E5rar\u0020om\u0020det\u0020\u00E4r\u0020ett\u0020ess.",
+            "url": "classes/App-Game-GamePlayer.html#method_addCard"
+        },                {
+            "fqsen": "\\App\\Game\\GamePlayer\u003A\u003AsetAceValue\u0028\u0029",
+            "name": "setAceValue",
+            "summary": "S\u00E4tter\u0020spelarens\u0020val\u0020f\u00F6r\u0020essets\u0020v\u00E4rde\u0020\u00281\u0020eller\u002014\u0029.",
+            "url": "classes/App-Game-GamePlayer.html#method_setAceValue"
+        },                {
+            "fqsen": "\\App\\Game\\GamePlayer\u003A\u003AgetAceChoices\u0028\u0029",
+            "name": "getAceChoices",
+            "summary": "Returnerar\u0020alla\u0020essval\u0020som\u0020spelaren\u0020gjort.",
+            "url": "classes/App-Game-GamePlayer.html#method_getAceChoices"
+        },                {
+            "fqsen": "\\App\\Game\\GamePlayer\u003A\u003AgetValue\u0028\u0029",
+            "name": "getValue",
+            "summary": "Returnerar\u0020spelarens\u0020totala\u0020po\u00E4ngv\u00E4rde.",
+            "url": "classes/App-Game-GamePlayer.html#method_getValue"
+        },                {
+            "fqsen": "\\App\\Game\\GamePlayer\u003A\u003AresetHand\u0028\u0029",
+            "name": "resetHand",
+            "summary": "\u00C5terst\u00E4ller\u0020spelarens\u0020hand\u0020och\u0020essval\u0020inf\u00F6r\u0020en\u0020ny\u0020runda.",
+            "url": "classes/App-Game-GamePlayer.html#method_resetHand"
+        },                {
+            "fqsen": "\\App\\Game\\GamePlayer\u003A\u003AgetHand\u0028\u0029",
+            "name": "getHand",
+            "summary": "Returnerar\u0020spelarens\u0020hand.",
+            "url": "classes/App-Game-GamePlayer.html#method_getHand"
+        },                {
+            "fqsen": "\\App\\Game\\GamePlayer\u003A\u003AgetWallet\u0028\u0029",
+            "name": "getWallet",
+            "summary": "Returnerar\u0020spelarens\u0020Wallet\u002Dobjekt.",
+            "url": "classes/App-Game-GamePlayer.html#method_getWallet"
+        },                {
+            "fqsen": "\\App\\Game\\GamePlayer\u003A\u003AgetMoney\u0028\u0029",
+            "name": "getMoney",
+            "summary": "Returnerar\u0020spelarens\u0020nuvarande\u0020saldo.",
+            "url": "classes/App-Game-GamePlayer.html#method_getMoney"
+        },                {
+            "fqsen": "\\App\\Game\\GamePlayer\u003A\u003AadjustMoney\u0028\u0029",
+            "name": "adjustMoney",
+            "summary": "Justerar\u0020spelarens\u0020pengar\u0020\u0028kan\u0020vara\u0020negativt\u0020eller\u0020positivt\u0029.",
+            "url": "classes/App-Game-GamePlayer.html#method_adjustMoney"
+        },                {
+            "fqsen": "\\App\\Game\\GamePlayer\u003A\u003A\u0024hand",
+            "name": "hand",
+            "summary": "Spelarens\u0020aktuella\u0020hand.",
+            "url": "classes/App-Game-GamePlayer.html#property_hand"
+        },                {
+            "fqsen": "\\App\\Game\\GamePlayer\u003A\u003A\u0024aceHandler",
+            "name": "aceHandler",
+            "summary": "Hanterare\u0020f\u00F6r\u0020spelarens\u0020essval.",
+            "url": "classes/App-Game-GamePlayer.html#property_aceHandler"
+        },                {
+            "fqsen": "\\App\\Game\\GamePlayer\u003A\u003A\u0024wallet",
+            "name": "wallet",
+            "summary": "Spelarens\u0020pl\u00E5nbok.",
+            "url": "classes/App-Game-GamePlayer.html#property_wallet"
+        },                {
+            "fqsen": "\\App\\Game\\GameResultService",
+            "name": "GameResultService",
+            "summary": "Returnerar\u0020resultatmeddelande\u0020f\u00F6r\u0020spelet\u002021\u0020baserat\u0020p\u00E5\u0020spelets\u0020tillst\u00E5nd\u0020och\u0020vinnare.",
+            "url": "classes/App-Game-GameResultService.html"
+        },                {
+            "fqsen": "\\App\\Game\\GameResultService\u003A\u003AgetResultMessage\u0028\u0029",
+            "name": "getResultMessage",
+            "summary": "Genererar\u0020ett\u0020meddelande\u0020baserat\u0020p\u00E5\u0020om\u0020spelet\u0020\u00E4r\u0020slut\u0020och\u0020vem\u0020som\u0020vann.",
+            "url": "classes/App-Game-GameResultService.html#method_getResultMessage"
+        },                {
+            "fqsen": "\\App\\Game\\GameRules",
+            "name": "GameRules",
+            "summary": "Inneh\u00E5ller\u0020reglerna\u0020f\u00F6r\u0020spelet\u002021.",
+            "url": "classes/App-Game-GameRules.html"
+        },                {
+            "fqsen": "\\App\\Game\\GameRules\u003A\u003AgetWinner\u0028\u0029",
+            "name": "getWinner",
+            "summary": "Returnerar\u0020vem\u0020som\u0020vinner\u0020rundan\u003A\u0020\u0027player\u0027,\u0020\u0027bank\u0027\u0020eller\u0020\u0027none\u0027.",
+            "url": "classes/App-Game-GameRules.html#method_getWinner"
+        },                {
+            "fqsen": "\\App\\Game\\GameRules\u003A\u003AisGameOver\u0028\u0029",
+            "name": "isGameOver",
+            "summary": "Returnerar\u0020om\u0020spelet\u0020\u00E4r\u0020\u00F6ver.",
+            "url": "classes/App-Game-GameRules.html#method_isGameOver"
+        },                {
+            "fqsen": "\\App\\Game\\GameRules\u003A\u003AplayBank\u0028\u0029",
+            "name": "playBank",
+            "summary": "L\u00E5ter\u0020banken\u0020spela\u0020sin\u0020tur\u0020genom\u0020att\u0020dra\u0020kort\u0020tills\u0020minst\u002017\u0020po\u00E4ng.",
+            "url": "classes/App-Game-GameRules.html#method_playBank"
+        },                {
+            "fqsen": "\\App\\Game\\GameRules\u003A\u003AcalculateValue\u0028\u0029",
+            "name": "calculateValue",
+            "summary": "Ber\u00E4knar\u0020handens\u0020totala\u0020po\u00E4ng.",
+            "url": "classes/App-Game-GameRules.html#method_calculateValue"
+        },                {
+            "fqsen": "\\App\\Game\\GameState",
+            "name": "GameState",
+            "summary": "Hanterar\u0020tillst\u00E5ndet\u0020f\u00F6r\u0020en\u0020spelrunda\u0020i\u0020spelet\u002021.",
+            "url": "classes/App-Game-GameState.html"
+        },                {
+            "fqsen": "\\App\\Game\\GameState\u003A\u003AsetPlayerStands\u0028\u0029",
+            "name": "setPlayerStands",
+            "summary": "Markerar\u0020att\u0020spelaren\u0020har\u0020valt\u0020att\u0020stanna.",
+            "url": "classes/App-Game-GameState.html#method_setPlayerStands"
+        },                {
+            "fqsen": "\\App\\Game\\GameState\u003A\u003AhasPlayerStood\u0028\u0029",
+            "name": "hasPlayerStood",
+            "summary": "Returnerar\u0020om\u0020spelaren\u0020har\u0020stannat.",
+            "url": "classes/App-Game-GameState.html#method_hasPlayerStood"
+        },                {
+            "fqsen": "\\App\\Game\\GameState\u003A\u003AendRound\u0028\u0029",
+            "name": "endRound",
+            "summary": "Markerar\u0020att\u0020rundan\u0020\u00E4r\u0020avslutad.",
+            "url": "classes/App-Game-GameState.html#method_endRound"
+        },                {
+            "fqsen": "\\App\\Game\\GameState\u003A\u003AisRoundOver\u0028\u0029",
+            "name": "isRoundOver",
+            "summary": "Returnerar\u0020om\u0020rundan\u0020\u00E4r\u0020avslutad.",
+            "url": "classes/App-Game-GameState.html#method_isRoundOver"
+        },                {
+            "fqsen": "\\App\\Game\\GameState\u003A\u003Areset\u0028\u0029",
+            "name": "reset",
+            "summary": "\u00C5terst\u00E4ller\u0020tillst\u00E5ndet\u0020f\u00F6r\u0020en\u0020ny\u0020runda.",
+            "url": "classes/App-Game-GameState.html#method_reset"
+        },                {
+            "fqsen": "\\App\\Game\\GameState\u003A\u003A\u0024playerStands",
+            "name": "playerStands",
+            "summary": "",
+            "url": "classes/App-Game-GameState.html#property_playerStands"
+        },                {
+            "fqsen": "\\App\\Game\\GameState\u003A\u003A\u0024roundOver",
+            "name": "roundOver",
+            "summary": "",
+            "url": "classes/App-Game-GameState.html#property_roundOver"
+        },                {
+            "fqsen": "\\App\\Game\\PayoutCalculator",
+            "name": "PayoutCalculator",
+            "summary": "Ber\u00E4knar\u0020modifierare\u0020f\u00F6r\u0020utbetalning\u0020baserat\u0020p\u00E5\u0020vinnare.",
+            "url": "classes/App-Game-PayoutCalculator.html"
+        },                {
+            "fqsen": "\\App\\Game\\PayoutCalculator\u003A\u003AgetModifier\u0028\u0029",
+            "name": "getModifier",
+            "summary": "Returnerar\u0020en\u0020modifierare\u0020beroende\u0020p\u00E5\u0020vem\u0020som\u0020vann\u0020rundan.",
+            "url": "classes/App-Game-PayoutCalculator.html#method_getModifier"
+        },                {
+            "fqsen": "\\App\\Game\\ScoreCalculator",
+            "name": "ScoreCalculator",
+            "summary": "Ber\u00E4knar\u0020handens\u0020totala\u0020po\u00E4ng\u0020med\u0020h\u00E4nsyn\u0020till\u0020valda\u0020ess\u002Dv\u00E4rden.",
+            "url": "classes/App-Game-ScoreCalculator.html"
+        },                {
+            "fqsen": "\\App\\Game\\ScoreCalculator\u003A\u003Acalculate\u0028\u0029",
+            "name": "calculate",
+            "summary": "Ber\u00E4knar\u0020handens\u0020totala\u0020v\u00E4rde\u0020med\u0020st\u00F6d\u0020f\u00F6r\u0020val\u0020av\u0020ess\u002Dv\u00E4rde.",
+            "url": "classes/App-Game-ScoreCalculator.html#method_calculate"
+        },                {
+            "fqsen": "\\App\\Game\\ScoreCalculator\u003A\u003AgetCardValue\u0028\u0029",
+            "name": "getCardValue",
+            "summary": "Returnerar\u0020kortets\u0020v\u00E4rde,\u0020med\u0020s\u00E4rskild\u0020hantering\u0020f\u00F6r\u0020ess.",
+            "url": "classes/App-Game-ScoreCalculator.html#method_getCardValue"
+        },                {
+            "fqsen": "\\App\\Game\\Wallet",
+            "name": "Wallet",
+            "summary": "Hanterar\u0020spelarens\u0020pengar\u0020i\u0020spelet\u002021.",
+            "url": "classes/App-Game-Wallet.html"
+        },                {
+            "fqsen": "\\App\\Game\\Wallet\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Initierar\u0020pl\u00E5nboken\u0020med\u0020ett\u0020startbelopp.",
+            "url": "classes/App-Game-Wallet.html#method___construct"
+        },                {
+            "fqsen": "\\App\\Game\\Wallet\u003A\u003AgetAmount\u0028\u0029",
+            "name": "getAmount",
+            "summary": "Returnerar\u0020aktuellt\u0020belopp.",
+            "url": "classes/App-Game-Wallet.html#method_getAmount"
+        },                {
+            "fqsen": "\\App\\Game\\Wallet\u003A\u003AcanAfford\u0028\u0029",
+            "name": "canAfford",
+            "summary": "Kontrollerar\u0020om\u0020spelaren\u0020har\u0020r\u00E5d\u0020med\u0020ett\u0020visst\u0020belopp.",
+            "url": "classes/App-Game-Wallet.html#method_canAfford"
+        },                {
+            "fqsen": "\\App\\Game\\Wallet\u003A\u003Aadd\u0028\u0029",
+            "name": "add",
+            "summary": "L\u00E4gger\u0020till\u0020pengar\u0020i\u0020pl\u00E5nboken.",
+            "url": "classes/App-Game-Wallet.html#method_add"
+        },                {
+            "fqsen": "\\App\\Game\\Wallet\u003A\u003Asubtract\u0028\u0029",
+            "name": "subtract",
+            "summary": "Drar\u0020pengar\u0020fr\u00E5n\u0020pl\u00E5nboken.",
+            "url": "classes/App-Game-Wallet.html#method_subtract"
+        },                {
+            "fqsen": "\\App\\Game\\Wallet\u003A\u003AisEmpty\u0028\u0029",
+            "name": "isEmpty",
+            "summary": "Kontrollerar\u0020om\u0020pl\u00E5nboken\u0020\u00E4r\u0020tom.",
+            "url": "classes/App-Game-Wallet.html#method_isEmpty"
+        },                {
+            "fqsen": "\\App\\Game\\Wallet\u003A\u003Aadjust\u0028\u0029",
+            "name": "adjust",
+            "summary": "Justerar\u0020beloppet\u0020upp\u00E5t\u0020eller\u0020ned\u00E5t.",
+            "url": "classes/App-Game-Wallet.html#method_adjust"
+        },                {
+            "fqsen": "\\App\\Game\\Wallet\u003A\u003A\u0024amount",
+            "name": "amount",
+            "summary": "Det\u0020aktuella\u0020saldot\u0020i\u0020pl\u00E5nboken.",
+            "url": "classes/App-Game-Wallet.html#property_amount"
         },                {
             "fqsen": "\\App\\Kernel",
             "name": "Kernel",
@@ -691,6 +1101,446 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-Repository-BookRepository.html#method___construct"
         },                {
+            "fqsen": "\\App\\Service\\BookFormHandler",
+            "name": "BookFormHandler",
+            "summary": "Tj\u00E4nst\u0020som\u0020hanterar\u0020formul\u00E4r\u0020f\u00F6r\u0020att\u0020skapa\u0020och\u0020uppdatera\u0020b\u00F6cker.",
+            "url": "classes/App-Service-BookFormHandler.html"
+        },                {
+            "fqsen": "\\App\\Service\\BookFormHandler\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/App-Service-BookFormHandler.html#method___construct"
+        },                {
+            "fqsen": "\\App\\Service\\BookFormHandler\u003A\u003Ahandle\u0028\u0029",
+            "name": "handle",
+            "summary": "Hanterar\u0020ett\u0020formul\u00E4r\u0020f\u00F6r\u0020att\u0020skapa\u0020eller\u0020uppdatera\u0020en\u0020bok.",
+            "url": "classes/App-Service-BookFormHandler.html#method_handle"
+        },                {
+            "fqsen": "\\App\\Service\\BookFormHandler\u003A\u003A\u0024formFactory",
+            "name": "formFactory",
+            "summary": "",
+            "url": "classes/App-Service-BookFormHandler.html#property_formFactory"
+        },                {
+            "fqsen": "\\App\\Service\\BookFormHandler\u003A\u003A\u0024em",
+            "name": "em",
+            "summary": "",
+            "url": "classes/App-Service-BookFormHandler.html#property_em"
+        },                {
+            "fqsen": "\\App\\Service\\BookFormHandler\u003A\u003A\u0024urlGenerator",
+            "name": "urlGenerator",
+            "summary": "",
+            "url": "classes/App-Service-BookFormHandler.html#property_urlGenerator"
+        },                {
+            "fqsen": "\\App\\Service\\BookTransformer",
+            "name": "BookTransformer",
+            "summary": "Omvandlar\u0020bokentiteter\u0020till\u0020arrayer\u0020f\u00F6r\u0020presentation\u0020eller\u0020API\u002Drespons.",
+            "url": "classes/App-Service-BookTransformer.html"
+        },                {
+            "fqsen": "\\App\\Service\\BookTransformer\u003A\u003Atransform\u0028\u0029",
+            "name": "transform",
+            "summary": "Omvandlar\u0020ett\u0020bokobjekt\u0020till\u0020en\u0020array.",
+            "url": "classes/App-Service-BookTransformer.html#method_transform"
+        },                {
+            "fqsen": "\\App\\Service\\BookTransformer\u003A\u003AtransformMany\u0028\u0029",
+            "name": "transformMany",
+            "summary": "Omvandlar\u0020en\u0020lista\u0020av\u0020bokobjekt\u0020till\u0020en\u0020lista\u0020av\u0020arrayer.",
+            "url": "classes/App-Service-BookTransformer.html#method_transformMany"
+        },                {
+            "fqsen": "\\App\\Service\\CardDealerService",
+            "name": "CardDealerService",
+            "summary": "Tj\u00E4nst\u0020f\u00F6r\u0020att\u0020dela\u0020ut\u0020kort\u0020till\u0020spelare.",
+            "url": "classes/App-Service-CardDealerService.html"
+        },                {
+            "fqsen": "\\App\\Service\\CardDealerService\u003A\u003Adeal\u0028\u0029",
+            "name": "deal",
+            "summary": "Delar\u0020ut\u0020ett\u0020antal\u0020kort\u0020till\u0020ett\u0020antal\u0020spelare.",
+            "url": "classes/App-Service-CardDealerService.html#method_deal"
+        },                {
+            "fqsen": "\\App\\Service\\CardDealerService\u003A\u003AdealHand\u0028\u0029",
+            "name": "dealHand",
+            "summary": "Delar\u0020ut\u0020en\u0020enskild\u0020hand\u0020med\u0020ett\u0020givet\u0020antal\u0020kort.",
+            "url": "classes/App-Service-CardDealerService.html#method_dealHand"
+        },                {
+            "fqsen": "\\App\\Service\\CardGameService",
+            "name": "CardGameService",
+            "summary": "Tj\u00E4nst\u0020f\u00F6r\u0020att\u0020hantera\u0020kortspel\u0020via\u0020session.",
+            "url": "classes/App-Service-CardGameService.html"
+        },                {
+            "fqsen": "\\App\\Service\\CardGameService\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/App-Service-CardGameService.html#method___construct"
+        },                {
+            "fqsen": "\\App\\Service\\CardGameService\u003A\u003AgetSortedDeck\u0028\u0029",
+            "name": "getSortedDeck",
+            "summary": "Returnerar\u0020kortleken\u0020sorterad.",
+            "url": "classes/App-Service-CardGameService.html#method_getSortedDeck"
+        },                {
+            "fqsen": "\\App\\Service\\CardGameService\u003A\u003AshuffleDeck\u0028\u0029",
+            "name": "shuffleDeck",
+            "summary": "Blandar\u0020en\u0020ny\u0020kortlek\u0020och\u0020sparar\u0020den.",
+            "url": "classes/App-Service-CardGameService.html#method_shuffleDeck"
+        },                {
+            "fqsen": "\\App\\Service\\CardGameService\u003A\u003AdrawCards\u0028\u0029",
+            "name": "drawCards",
+            "summary": "Drar\u0020ett\u0020antal\u0020kort\u0020fr\u00E5n\u0020kortleken.",
+            "url": "classes/App-Service-CardGameService.html#method_drawCards"
+        },                {
+            "fqsen": "\\App\\Service\\CardGameService\u003A\u003AdealToPlayers\u0028\u0029",
+            "name": "dealToPlayers",
+            "summary": "Delar\u0020ut\u0020kort\u0020till\u0020spelare.",
+            "url": "classes/App-Service-CardGameService.html#method_dealToPlayers"
+        },                {
+            "fqsen": "\\App\\Service\\CardGameService\u003A\u003AgetDeckCount\u0028\u0029",
+            "name": "getDeckCount",
+            "summary": "Returnerar\u0020antal\u0020kort\u0020kvar\u0020i\u0020leken.",
+            "url": "classes/App-Service-CardGameService.html#method_getDeckCount"
+        },                {
+            "fqsen": "\\App\\Service\\CardGameService\u003A\u003AgetDeck\u0028\u0029",
+            "name": "getDeck",
+            "summary": "H\u00E4mtar\u0020aktuell\u0020kortlek\u0020fr\u00E5n\u0020session\u0020eller\u0020skapar\u0020ny.",
+            "url": "classes/App-Service-CardGameService.html#method_getDeck"
+        },                {
+            "fqsen": "\\App\\Service\\CardGameService\u003A\u003AsaveDeck\u0028\u0029",
+            "name": "saveDeck",
+            "summary": "Sparar\u0020kortleken\u0020i\u0020sessionen.",
+            "url": "classes/App-Service-CardGameService.html#method_saveDeck"
+        },                {
+            "fqsen": "\\App\\Service\\CardGameService\u003A\u003ADECK_KEY",
+            "name": "DECK_KEY",
+            "summary": "",
+            "url": "classes/App-Service-CardGameService.html#constant_DECK_KEY"
+        },                {
+            "fqsen": "\\App\\Service\\CardGameService\u003A\u003A\u0024session",
+            "name": "session",
+            "summary": "",
+            "url": "classes/App-Service-CardGameService.html#property_session"
+        },                {
+            "fqsen": "\\App\\Service\\CardGameService\u003A\u003A\u0024cardUtils",
+            "name": "cardUtils",
+            "summary": "",
+            "url": "classes/App-Service-CardGameService.html#property_cardUtils"
+        },                {
+            "fqsen": "\\App\\Service\\CardGameService\u003A\u003A\u0024dealer",
+            "name": "dealer",
+            "summary": "",
+            "url": "classes/App-Service-CardGameService.html#property_dealer"
+        },                {
+            "fqsen": "\\App\\Service\\CardUtilityService",
+            "name": "CardUtilityService",
+            "summary": "Tj\u00E4nst\u0020f\u00F6r\u0020att\u0020sortera\u0020spelkort.",
+            "url": "classes/App-Service-CardUtilityService.html"
+        },                {
+            "fqsen": "\\App\\Service\\CardUtilityService\u003A\u003AsortCards\u0028\u0029",
+            "name": "sortCards",
+            "summary": "Sorterar\u0020en\u0020lista\u0020av\u0020kort\u0020i\u0020stigande\u0020f\u00E4rg\u002D\u0020och\u0020v\u00E4rdeordning.",
+            "url": "classes/App-Service-CardUtilityService.html#method_sortCards"
+        },                {
+            "fqsen": "\\App\\Service\\CardUtilityService\u003A\u003AsortCardsDescending\u0028\u0029",
+            "name": "sortCardsDescending",
+            "summary": "Sorterar\u0020en\u0020lista\u0020av\u0020kort\u0020i\u0020fallande\u0020f\u00E4rg\u002D\u0020och\u0020v\u00E4rdeordning.",
+            "url": "classes/App-Service-CardUtilityService.html#method_sortCardsDescending"
+        },                {
+            "fqsen": "\\App\\Service\\CardUtilityService\u003A\u003ASUIT_ORDER",
+            "name": "SUIT_ORDER",
+            "summary": "",
+            "url": "classes/App-Service-CardUtilityService.html#constant_SUIT_ORDER"
+        },                {
+            "fqsen": "\\App\\Service\\CardUtilityService\u003A\u003AVALUE_ORDER",
+            "name": "VALUE_ORDER",
+            "summary": "",
+            "url": "classes/App-Service-CardUtilityService.html#constant_VALUE_ORDER"
+        },                {
+            "fqsen": "\\App\\Service\\Deck\\DealCardsResponder",
+            "name": "DealCardsResponder",
+            "summary": "Responderklass\u0020f\u00F6r\u0020att\u0020hantera\u0020utdelning\u0020av\u0020kort\u0020till\u0020spelare.",
+            "url": "classes/App-Service-Deck-DealCardsResponder.html"
+        },                {
+            "fqsen": "\\App\\Service\\Deck\\DealCardsResponder\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/App-Service-Deck-DealCardsResponder.html#method___construct"
+        },                {
+            "fqsen": "\\App\\Service\\Deck\\DealCardsResponder\u003A\u003Adeal\u0028\u0029",
+            "name": "deal",
+            "summary": "Delar\u0020ut\u0020kort\u0020till\u0020ett\u0020antal\u0020spelare.",
+            "url": "classes/App-Service-Deck-DealCardsResponder.html#method_deal"
+        },                {
+            "fqsen": "\\App\\Service\\Deck\\DealCardsResponder\u003A\u003AnotEnoughCards\u0028\u0029",
+            "name": "notEnoughCards",
+            "summary": "Kontrollerar\u0020om\u0020det\u0020finns\u0020tiillr\u00E4cklgt\u0020med\u0020kort\u0020kvar.",
+            "url": "classes/App-Service-Deck-DealCardsResponder.html#method_notEnoughCards"
+        },                {
+            "fqsen": "\\App\\Service\\Deck\\DealCardsResponder\u003A\u003AerrorResponse\u0028\u0029",
+            "name": "errorResponse",
+            "summary": "Returnerar\u0020ett\u0020felmeddelande\u0020om\u0020korten\u0020inte\u0020r\u00E4cker.",
+            "url": "classes/App-Service-Deck-DealCardsResponder.html#method_errorResponse"
+        },                {
+            "fqsen": "\\App\\Service\\Deck\\DealCardsResponder\u003A\u003AdealHands\u0028\u0029",
+            "name": "dealHands",
+            "summary": "Delar\u0020ut\u0020h\u00E4nder\u0020till\u0020spelare\u0020och\u0020returnerar\u0020dem\u0020som\u0020str\u00E4ngar.",
+            "url": "classes/App-Service-Deck-DealCardsResponder.html#method_dealHands"
+        },                {
+            "fqsen": "\\App\\Service\\Deck\\DealCardsResponder\u003A\u003A\u0024deckService",
+            "name": "deckService",
+            "summary": "",
+            "url": "classes/App-Service-Deck-DealCardsResponder.html#property_deckService"
+        },                {
+            "fqsen": "\\App\\Service\\Deck\\DrawNumberResponder",
+            "name": "DrawNumberResponder",
+            "summary": "Responderklass\u0020f\u00F6r\u0020att\u0020dra\u0020ett\u0020angivet\u0020antal\u0020kort\u0020fr\u00E5n\u0020kortleken.",
+            "url": "classes/App-Service-Deck-DrawNumberResponder.html"
+        },                {
+            "fqsen": "\\App\\Service\\Deck\\DrawNumberResponder\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/App-Service-Deck-DrawNumberResponder.html#method___construct"
+        },                {
+            "fqsen": "\\App\\Service\\Deck\\DrawNumberResponder\u003A\u003Adraw\u0028\u0029",
+            "name": "draw",
+            "summary": "Drar\u0020ett\u0020visst\u0020antal\u0020kort\u0020fr\u00E5n\u0020kortleken.",
+            "url": "classes/App-Service-Deck-DrawNumberResponder.html#method_draw"
+        },                {
+            "fqsen": "\\App\\Service\\Deck\\DrawNumberResponder\u003A\u003AcalculateDrawCount\u0028\u0029",
+            "name": "calculateDrawCount",
+            "summary": "Returnerar\u0020det\u0020faktiska\u0020antalet\u0020kort\u0020som\u0020kan\u0020dras.",
+            "url": "classes/App-Service-Deck-DrawNumberResponder.html#method_calculateDrawCount"
+        },                {
+            "fqsen": "\\App\\Service\\Deck\\DrawNumberResponder\u003A\u003AcreateResponse\u0028\u0029",
+            "name": "createResponse",
+            "summary": "Skapar\u0020ett\u0020JSON\u002Dsvar\u0020med\u0020information\u0020om\u0020dragningen.",
+            "url": "classes/App-Service-Deck-DrawNumberResponder.html#method_createResponse"
+        },                {
+            "fqsen": "\\App\\Service\\Deck\\DrawNumberResponder\u003A\u003A\u0024deckService",
+            "name": "deckService",
+            "summary": "",
+            "url": "classes/App-Service-Deck-DrawNumberResponder.html#property_deckService"
+        },                {
+            "fqsen": "\\App\\Service\\Deck\\DrawOneCardResponder",
+            "name": "DrawOneCardResponder",
+            "summary": "Responderklass\u0020f\u00F6r\u0020att\u0020dra\u0020ett\u0020kort\u0020fr\u00E5n\u0020kortleken.",
+            "url": "classes/App-Service-Deck-DrawOneCardResponder.html"
+        },                {
+            "fqsen": "\\App\\Service\\Deck\\DrawOneCardResponder\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/App-Service-Deck-DrawOneCardResponder.html#method___construct"
+        },                {
+            "fqsen": "\\App\\Service\\Deck\\DrawOneCardResponder\u003A\u003A__invoke\u0028\u0029",
+            "name": "__invoke",
+            "summary": "Anropas\u0020f\u00F6r\u0020att\u0020dra\u0020ett\u0020kort\u0020fr\u00E5n\u0020kortleken.",
+            "url": "classes/App-Service-Deck-DrawOneCardResponder.html#method___invoke"
+        },                {
+            "fqsen": "\\App\\Service\\Deck\\DrawOneCardResponder\u003A\u003AcreateResponse\u0028\u0029",
+            "name": "createResponse",
+            "summary": "Skapar\u0020ett\u0020JSON\u002Dsvar\u0020med\u0020kortet\u0020som\u0020drogs\u0020och\u0020antal\u0020kort\u0020kvar\u0020i\u0020leken.",
+            "url": "classes/App-Service-Deck-DrawOneCardResponder.html#method_createResponse"
+        },                {
+            "fqsen": "\\App\\Service\\Deck\\DrawOneCardResponder\u003A\u003A\u0024deckService",
+            "name": "deckService",
+            "summary": "",
+            "url": "classes/App-Service-Deck-DrawOneCardResponder.html#property_deckService"
+        },                {
+            "fqsen": "\\App\\Service\\Deck\\GetDeckResponder",
+            "name": "GetDeckResponder",
+            "summary": "Responderklass\u0020f\u00F6r\u0020att\u0020h\u00E4mta\u0020och\u0020sortera\u0020kortleken.",
+            "url": "classes/App-Service-Deck-GetDeckResponder.html"
+        },                {
+            "fqsen": "\\App\\Service\\Deck\\GetDeckResponder\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/App-Service-Deck-GetDeckResponder.html#method___construct"
+        },                {
+            "fqsen": "\\App\\Service\\Deck\\GetDeckResponder\u003A\u003A__invoke\u0028\u0029",
+            "name": "__invoke",
+            "summary": "Returnerar\u0020den\u0020aktuella\u0020kortleken\u0020i\u0020sorterad\u0020ordning.",
+            "url": "classes/App-Service-Deck-GetDeckResponder.html#method___invoke"
+        },                {
+            "fqsen": "\\App\\Service\\Deck\\GetDeckResponder\u003A\u003AcreateResponse\u0028\u0029",
+            "name": "createResponse",
+            "summary": "Skapar\u0020ett\u0020JSON\u002Dsvar\u0020med\u0020sorterade\u0020kort\u0020och\u0020deras\u0020antal.",
+            "url": "classes/App-Service-Deck-GetDeckResponder.html#method_createResponse"
+        },                {
+            "fqsen": "\\App\\Service\\Deck\\GetDeckResponder\u003A\u003A\u0024deckService",
+            "name": "deckService",
+            "summary": "",
+            "url": "classes/App-Service-Deck-GetDeckResponder.html#property_deckService"
+        },                {
+            "fqsen": "\\App\\Service\\Deck\\ShuffleDeckResponder",
+            "name": "ShuffleDeckResponder",
+            "summary": "Responderklass\u0020f\u00F6r\u0020att\u0020skapa\u0020och\u0020blanda\u0020en\u0020ny\u0020kortlek.",
+            "url": "classes/App-Service-Deck-ShuffleDeckResponder.html"
+        },                {
+            "fqsen": "\\App\\Service\\Deck\\ShuffleDeckResponder\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/App-Service-Deck-ShuffleDeckResponder.html#method___construct"
+        },                {
+            "fqsen": "\\App\\Service\\Deck\\ShuffleDeckResponder\u003A\u003A__invoke\u0028\u0029",
+            "name": "__invoke",
+            "summary": "Blandar\u0020en\u0020ny\u0020kortlek\u0020och\u0020returnerar\u0020resultatet.",
+            "url": "classes/App-Service-Deck-ShuffleDeckResponder.html#method___invoke"
+        },                {
+            "fqsen": "\\App\\Service\\Deck\\ShuffleDeckResponder\u003A\u003AcreateResponse\u0028\u0029",
+            "name": "createResponse",
+            "summary": "Skapar\u0020ett\u0020JSON\u002Dsvar\u0020med\u0020blandad\u0020kortlek\u0020och\u0020antal\u0020kort.",
+            "url": "classes/App-Service-Deck-ShuffleDeckResponder.html#method_createResponse"
+        },                {
+            "fqsen": "\\App\\Service\\Deck\\ShuffleDeckResponder\u003A\u003A\u0024deckService",
+            "name": "deckService",
+            "summary": "",
+            "url": "classes/App-Service-Deck-ShuffleDeckResponder.html#property_deckService"
+        },                {
+            "fqsen": "\\App\\Service\\DeckApiService",
+            "name": "DeckApiService",
+            "summary": "Tj\u00E4nst\u0020f\u00F6r\u0020att\u0020hantera\u0020kortlek\u0020via\u0020session\u0020f\u00F6r\u0020API\u002Danrop.",
+            "url": "classes/App-Service-DeckApiService.html"
+        },                {
+            "fqsen": "\\App\\Service\\DeckApiService\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Konstruktor\u0020som\u0020h\u00E4mtar\u0020session\u0020via\u0020RequestStack.",
+            "url": "classes/App-Service-DeckApiService.html#method___construct"
+        },                {
+            "fqsen": "\\App\\Service\\DeckApiService\u003A\u003AgetDeck\u0028\u0029",
+            "name": "getDeck",
+            "summary": "H\u00E4mtar\u0020kortleken\u0020fr\u00E5n\u0020sessionen\u0020eller\u0020skapar\u0020en\u0020ny.",
+            "url": "classes/App-Service-DeckApiService.html#method_getDeck"
+        },                {
+            "fqsen": "\\App\\Service\\DeckApiService\u003A\u003AsaveDeck\u0028\u0029",
+            "name": "saveDeck",
+            "summary": "Sparar\u0020kortleken\u0020i\u0020sessionen.",
+            "url": "classes/App-Service-DeckApiService.html#method_saveDeck"
+        },                {
+            "fqsen": "\\App\\Service\\DeckApiService\u003A\u003AstringifyCards\u0028\u0029",
+            "name": "stringifyCards",
+            "summary": "Omvandlar\u0020en\u0020lista\u0020av\u0020kort\u0020till\u0020str\u00E4ngrepresentation.",
+            "url": "classes/App-Service-DeckApiService.html#method_stringifyCards"
+        },                {
+            "fqsen": "\\App\\Service\\DeckApiService\u003A\u003ADECK_KEY",
+            "name": "DECK_KEY",
+            "summary": "",
+            "url": "classes/App-Service-DeckApiService.html#constant_DECK_KEY"
+        },                {
+            "fqsen": "\\App\\Service\\DeckApiService\u003A\u003A\u0024session",
+            "name": "session",
+            "summary": "",
+            "url": "classes/App-Service-DeckApiService.html#property_session"
+        },                {
+            "fqsen": "\\App\\Service\\DeckService",
+            "name": "DeckService",
+            "summary": "Tj\u00E4nst\u0020f\u00F6r\u0020att\u0020hantera\u0020kortlekens\u0020tillst\u00E5nd\u0020i\u0020sessionen.",
+            "url": "classes/App-Service-DeckService.html"
+        },                {
+            "fqsen": "\\App\\Service\\DeckService\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Konstruktor\u0020som\u0020injicerar\u0020sessionen.",
+            "url": "classes/App-Service-DeckService.html#method___construct"
+        },                {
+            "fqsen": "\\App\\Service\\DeckService\u003A\u003AgetDeck\u0028\u0029",
+            "name": "getDeck",
+            "summary": "H\u00E4mtar\u0020kortleken\u0020fr\u00E5n\u0020sessionen\u0020eller\u0020skapar\u0020en\u0020ny\u0020blandad\u0020kortlek.",
+            "url": "classes/App-Service-DeckService.html#method_getDeck"
+        },                {
+            "fqsen": "\\App\\Service\\DeckService\u003A\u003AsetDeck\u0028\u0029",
+            "name": "setDeck",
+            "summary": "Sparar\u0020en\u0020ny\u0020kortlek\u0020i\u0020sessionen.",
+            "url": "classes/App-Service-DeckService.html#method_setDeck"
+        },                {
+            "fqsen": "\\App\\Service\\DeckService\u003A\u003AresetDeck\u0028\u0029",
+            "name": "resetDeck",
+            "summary": "\u00C5terst\u00E4ller\u0020kortleken\u0020genom\u0020att\u0020skapa\u0020en\u0020ny\u0020och\u0020blanda\u0020den.",
+            "url": "classes/App-Service-DeckService.html#method_resetDeck"
+        },                {
+            "fqsen": "\\App\\Service\\DeckService\u003A\u003ADECK_KEY",
+            "name": "DECK_KEY",
+            "summary": "",
+            "url": "classes/App-Service-DeckService.html#constant_DECK_KEY"
+        },                {
+            "fqsen": "\\App\\Service\\DeckService\u003A\u003A\u0024session",
+            "name": "session",
+            "summary": "",
+            "url": "classes/App-Service-DeckService.html#property_session"
+        },                {
+            "fqsen": "\\App\\Service\\GameService",
+            "name": "GameService",
+            "summary": "Tj\u00E4nst\u0020f\u00F6r\u0020att\u0020hantera\u0020spelet\u002021\u0020i\u0020sessionen.",
+            "url": "classes/App-Service-GameService.html"
+        },                {
+            "fqsen": "\\App\\Service\\GameService\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Konstruktor\u0020som\u0020h\u00E4mtar\u0020sessionsinstansen\u0020via\u0020RequestStack.",
+            "url": "classes/App-Service-GameService.html#method___construct"
+        },                {
+            "fqsen": "\\App\\Service\\GameService\u003A\u003AgetGame\u0028\u0029",
+            "name": "getGame",
+            "summary": "H\u00E4mtar\u0020spelet\u0020fr\u00E5n\u0020sessionen,\u0020eller\u0020skapar\u0020ett\u0020nytt\u0020om\u0020det\u0020inte\u0020finns.",
+            "url": "classes/App-Service-GameService.html#method_getGame"
+        },                {
+            "fqsen": "\\App\\Service\\GameService\u003A\u003AsetGame\u0028\u0029",
+            "name": "setGame",
+            "summary": "Sparar\u0020spelet\u0020i\u0020sessionen.",
+            "url": "classes/App-Service-GameService.html#method_setGame"
+        },                {
+            "fqsen": "\\App\\Service\\GameService\u003A\u003AresetGame\u0028\u0029",
+            "name": "resetGame",
+            "summary": "\u00C5terst\u00E4ller\u0020spelet\u0020till\u0020ett\u0020nytt\u0020spel.",
+            "url": "classes/App-Service-GameService.html#method_resetGame"
+        },                {
+            "fqsen": "\\App\\Service\\GameService\u003A\u003AstartNewRoundWithBet\u0028\u0029",
+            "name": "startNewRoundWithBet",
+            "summary": "Startar\u0020en\u0020ny\u0020runda\u0020och\u0020placerar\u0020en\u0020insats.",
+            "url": "classes/App-Service-GameService.html#method_startNewRoundWithBet"
+        },                {
+            "fqsen": "\\App\\Service\\GameService\u003A\u003AplayerDraw\u0028\u0029",
+            "name": "playerDraw",
+            "summary": "L\u00E5ter\u0020spelaren\u0020dra\u0020ett\u0020kort.",
+            "url": "classes/App-Service-GameService.html#method_playerDraw"
+        },                {
+            "fqsen": "\\App\\Service\\GameService\u003A\u003AplayerStands\u0028\u0029",
+            "name": "playerStands",
+            "summary": "Markerar\u0020att\u0020spelaren\u0020stannar.",
+            "url": "classes/App-Service-GameService.html#method_playerStands"
+        },                {
+            "fqsen": "\\App\\Service\\GameService\u003A\u003AsetAceValue\u0028\u0029",
+            "name": "setAceValue",
+            "summary": "S\u00E4tter\u0020ett\u0020ess\u0020till\u0020\u00F6nskat\u0020v\u00E4rde\u0020\u00281\u0020eller\u002014\u0029.",
+            "url": "classes/App-Service-GameService.html#method_setAceValue"
+        },                {
+            "fqsen": "\\App\\Service\\GameService\u003A\u003AprocessGame\u0028\u0029",
+            "name": "processGame",
+            "summary": "Processar\u0020spelets\u0020g\u00E5ng\u003A\u0020l\u00E5ter\u0020banken\u0020spela\u0020och\u0020till\u00E4mpar\u0020resultat\u0020vid\u0020behov.",
+            "url": "classes/App-Service-GameService.html#method_processGame"
+        },                {
+            "fqsen": "\\App\\Service\\GameService\u003A\u003AGAME_KEY",
+            "name": "GAME_KEY",
+            "summary": "",
+            "url": "classes/App-Service-GameService.html#constant_GAME_KEY"
+        },                {
+            "fqsen": "\\App\\Service\\GameService\u003A\u003A\u0024session",
+            "name": "session",
+            "summary": "",
+            "url": "classes/App-Service-GameService.html#property_session"
+        },                {
+            "fqsen": "\\App\\Service\\GameViewBuilder",
+            "name": "GameViewBuilder",
+            "summary": "Bygger\u0020vyn\u0020f\u00F6r\u0020spelet\u002021\u0020baserat\u0020p\u00E5\u0020aktuellt\u0020spelstatus.",
+            "url": "classes/App-Service-GameViewBuilder.html"
+        },                {
+            "fqsen": "\\App\\Service\\GameViewBuilder\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Konstruktorr\u0020av\u0020GameService.",
+            "url": "classes/App-Service-GameViewBuilder.html#method___construct"
+        },                {
+            "fqsen": "\\App\\Service\\GameViewBuilder\u003A\u003Abuild\u0028\u0029",
+            "name": "build",
+            "summary": "Skapar\u0020en\u0020array\u0020med\u0020data\u0020f\u00F6r\u0020spelvyn.",
+            "url": "classes/App-Service-GameViewBuilder.html#method_build"
+        },                {
+            "fqsen": "\\App\\Service\\GameViewBuilder\u003A\u003A\u0024gameService",
+            "name": "gameService",
+            "summary": "",
+            "url": "classes/App-Service-GameViewBuilder.html#property_gameService"
+        },                {
             "fqsen": "\\",
             "name": "\\",
             "summary": "",
@@ -705,6 +1555,11 @@ Search.appendIndex(
             "name": "Controller",
             "summary": "",
             "url": "namespaces/app-controller.html"
+        },                {
+            "fqsen": "\\App\\Controller\\Api",
+            "name": "Api",
+            "summary": "",
+            "url": "namespaces/app-controller-api.html"
         },                {
             "fqsen": "\\App\\Controller\\Game",
             "name": "Game",
@@ -735,5 +1590,15 @@ Search.appendIndex(
             "name": "Repository",
             "summary": "",
             "url": "namespaces/app-repository.html"
+        },                {
+            "fqsen": "\\App\\Service",
+            "name": "Service",
+            "summary": "",
+            "url": "namespaces/app-service.html"
+        },                {
+            "fqsen": "\\App\\Service\\Deck",
+            "name": "Deck",
+            "summary": "",
+            "url": "namespaces/app-service-deck.html"
         }            ]
 );

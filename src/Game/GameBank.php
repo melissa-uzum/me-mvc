@@ -8,10 +8,18 @@ use App\Card\DeckOfCards;
 
 /**
  * Representerar banken i spelet 21.
+ * Hanterar bankens hand, saldo och spelbeteende.
  */
 class GameBank
 {
+    /**
+     * Bankens aktuella hand med kort.
+     */
     private CardHand $hand;
+
+    /**
+     * Bankens plånbok för att hålla reda på pengar.
+     */
     private Wallet $wallet;
 
     /**
@@ -24,16 +32,7 @@ class GameBank
     }
 
     /**
-     * Återställer objektet vid unserialisering.
-     */
-    public function __wakeup(): void
-    {
-        $this->hand ??= new CardHand();
-        $this->wallet ??= new Wallet();
-    }
-
-    /**
-     * Returnerar bankens hand.
+     * Returnerar bankens aktuella hand.
      */
     public function getHand(): CardHand
     {
@@ -41,7 +40,7 @@ class GameBank
     }
 
     /**
-     * Låter banken dra kort tills summan är minst 17.
+     * Låter banken dra kort tills totalvärdet är minst 17.
      */
     public function play(DeckOfCards $deck): void
     {
@@ -52,6 +51,7 @@ class GameBank
 
     /**
      * Beräknar den totala poängen för bankens hand.
+     * Tar hänsyn till essens värde (1 eller 14).
      */
     public function getTotalValue(): int
     {
@@ -67,7 +67,7 @@ class GameBank
     }
 
     /**
-     * Alias för getTotalValue().
+     * Alias för getTotalValue() – används för enhetlig terminologi.
      */
     public function getValue(): int
     {
@@ -75,7 +75,7 @@ class GameBank
     }
 
     /**
-     * Återställer bankens hand.
+     * Återställer bankens hand inför en ny runda.
      */
     public function resetHand(): void
     {
@@ -83,7 +83,7 @@ class GameBank
     }
 
     /**
-     * Returnerar bankens nuvarande saldo.
+     * Returnerar bankens aktuella pengar.
      */
     public function getMoney(): int
     {
@@ -91,9 +91,9 @@ class GameBank
     }
 
     /**
-     * Justerar bankens saldo.
+     * Justerar bankens saldo med angivet belopp.
      *
-     * @param int $amount Positivt eller negativt belopp.
+     * @param int $amount Positivt eller negativt belopp att lägga till/ska dra.
      */
     public function adjustMoney(int $amount): void
     {
@@ -101,7 +101,7 @@ class GameBank
     }
 
     /**
-     * Returnerar Wallet-objektet.
+     * Returnerar bankens Wallet-objekt.
      */
     public function getWallet(): Wallet
     {
@@ -110,6 +110,8 @@ class GameBank
 
     /**
      * Lägger till ett kort i bankens hand.
+     *
+     * @param Card $card Kortet som ska läggas till.
      */
     public function addCard(Card $card): void
     {

@@ -24,7 +24,9 @@ class CardUtilityService
      */
     public function sortCards(array $cards): array
     {
-        usort($cards, fn (Card $a, Card $b) =>
+        usort(
+            $cards,
+            fn (Card $a, Card $b) =>
             self::SUIT_ORDER[$a->getSuit()] <=> self::SUIT_ORDER[$b->getSuit()]
             ?: self::VALUE_ORDER[$a->getValue()] <=> self::VALUE_ORDER[$b->getValue()]
         );
@@ -40,7 +42,9 @@ class CardUtilityService
      */
     public function sortCardsDescending(array $cards): array
     {
-        usort($cards, fn (Card $a, Card $b) =>
+        usort(
+            $cards,
+            fn (Card $a, Card $b) =>
             self::SUIT_ORDER[$b->getSuit()] <=> self::SUIT_ORDER[$a->getSuit()]
             ?: self::VALUE_ORDER[$b->getValue()] <=> self::VALUE_ORDER[$a->getValue()]
         );

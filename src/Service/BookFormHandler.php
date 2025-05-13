@@ -21,7 +21,8 @@ class BookFormHandler
         private FormFactoryInterface $formFactory,
         private EntityManagerInterface $em,
         private UrlGeneratorInterface $urlGenerator
-    ) {}
+    ) {
+    }
 
     /**
      * Hanterar ett formulär för att skapa eller uppdatera en bok.

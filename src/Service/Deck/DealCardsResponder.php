@@ -12,7 +12,8 @@ class DealCardsResponder
 {
     public function __construct(
         private DeckApiService $deckService
-    ) {}
+    ) {
+    }
 
     /**
      * Delar ut kort till ett antal spelare.

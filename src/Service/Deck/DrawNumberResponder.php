@@ -12,7 +12,8 @@ class DrawNumberResponder
 {
     public function __construct(
         private DeckApiService $deckService
-    ) {}
+    ) {
+    }
 
     /**
      * Drar ett visst antal kort från kortleken.

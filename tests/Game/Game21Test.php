@@ -107,7 +107,7 @@ class Game21Test extends TestCase
         $bankProp = $reflection->getProperty('bank');
         $bankProp->setAccessible(true);
         $bank = $bankProp->getValue($game);
-        $bank->add(new \App\Card\Card('♠', '2'));
+        $bank->addCard(new \App\Card\Card('♠', '2'));
 
         $game->applyResult();
 
@@ -123,9 +123,7 @@ class Game21Test extends TestCase
         $this->assertEquals("Spelet pågår...", $game->getWinnerString());
 
         $reflection = new \ReflectionClass($game);
-        $standProp = $reflection->getProperty('playerStands');
-        $standProp->setAccessible(true);
-        $standProp->setValue($game, true);
+        $game->playerStands();
 
         $this->assertStringContainsString('vinner', $game->getWinnerString());
     }
