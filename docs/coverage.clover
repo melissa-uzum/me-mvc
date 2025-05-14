@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1747148303">
-  <project timestamp="1747148303">
+<coverage generated="1747222837">
+  <project timestamp="1747222837">
     <file name="/Users/melissa/dbwebb-kurser/mvc/me/report/src/Card/Card.php">
       <class name="App\Card\Card" namespace="global">
         <metrics complexity="7" methods="7" coveredmethods="7" conditionals="0" coveredconditionals="0" statements="20" coveredstatements="20" elements="27" coveredelements="27"/>
@@ -22,14 +22,14 @@
       <line num="52" type="stmt" count="2"/>
       <line num="56" type="method" name="__toString" visibility="public" complexity="1" crap="1" count="2"/>
       <line num="58" type="stmt" count="2"/>
-      <line num="65" type="method" name="getNumericValue" visibility="public" complexity="1" crap="1" count="8"/>
-      <line num="67" type="stmt" count="8"/>
-      <line num="68" type="stmt" count="8"/>
-      <line num="69" type="stmt" count="8"/>
-      <line num="70" type="stmt" count="8"/>
-      <line num="71" type="stmt" count="8"/>
-      <line num="72" type="stmt" count="8"/>
-      <line num="73" type="stmt" count="8"/>
+      <line num="65" type="method" name="getNumericValue" visibility="public" complexity="1" crap="1" count="9"/>
+      <line num="67" type="stmt" count="9"/>
+      <line num="68" type="stmt" count="9"/>
+      <line num="69" type="stmt" count="9"/>
+      <line num="70" type="stmt" count="9"/>
+      <line num="71" type="stmt" count="9"/>
+      <line num="72" type="stmt" count="9"/>
+      <line num="73" type="stmt" count="9"/>
       <line num="77" type="method" name="isAce" visibility="public" complexity="1" crap="1" count="7"/>
       <line num="79" type="stmt" count="7"/>
       <metrics loc="82" ncloc="60" classes="1" methods="7" coveredmethods="7" conditionals="0" coveredconditionals="0" statements="20" coveredstatements="20" elements="27" coveredelements="27"/>
@@ -547,32 +547,32 @@
     </file>
     <file name="/Users/melissa/dbwebb-kurser/mvc/me/report/src/Game/AceHandler.php">
       <class name="App\Game\AceHandler" namespace="global">
-        <metrics complexity="12" methods="6" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="13" coveredstatements="11" elements="19" coveredelements="15"/>
+        <metrics complexity="12" methods="6" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="13" coveredstatements="5" elements="19" coveredelements="6"/>
       </class>
-      <line num="25" type="method" name="track" visibility="public" complexity="3" crap="3" count="3"/>
+      <line num="25" type="method" name="track" visibility="public" complexity="3" crap="3.07" count="3"/>
       <line num="27" type="stmt" count="3"/>
       <line num="28" type="stmt" count="3"/>
       <line num="29" type="stmt" count="3"/>
       <line num="31" type="stmt" count="3"/>
-      <line num="32" type="stmt" count="1"/>
-      <line num="41" type="method" name="trackAce" visibility="public" complexity="2" crap="2" count="1"/>
-      <line num="43" type="stmt" count="1"/>
-      <line num="44" type="stmt" count="1"/>
-      <line num="55" type="method" name="setAceValue" visibility="public" complexity="4" crap="4" count="1"/>
-      <line num="57" type="stmt" count="1"/>
-      <line num="59" type="stmt" count="1"/>
-      <line num="60" type="stmt" count="1"/>
+      <line num="32" type="stmt" count="0"/>
+      <line num="41" type="method" name="trackAce" visibility="public" complexity="2" crap="6" count="0"/>
+      <line num="43" type="stmt" count="0"/>
+      <line num="44" type="stmt" count="0"/>
+      <line num="55" type="method" name="setAceValue" visibility="public" complexity="4" crap="20" count="0"/>
+      <line num="57" type="stmt" count="0"/>
+      <line num="59" type="stmt" count="0"/>
+      <line num="60" type="stmt" count="0"/>
       <line num="70" type="method" name="getAceValue" visibility="public" complexity="1" crap="2" count="0"/>
       <line num="72" type="stmt" count="0"/>
       <line num="80" type="method" name="getAll" visibility="public" complexity="1" crap="1" count="6"/>
       <line num="82" type="stmt" count="6"/>
       <line num="88" type="method" name="reset" visibility="public" complexity="1" crap="2" count="0"/>
       <line num="90" type="stmt" count="0"/>
-      <metrics loc="93" ncloc="54" classes="1" methods="6" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="13" coveredstatements="11" elements="19" coveredelements="15"/>
+      <metrics loc="93" ncloc="54" classes="1" methods="6" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="13" coveredstatements="5" elements="19" coveredelements="6"/>
     </file>
     <file name="/Users/melissa/dbwebb-kurser/mvc/me/report/src/Game/Game21.php">
       <class name="App\Game\Game21" namespace="global">
-        <metrics complexity="29" methods="24" coveredmethods="17" conditionals="0" coveredconditionals="0" statements="63" coveredstatements="53" elements="87" coveredelements="70"/>
+        <metrics complexity="29" methods="24" coveredmethods="17" conditionals="0" coveredconditionals="0" statements="63" coveredstatements="51" elements="87" coveredelements="68"/>
       </class>
       <line num="24" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="10"/>
       <line num="26" type="stmt" count="10"/>
@@ -610,9 +610,9 @@
       <line num="114" type="stmt" count="3"/>
       <line num="115" type="stmt" count="0"/>
       <line num="116" type="stmt" count="0"/>
-      <line num="128" type="method" name="setAceValue" visibility="public" complexity="2" crap="2.50" count="1"/>
-      <line num="130" type="stmt" count="1"/>
-      <line num="132" type="stmt" count="1"/>
+      <line num="128" type="method" name="setAceValue" visibility="public" complexity="2" crap="6" count="0"/>
+      <line num="130" type="stmt" count="0"/>
+      <line num="132" type="stmt" count="0"/>
       <line num="133" type="stmt" count="0"/>
       <line num="134" type="stmt" count="0"/>
       <line num="144" type="method" name="getAceChoices" visibility="public" complexity="1" crap="1" count="1"/>
@@ -661,7 +661,7 @@
       <line num="263" type="stmt" count="1"/>
       <line num="269" type="method" name="getLastBet" visibility="public" complexity="1" crap="2" count="0"/>
       <line num="271" type="stmt" count="0"/>
-      <metrics loc="274" ncloc="189" classes="1" methods="24" coveredmethods="17" conditionals="0" coveredconditionals="0" statements="63" coveredstatements="53" elements="87" coveredelements="70"/>
+      <metrics loc="274" ncloc="189" classes="1" methods="24" coveredmethods="17" conditionals="0" coveredconditionals="0" statements="63" coveredstatements="51" elements="87" coveredelements="68"/>
     </file>
     <file name="/Users/melissa/dbwebb-kurser/mvc/me/report/src/Game/GameBank.php">
       <class name="App\Game\GameBank" namespace="global">
@@ -720,7 +720,7 @@
     </file>
     <file name="/Users/melissa/dbwebb-kurser/mvc/me/report/src/Game/GamePlayer.php">
       <class name="App\Game\GamePlayer" namespace="global">
-        <metrics complexity="11" methods="11" coveredmethods="9" conditionals="0" coveredconditionals="0" statements="18" coveredstatements="15" elements="29" coveredelements="24"/>
+        <metrics complexity="11" methods="11" coveredmethods="8" conditionals="0" coveredconditionals="0" statements="18" coveredstatements="13" elements="29" coveredelements="21"/>
       </class>
       <line num="33" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="10"/>
       <line num="35" type="stmt" count="10"/>
@@ -732,9 +732,9 @@
       <line num="52" type="method" name="addCard" visibility="public" complexity="1" crap="1" count="3"/>
       <line num="54" type="stmt" count="3"/>
       <line num="55" type="stmt" count="3"/>
-      <line num="64" type="method" name="setAceValue" visibility="public" complexity="1" crap="1" count="1"/>
-      <line num="66" type="stmt" count="1"/>
-      <line num="67" type="stmt" count="1"/>
+      <line num="64" type="method" name="setAceValue" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="66" type="stmt" count="0"/>
+      <line num="67" type="stmt" count="0"/>
       <line num="75" type="method" name="getAceChoices" visibility="public" complexity="1" crap="1" count="3"/>
       <line num="77" type="stmt" count="3"/>
       <line num="83" type="method" name="getValue" visibility="public" complexity="1" crap="1" count="4"/>
@@ -751,7 +751,7 @@
       <line num="119" type="stmt" count="2"/>
       <line num="125" type="method" name="adjustMoney" visibility="public" complexity="1" crap="2" count="0"/>
       <line num="127" type="stmt" count="0"/>
-      <metrics loc="130" ncloc="79" classes="1" methods="11" coveredmethods="9" conditionals="0" coveredconditionals="0" statements="18" coveredstatements="15" elements="29" coveredelements="24"/>
+      <metrics loc="130" ncloc="79" classes="1" methods="11" coveredmethods="8" conditionals="0" coveredconditionals="0" statements="18" coveredstatements="13" elements="29" coveredelements="21"/>
     </file>
     <file name="/Users/melissa/dbwebb-kurser/mvc/me/report/src/Game/GameResultService.php">
       <class name="App\Game\GameResultService" namespace="global">
@@ -822,19 +822,19 @@
     </file>
     <file name="/Users/melissa/dbwebb-kurser/mvc/me/report/src/Game/ScoreCalculator.php">
       <class name="App\Game\ScoreCalculator" namespace="global">
-        <metrics complexity="5" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="8" elements="10" coveredelements="10"/>
+        <metrics complexity="5" methods="2" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="6" elements="10" coveredelements="7"/>
       </class>
       <line num="20" type="method" name="calculate" visibility="public" complexity="2" crap="2" count="6"/>
       <line num="22" type="stmt" count="6"/>
       <line num="24" type="stmt" count="6"/>
       <line num="25" type="stmt" count="5"/>
       <line num="28" type="stmt" count="6"/>
-      <line num="40" type="method" name="getCardValue" visibility="private" complexity="3" crap="3" count="5"/>
+      <line num="40" type="method" name="getCardValue" visibility="private" complexity="3" crap="4.12" count="5"/>
       <line num="42" type="stmt" count="5"/>
-      <line num="43" type="stmt" count="1"/>
-      <line num="44" type="stmt" count="1"/>
-      <line num="47" type="stmt" count="4"/>
-      <metrics loc="50" ncloc="31" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="8" elements="10" coveredelements="10"/>
+      <line num="43" type="stmt" count="0"/>
+      <line num="44" type="stmt" count="0"/>
+      <line num="47" type="stmt" count="5"/>
+      <metrics loc="50" ncloc="31" classes="1" methods="2" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="6" elements="10" coveredelements="7"/>
     </file>
     <file name="/Users/melissa/dbwebb-kurser/mvc/me/report/src/Game/Wallet.php">
       <class name="App\Game\Wallet" namespace="global">
@@ -1196,6 +1196,6 @@
       <line num="44" type="stmt" count="0"/>
       <metrics loc="47" ncloc="36" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="16" coveredstatements="0" elements="18" coveredelements="0"/>
     </file>
-    <metrics files="47" loc="3141" ncloc="2303" classes="46" methods="205" coveredmethods="72" conditionals="0" coveredconditionals="0" statements="708" coveredstatements="183" elements="913" coveredelements="255"/>
+    <metrics files="47" loc="3141" ncloc="2303" classes="46" methods="205" coveredmethods="67" conditionals="0" coveredconditionals="0" statements="708" coveredstatements="171" elements="913" coveredelements="238"/>
   </project>
 </coverage>

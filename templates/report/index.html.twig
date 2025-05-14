@@ -121,8 +121,21 @@ TIL: Jag lärde mig hur Symfony strukturerar kod enligt MVC och hur man skapar r
     <section id="kmom06">
         <h2>Kmom06</h2>
         <p>
+        Den här delen av kursen var helt nytt för mig, att analysera och förbättra kodkvalitet med hjälp av verktyg som PhpMetrics och Scrutinizer. Jag tyckte det var intressant att se hur dessa verktyg faktiskt kan ge konkreta siffror på saker man annars bara "känner" i koden, som komplexitet eller kopplingar mellan klasser. Jag är van vid att få feedback av lärare vid inlämningar det är egentligen den ända feedbacken jag brukar få så det var riktigt kul att faktiskt kunna se resultaten från dessa tester och sedan förbättra koden innan inlämmningen!
+        <br><br>
+        PhpMetrics var visuellt tydligt och lätt att förstå. Jag gillade särskilt cirklarna och CRAP-score som gjorde det enkelt att hitta de "värsta" delarna av koden. Det kändes motiverande att kunna säga: "Okej, den här klassen har högt WMC och låg cohesion, den behöver delas upp." Jag blev lite beroende av att försöka få så många gröna cirklar som möjligt men det kändes så bra när rött och gult blev grönt! Jag uppskattade att man kunde se både klassnivå och metodnivå, det hjälpte mig när jag refaktorerade min Game21-klass som var den största boven!
+        <br><br>
+        Scrutinizer var lite knepigare att komma igång med. Först kändes det som att verktyget bara klagade på allt men ändå inget, sen så insåg jag att kod som inte jag hade skrivit blev testad. Men efter att ha förstått att man kunde justera .scrutinizer.yml för att bara analysera src/ så föll bitarna på plats. Det kändes riktigt kul när jag såg att poängen gick från 6.64 till 10 efter förbättringarna, och att testtäckningen ökade till 29 %. Badges gav en känsla av belöning, som små pokaler för kodkvalitet.
+        <br><br>
+        Min syn på kodkvalitet har blivit tydligare: det handlar inte bara om att koden fungerar, utan också om hur lätt den är att förstå, testa och underhålla. Jag tror absolut att man kan påvisa kodkvalitet till viss del med badges och metrics, även om det inte fångar hela bilden. Det är ett bra verktyg för att se trender och förbättringar över tid. Att koden fungerar idag betyder inte att det kommer göra det i framtiden, man måste kunna utveckla och uppdatera koden smidigt.
+        <br><br>
+        Redan idag vet jag att ett av mina förbättringsområden är att kommentera samt dokumentera min kod, innan jag började studera på BTH använde jag mig aldrig av kommentarer. Nu tvingar jag mig själv att använda de för att det ska bli en god vana. Att alltid hålla sig uppdaterad och att alltid testa kodens funktionalitet häjlper även, i detta kmom såg jag till att alltid testa olikad elar av min sida för att see att allt fungerar som tänkt.
+        <br><br>
+        <strong>TIL:</strong> Jag har lärt mig att verktyg som PhpMetrics och Scrutinizer kan användas praktiskt för att identifiera svagheter i koden och att man faktiskt kan mäta sin egen förbättring.
+        <br><br>
         </p>
     </section>
+
 
     <section id="kmom07">
         <h2>Kmom07</h2>

@@ -472,6 +472,7 @@ form.bet-form {
     td {
         padding: 1rem;
         border-bottom: 1px solid #333;
+        background-color: #5f5f5f;
     }
 
     tr:last-child td {
@@ -652,3 +653,74 @@ form button.btn-link {
         background-color: #2563eb;
     }
 }
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1em;
+    font-size: 0.95rem;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+thead {
+    background-color: #4f4cc6;
+    color: #fff;
+    text-align: center;
+}
+
+thead th {
+    padding: 0.75em 1em;
+    font-weight: 600;
+    border-left: 1px solid #ccc;
+}
+
+thead th:first-child {
+    border-left: none;
+}
+
+tbody td {
+    padding: 0.75em 1em;
+    border-top: 1px solid #eee;
+    border-left: 1px solid #ccc;
+}
+
+tbody td:first-child {
+    border-left: none;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tbody tr:hover {
+    background-color: #f1f5ff;
+}
+
+h1,
+h2,
+h3 {
+    color: #153c81;
+    margin-top: 1.5em;
+}
+
+code {
+    background-color: #eee;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: monospace;
+}
+
+img {
+    border-radius: 6px;
+    margin-bottom: 1em;
+}
+
+.metrics-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-top: 1em;
+}
+
