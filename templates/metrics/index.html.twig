@@ -1,0 +1,145 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Kodkvalitet - Metrics{% endblock %}
+
+{% block body %}
+<h1>Metricsanalys av kodkvalitet</h1>
+
+<section>
+    <h2>Introduktion: 6C om kodkvalitet</h2>
+    <p>
+        Denna analys utgår från de sex C:na för att mäta och förbättra kodkvalitet i detta PHP-projekt:
+    </p>
+    <ul>
+        <li><strong>Codestyle:</strong> Att följa PSR-standarder ger lättläst kod.</li>
+        <li><strong>Coverage:</strong> Kodtäckning visar hur stor del av koden som testas automatiskt. Här saknas JUnit-data.</li>
+        <li><strong>Complexity:</strong> Klassen <code>Game21</code> hade hög cyklomatisk komplexitet (28) (många stora nya ord i detta kmom).</li>
+        <li><strong>Cohesion:</strong> Låg LCOM tyder på bra sammanhållning i de flesta klasser.</li>
+        <li><strong>Coupling:</strong> Hög koppling i t.ex. <code>CardController</code> gör underhåll svårare.</li>
+        <li><strong>CRAP:</strong> Kombinerar låg täckning och hög komplexitet, två metoder markerade som riskfyllda.</li>
+    </ul>
+</section>
+
+<section>
+    <h2>PhpMetrics</h2>
+    <p>
+        PhpMetrics har analyserat projektets kod och visualiserat flera nyckelmått, resultatet är lätt att förstå då det kommer i circlar med olika färger samt text sammanfattning. Här är tre områden med förbättringspotential:
+    </p>
+
+    <h3>1. CardController</h3>
+    <p>
+        Hög metodkomplexitet (WMC 26) och cyklomatisk komplexitet 19. Flaggas som “Probably bugged”.
+    </p>
+
+    <h3>2. Game21</h3>
+    <p>
+        En av de mest komplexa klasserna i hela projektet (WMC 41, CRAP-score högt).
+    </p>
+
+    <h3>3. LibraryController</h3>
+    <p>
+        Stor klass med låg cohesion och hög volym (516 rader), vilket tyder på dålig ansvarsuppdelning.
+    </p>
+
+    <img src="{{ asset('images/before.png') }}" alt="Före" style="max-width: 100%; border: 1px solid #ccc;">
+</section>
+
+<section>
+    <h2>Scrutinizer</h2>
+    <p>
+        Scrutinizer analyserar kodstil, komplexitet och beroenden. Första inspektionen:
+    </p>
+    <ul>
+        <li><strong>Build:</strong> <span style="color:green">✔ Passed</span></li>
+        <li><strong>Coverage:</strong> 19 %</li>
+        <li><strong>Quality Score:</strong> 6.64</li>
+    </ul>
+
+    <p>Exempel på kritiska varningar:</p>
+    <ul>
+        <li><code>AbstractUnicodeStringFixer</code>: bryter mot kodstil.</li>
+        <li><code>ClassExistenceResource</code>: beroendeproblem.</li>
+        <li><code>StrictUnifiedDiffOutputBuilder</code>: komplex implementation.</li>
+    </ul>
+
+    <h3>Badges</h3>
+    <p>
+        <img src="https://scrutinizer-ci.com/g/melissa-uzum/me-mvc/badges/build.png" alt="Build Status">
+        <img src="https://scrutinizer-ci.com/g/melissa-uzum/me-mvc/badges/coverage.png" alt="Coverage">
+        <img src="https://scrutinizer-ci.com/g/melissa-uzum/me-mvc/badges/quality-score.png" alt="Quality Score">
+    </p>
+</section>
+
+<section>
+    <h2>Förbättringar</h2>
+    <p>Tre valda förbättringsområden:</p>
+    <ol>
+        <li><strong>Refaktorera Game21</strong>: minska ansvar och komplexitet.</li>
+        <li><strong>Öka testtäckningen</strong>: skriva tester för kontrollklasser och modeller.</li>
+        <li><strong>Förbättra kodstil</strong>: använda PHP CS Fixer.</li>
+    </ol>
+
+    <h3>Framsteg och konfigurationsutmaningar</h3>
+<p>
+    Efter första lyckade analys visade Scrutinizer en låg poäng på <strong>6.64</strong> och flera varningar, många från kod utanför mitt eget projekt. Jag insåg då att konfigurationen analyserade hela projektet inklusive filer som inte är min egna kod.
+    </p>
+    <p>
+        Genom att förbättra <code>.scrutinizer.yml</code> och fokusera analysen på <code>src/</code> katalog kunde jag isolera min egen kod. Jag fastnade länge med konfiguratinen men lyckades sedan ignorera konfigurationsfiler mm.!
+    </p>
+    <p>
+        Resultatet blev en kodkvalitetspoäng på <strong>10</strong> och en tydlig förbättring i diagrammen. Det känns väldigt bra att se att både koden och scrutinizer.yml blev bättre!
+    </p>
+    <img src="{{ asset('images/before-scrutinizer.png') }}" alt="Scrutinizer före" style="max-width: 100%; border: 1px solid #ccc; margin-top: 1em;">
+    <img src="{{ asset('images/after-scrutinizer.png') }}" alt="Scrutinizer efter" style="max-width: 100%; border: 1px solid #ccc; margin-top: 1em;">
+
+</section>
+
+<section>
+    <h2>Diskussion</h2>
+    <p>
+        Jag har lärt mig att mätvärden från verktyg som PhpMetrics och Scrutinizer kan användas praktiskt för att identifiera förbättringsområden. Refaktorering gav bättre kodstruktur.
+    </p>
+    <p>
+        Att bryta upp stora klasser är ett effektivt sätt att minska komplexitet. Det tar tid, men det är värt det.
+    </p>
+</section>
+
+<section>
+    <h2>Före- och efteranalys</h2>
+    <p>
+        Nedan visas projektets kodstruktur före och efter förbättringar.
+    </p>
+
+    <h3>Före</h3>
+        <div class="metrics-grid">
+            <div>
+                <p>Game21 var en stor klass med för mycket ansvar.</p>
+                <img src="{{ asset('images/before.png') }}" alt="Före" style="max-width: 100%; border: 1px solid #ccc;">
+                <img src="{{ asset('images/metrics-before.png') }}" alt="Metrics före" style="max-width: 100%; border: 1px solid #ccc; margin-top: 1em;">
+            </div>
+            <div>
+                <p>Klassen Game21 har delats upp i mindre komponenter, t.ex. <code>GamePlayer</code>, <code>GameState</code> och <code>ScoreCalculator</code>.</p>
+                <img src="{{ asset('images/after.png') }}" alt="Efter" style="max-width: 100%; border: 1px solid #ccc;">
+                <img src="{{ asset('images/metrics-after.png') }}" alt="Metrics efter" style="max-width: 100%; border: 1px solid #ccc; margin-top: 1em;">
+            </div>
+        </div>
+
+    <h3>Sammanfattning av mätvärden</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Mätvärde</th>
+                <th>Före</th>
+                <th>Efter</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>WMC (Game21)</td><td>52</td><td>27</td></tr>
+            <tr><td>Antal klasser</td><td>22</td><td>47</td></tr>
+            <tr><td>Genomsnittlig komplexitet</td><td>5.00</td><td>2.89</td></tr>
+            <tr><td>Violations</td><td>4</td><td>3</td></tr>
+            <tr><td>Röda bubblor</td><td>Flera</td><td>Färre</td></tr>
+        </tbody>
+    </table>
+</section>
+{% endblock %}
