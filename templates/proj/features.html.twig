@@ -1,0 +1,34 @@
+{% extends 'proj/base_proj.html.twig' %}
+
+{% block title %}Tekniska utmaningar och extra features{% endblock %}
+
+{% block body %}
+<h1>Avancerade features</h1>
+
+<h3>1. Två aktiva databaser</h3>
+<p>
+    Jag har både en databas för biblioteket och en separat databas för hållbarhetsprojektet.
+    Jag använde Doctrine DBAL:s named connections för att koppla mot rätt databas i olika controllers.
+</p>
+
+<h3>2. Visualisering med Chart.js</h3>
+<p>
+    För att visa mätvärden för indikatorer används Chart.js som bygger diagram från JSON-data.
+    Jag konverterar SQL-resultatet till JSON direkt i Twig.
+</p>
+
+<h3>3. JSON API med GET och POST</h3>
+<p>
+    API:t returnerar både data och hanterar nya POST-förfrågningar för att lägga till indikatorer.
+</p>
+
+<h3>4. Separat layout för projektet</h3>
+<p>
+    `/proj/`-sidorna har en egen base template (`base_proj.html.twig`) med egen navbar, färg och stil.
+</p>
+
+<h3>5. Två layouts aktiva samtidigt</h3>
+<p>
+    Hela webbplatsen hanterar två olika layouts parallellt: en för me-sidan och en för projektet och helt utan konflikter.
+</p>
+{% endblock %}

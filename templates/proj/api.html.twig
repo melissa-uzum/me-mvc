@@ -1,0 +1,83 @@
+{% extends 'proj/base_proj.html.twig' %}
+
+{% block title %}API – Hållbarhetsprojekt{% endblock %}
+
+{% block body %}
+<section class="project-api">
+    <h1 class="api-title">JSON API – Hållbarhetsprojekt</h1>
+    <p class="api-description">
+        Testa projektets API-endpoints nedan. GET-länkar är klickbara och öppnas i ett nytt fönster, medan POST-endpoints används via Postman.
+    </p>
+
+    <table class="api-table">
+        <thead>
+            <tr>
+                <th>Metod</th>
+                <th>Endpoint</th>
+                <th>Beskrivning</th>
+                <th>Testa</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>GET</td>
+                <td><code>/api/proj/indicators</code></td>
+                <td>Returnerar alla indikatorer</td>
+                <td><a href="{{ path('api_proj_indicators') }}" target="_blank" class="api-link">Testa</a></td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td><code>/api/proj/indicator/1</code></td>
+                <td>Returnerar indikatorn med ID 1</td>
+                <td><a href="{{ path('api_proj_indicator', {'id': 1}) }}" target="_blank" class="api-link">Testa</a></td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td><code>/api/proj/indicator/1/measurements</code></td>
+                <td>Mätvärden för indikator 1</td>
+                <td><a href="{{ path('api_proj_measurements', {'id': 1}) }}" target="_blank" class="api-link">Testa</a></td>
+            </tr>
+            <tr>
+                <td>POST</td>
+                <td><code>/api/proj/indicator/add</code></td>
+                <td>Lägg till indikator (via JSON)</td>
+                <td><span class="postman-note">Testas i Postman</span></td>
+            </tr>
+            <tr>
+                <td>POST</td>
+                <td><code>/api/proj/measurement/add</code></td>
+                <td>Lägg till mätvärde (via JSON)</td>
+                <td><span class="postman-note">Testas i Postman</span></td>
+            </tr>
+            <tr>
+                <td>POST</td>
+                <td><code>/api/proj/reset</code></td>
+                <td>Återställ extra mätvärden</td>
+                <td>
+                    <form id="resetForm">
+                        <button type="submit" class="reset-btn">Återställ</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<script>
+document.getElementById('resetForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const confirmed = confirm("Är du säker på att du vill återställa datan?");
+    if (!confirmed) return;
+
+    try {
+        const response = await fetch('/api/proj/reset', { method: 'POST' });
+        const result = await response.json();
+        alert(result.message);
+        location.reload();
+    } catch (error) {
+        alert("Något gick fel vid återställning.");
+        console.error(error);
+    }
+});
+</script>
+{% endblock %}

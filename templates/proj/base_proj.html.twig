@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Hållbarhetsmål{% endblock %}</title>
+    <link rel="stylesheet" href="{{ asset('css/proj.css') }}">
+</head>
+
+<body>
+    <header class="project-header">
+        <h1>Globala Mål – Hållbarhetsprojekt</h1>
+    </header>
+
+    <nav class="project-nav">
+        <ul>
+                <a href="{{ path('home') }}">Hem</a>
+                <p><a href="{{ path('proj_about_features') }}">Läs om tekniska utmaningar</a></p>
+            <li><a href="{{ path('proj_about') }}">Om projektet</a></li>
+            <li><a href="{{ path('proj_stats') }}">Statistik</a></li>
+            <li><a href="{{ path('proj_api') }}">API</a></li>
+            <li><a href="{{ path('proj_about_database') }}">ER</a></li>
+        </ul>
+    </nav>
+
+
+    <main class="project-content">
+        {% block body %}{% endblock %}
+    </main>
+
+    <footer class="project-footer">
+        <p>&copy; {{ "now"|date("Y") }} Melissa – Projekt: Hållbar utveckling</p>
+    </footer>
+</body>
+</html>

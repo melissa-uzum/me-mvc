@@ -1,0 +1,275 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f0f8ff;
+    color: #333;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.project-header {
+    background-color: #2a5d84;
+    color: white;
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.project-nav {
+    background-color: #dce6f1;
+    padding: 1rem;
+    text-align: center;
+}
+
+.project-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.project-nav li {
+    display: inline;
+    margin: 0 1rem;
+}
+
+.project-nav a {
+    text-decoration: none;
+    color: #2a5d84;
+    font-weight: bold;
+}
+
+.project-nav a:hover {
+    text-decoration: underline;
+}
+
+.project-content {
+    padding: 2rem;
+    max-width: 90%;
+    margin: auto;
+}
+
+.project-footer {
+    background-color: #2a5d84;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    margin-top: 2rem;
+}
+
+.indicator-section {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    justify-content: center;
+    margin: 4rem auto;
+    gap: 3rem;
+    max-width: 1800px;
+}
+
+.indicator-graph {
+    flex: 1 1 60%;
+    max-width: 60%;
+}
+
+.indicator-text {
+    flex: 1 1 40%;
+    max-width: 40%;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #222;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+canvas {
+    width: 100% !important;
+    height: auto !important;
+}
+
+.chart-controls {
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.chart-controls button {
+    padding: 0.6rem 1.2rem;
+    background-color: #2a5d84;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+}
+
+.chart-controls button:hover {
+    background-color: #1d3f5e;
+}
+
+.chart-controls button.active {
+    background-color: #4caf50;
+}
+
+.project-summary {
+    background-color: #e8f0fa;
+    border-left: 5px solid #2a5d84;
+    padding: 1.5rem 2rem;
+    margin-top: 4rem;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #333;
+}
+
+.reset-btn {
+    margin-top: 2rem;
+    padding: 0.6rem 1.2rem;
+    background-color: #d13d3d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.reset-btn:hover {
+    background-color: #a62b2b;
+}
+
+.project-about {
+    max-width: 800px;
+    margin: auto;
+    padding: 2rem;
+    background-color: #fff;
+    border-left: 5px solid #2a5d84;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #333;
+}
+
+.about-title {
+    font-size: 2rem;
+    color: #2a5d84;
+    margin-bottom: 1rem;
+}
+
+.about-intro {
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+.about-details {
+    margin-bottom: 1rem;
+}
+
+.about-links {
+    margin-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.about-button {
+    display: inline-block;
+    padding: 0.6rem 1.2rem;
+    background-color: #2a5d84;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.2s ease;
+}
+
+.about-button:hover {
+    background-color: #1d3f5e;
+}
+.project-api {
+    padding: 2rem;
+    max-width: 1000px;
+    margin: auto;
+}
+
+.api-title {
+    font-size: 2rem;
+    color: #2a5d84;
+    margin-bottom: 1rem;
+}
+
+.api-description {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+}
+
+.api-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.api-table th,
+.api-table td {
+    padding: 1rem;
+    border: 1px solid #ccc;
+    text-align: left;
+}
+
+.api-table th {
+    background-color: #f3f7fb;
+    color: #2a5d84;
+}
+
+.api-link {
+    color: #2a5d84;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.api-link:hover {
+    text-decoration: none;
+}
+
+.postman-note {
+    color: gray;
+    font-style: italic;
+}
+
+.reset-btn {
+    padding: 0.4rem 0.8rem;
+    background-color: #d13d3d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.reset-btn:hover {
+    background-color: #a62b2b;
+}
+
+.back-link-wrapper {
+    margin-top: 2rem;
+    text-align: left;
+}
+
+.back-link {
+    display: inline-block;
+    padding: 0.5rem 1.2rem;
+    background-color: #2a5d84;
+    color: #fff;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.back-link:hover {
+    background-color: #1c3e5c;
+}

@@ -8,7 +8,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
-
+use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\HttpFoundation\Request;
 /**
  * API-kontroller som hanterar JSON-endpoints för kortlek, spel och böcker.
  */
@@ -73,6 +74,36 @@ class ApiController extends AbstractController
                     'method' => 'GET',
                     'description' => 'Returnerar en specifik bok baserat på ISBN (exempel Wool).',
                 ],
+                [
+                    'name' => 'GET /api/proj/indicators',
+                    'path' => $this->generateUrl('api_proj_indicators'),
+                    'method' => 'GET',
+                    'description' => 'Returnerar alla indikatorer.',
+                ],
+                [
+                    'name' => 'GET /api/proj/indicator/{id}',
+                    'path' => $this->generateUrl('api_proj_indicator', ['id' => 1]),
+                    'method' => 'GET',
+                    'description' => 'Returnerar en indikator med angivet id.',
+                ],
+                [
+                    'name' => 'GET /api/proj/indicator/{id}/measurements',
+                    'path' => $this->generateUrl('api_proj_measurements', ['id' => 1]),
+                    'method' => 'GET',
+                    'description' => 'Returnerar alla mätvärden för en viss indikator.',
+                ],
+                [
+                    'name' => 'POST /api/proj/indicator/add',
+                    'path' => $this->generateUrl('api_proj_indicator_add'),
+                    'method' => 'POST',
+                    'description' => 'Lägger till en ny indikator (kräver JSON body).',
+                ],
+                [
+                    'name' => 'POST /api/proj/measurement/add',
+                    'path' => $this->generateUrl('api_proj_measurement_add'),
+                    'method' => 'POST',
+                    'description' => 'Lägger till ett nytt mätvärde (kräver JSON body).',
+                ],
             ],
         ]);
     }
@@ -101,4 +132,122 @@ class ApiController extends AbstractController
 
         return $this->json($transformer->transform($book));
     }
+
+    #[Route('/api/proj', name: 'api_proj_index', methods: ['GET'])]
+public function projApiIndex(): JsonResponse
+{
+    return $this->json([
+        'message' => 'API för hållbarhetsprojektet',
+        'routes' => [
+            '/api/proj/indicators',
+            '/api/proj/indicator/1',
+            '/api/proj/indicator/1/measurements',
+            '/api/proj/indicator/add',
+            '/api/proj/measurement/add',
+        ]
+    ]);
+}
+
+#[Route('/api/proj/indicators', name: 'api_proj_indicators', methods: ['GET'])]
+public function getIndicators(ManagerRegistry $doctrine): JsonResponse
+{
+    $connection = $doctrine->getConnection('sustainability');
+    $data = $connection->fetchAllAssociative('SELECT * FROM indicator');
+    return $this->json($data);
+}
+
+#[Route('/api/proj/indicator/{id}', name: 'api_proj_indicator', methods: ['GET'])]
+public function getIndicatorById(int $id, ManagerRegistry $doctrine): JsonResponse
+{
+    $connection = $doctrine->getConnection('sustainability');
+    $data = $connection->fetchAssociative('SELECT * FROM indicator WHERE id = ?', [$id]);
+
+    if (!$data) {
+        return $this->json(['error' => 'Indicator not found'], 404);
+    }
+
+    return $this->json($data);
+}
+
+    #[Route('/api/proj/indicator/{id}/measurements', name: 'api_proj_measurements', methods: ['GET'])]
+    public function getMeasurementsByIndicator(int $id, ManagerRegistry $doctrine): JsonResponse
+    {
+        $connection = $doctrine->getConnection('sustainability');
+        $data = $connection->fetchAllAssociative('SELECT * FROM measurement WHERE indicator_id = ? ORDER BY year', [$id]);
+        return $this->json($data);
+    }
+
+    #[Route('/api/proj/indicator/add', name: 'api_proj_indicator_add', methods: ['POST'])]
+    public function addIndicator(Request $request, ManagerRegistry $doctrine): JsonResponse
+    {
+        $data = json_decode($request->getContent(), true);
+
+        if (!isset($data['name'], $data['description'], $data['goal'])) {
+            return $this->json(['error' => 'Invalid input'], 400);
+        }
+
+        $connection = $doctrine->getConnection('sustainability');
+        $connection->insert('indicator', [
+            'name' => $data['name'],
+            'description' => $data['description'],
+            'goal' => (int)$data['goal']
+        ]);
+
+        return $this->json(['message' => 'Indicator added']);
+    }
+
+    #[Route('/api/proj/measurement/add', name: 'api_proj_measurement_add', methods: ['POST'])]
+    public function addMeasurement(Request $request, ManagerRegistry $doctrine): JsonResponse
+    {
+        $data = json_decode($request->getContent(), true);
+
+        if (!isset($data['indicator_id'], $data['year'], $data['value'], $data['unit'])) {
+            return $this->json(['error' => 'Ogiltig inmatning'], 400);
+        }
+
+        $connection = $doctrine->getConnection('sustainability');
+
+        $connection->insert('measurement', [
+            'indicator_id' => (int)$data['indicator_id'],
+            'year' => (int)$data['year'],
+            'value' => (float)$data['value'],
+            'unit' => $data['unit'],
+            'country' => $data['country'] ?? null,
+            'source' => 'added'
+        ]);
+
+
+        return $this->json(['message' => 'Mätvärde tillagt!']);
+    }
+
+    #[Route('/api/proj/reset', name: 'api_proj_reset', methods: ['POST'])]
+public function resetData(ManagerRegistry $doctrine): JsonResponse
+{
+    try {
+        $connection = $doctrine->getConnection('sustainability');
+
+        $connection->executeStatement("DELETE FROM measurement WHERE source = 'added'");
+
+        return $this->json(['message' => 'Alla tillagda mätvärden har raderats.']);
+    } catch (\Throwable $e) {
+        return $this->json([
+            'error' => 'Fel vid återställning: ' . $e->getMessage()
+        ], 500);
+    }
+}
+#[Route('/proj/api', name: 'proj_api')]
+    public function show(): Response
+    {
+        return $this->render('proj/api.html.twig', [
+            'routes' => [
+                ['method' => 'GET', 'path' => '/api/proj/indicators'],
+                ['method' => 'GET', 'path' => '/api/proj/indicator/1'],
+                ['method' => 'GET', 'path' => '/api/proj/indicator/1/measurements'],
+                ['method' => 'POST', 'path' => '/api/proj/indicator/add'],
+                ['method' => 'POST', 'path' => '/api/proj/measurement/add'],
+                ['method' => 'POST', 'path' => '/api/proj/reset']
+            ]
+        ]);
+    }
+
 }

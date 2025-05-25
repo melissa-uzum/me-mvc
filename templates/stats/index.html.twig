@@ -1,0 +1,168 @@
+{% extends 'proj/base_proj.html.twig' %}
+
+{% block title %}Statistik – Hållbarhetsindikatorer{% endblock %}
+
+{% block body %}
+<div class="indicator-section">
+    <div class="indicator-graph">
+        <canvas id="ghgChart"></canvas>
+    </div>
+    <div class="indicator-text">
+        <h3>CO₂-utsläpp per capita</h3>
+        <p>
+            Diagrammet visar Sveriges och Danmarks utsläpp av koldioxid per person mellan 2015 och 2020.
+            Sverige har generellt haft lägre utsläpp per capita än Danmark, vilket speglar en stark klimatpolitik
+            och användning av förnybar energi.
+        </p>
+        <p>
+            ”Sverige har låga utsläpp av koldioxid per capita jämfört med andra länder [...]” <br>
+            <em>Källa: Ekonomifakta, 2025</em>
+        </p>
+        <p>
+            ”Danmark hade 2023 en utsläppsnivå på 4,6 ton per capita, medan Sverige låg på 3,5 ton.” <br>
+            <em>Källa: Our World in Data</em>
+        </p>
+        <div class="chart-controls">
+            <button onclick="updateChart(ghgChart, 'both')">Båda länder</button>
+            <button onclick="updateChart(ghgChart, 'sweden')">Endast Sverige</button>
+            <button onclick="updateChart(ghgChart, 'denmark')">Endast Danmark</button>
+        </div>
+    </div>
+</div>
+
+<div class="indicator-section">
+    <div class="indicator-graph">
+        <canvas id="waterChart"></canvas>
+    </div>
+    <div class="indicator-text">
+        <h3>Dricksvatten – Tillgång</h3>
+        <p>
+            Denna graf visar andelen av befolkningen i Sverige och Danmark som har tillgång till rent dricksvatten.
+            Båda länderna ligger mycket högt, vilket speglar välfungerande vattenförsörjning och infrastruktur.
+        </p>
+        <p>
+            ”10 av 10 personer har tillgång till rent vatten i Danmark” <br>
+            <em>Källa: Globalis, 2025</em>
+        </p>
+        <p>
+            ”Tillgång till rent vatten är en grundläggande mänsklig rättighet enligt FN.” <br>
+            <em>Källa: FN:s Hållbarhetsmål</em>
+        </p>
+        <div class="chart-controls">
+            <button onclick="updateChart(waterChart, 'both')">Båda länder</button>
+            <button onclick="updateChart(waterChart, 'sweden')">Endast Sverige</button>
+            <button onclick="updateChart(waterChart, 'denmark')">Endast Danmark</button>
+        </div>
+    </div>
+</div>
+
+<section class="project-summary">
+    <p>
+        Detta projekt syftar till att visualisera nyckelindikatorer kopplade till hållbar utveckling, såsom utsläpp av växthusgaser och tillgång till rent dricksvatten.
+        Genom att jämföra Sverige och Danmark kan vi få en bättre förståelse för hur olika länder arbetar med klimat- och vattenfrågor.
+    </p>
+    <p>
+        Uppgifterna kommer från offentligt tillgänglig statistik och visar en positiv utveckling, särskilt för Sverige när det gäller minskade CO₂-utsläpp.
+        Genom att presentera dessa mätvärden visuellt hoppas vi kunna skapa ett mer tillgängligt sätt att ta till sig viktig samhällsdata.
+    </p>
+    <form id="resetForm">
+        <button type="submit" class="reset-btn">Återställ data</button>
+    </form>
+    <div class="data-sources">
+        <p><strong>Källor:</strong> Ekonomifakta, Our World in Data, Globalis, FN</p>
+    </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const years = {{ years|raw }};
+    const co2Sweden = {{ co2_sweden|raw }};
+    const co2Denmark = {{ co2_denmark|raw }};
+    const waterSweden = {{ water_sweden|raw }};
+    const waterDenmark = {{ water_denmark|raw }};
+
+    const ctxGhg = document.getElementById('ghgChart').getContext('2d');
+    const ctxWater = document.getElementById('waterChart').getContext('2d');
+
+    const configGhg = {
+        type: 'line',
+        data: { labels: years, datasets: [] },
+        options: {
+            responsive: true,
+            plugins: { title: { display: true, text: 'CO₂-utsläpp per capita 2015–2020' } },
+            scales: {
+                y: { title: { display: true, text: 'Ton CO₂' } },
+                x: { title: { display: true, text: 'Ar' } }
+            }
+        }
+    };
+
+    const configWater = {
+        type: 'bar',
+        data: { labels: years, datasets: [] },
+        options: {
+            responsive: true,
+            plugins: { title: { display: true, text: 'Tillgång till säkert dricksvatten 2015–2020' } },
+            scales: {
+                y: { title: { display: true, text: 'Procent (%)' }, suggestedMin: 98, suggestedMax: 100 },
+                x: { title: { display: true, text: 'Ar' } }
+            }
+        }
+    };
+
+    const ghgChart = new Chart(ctxGhg, configGhg);
+    const waterChart = new Chart(ctxWater, configWater);
+
+    function updateChart(chart, country) {
+        let newData = [];
+        const buttons = chart.canvas.parentElement.querySelectorAll('button');
+        buttons.forEach(btn => btn.classList.remove('active'));
+        buttons.forEach(btn => {
+            if (btn.textContent.toLowerCase().includes(country)) {
+                btn.classList.add('active');
+            }
+        });
+
+        if (chart === ghgChart) {
+            if (country === 'both' || country === 'sweden') {
+                newData.push({ label: 'Sverige', data: co2Sweden, borderColor: '#2a5d84', backgroundColor: 'rgba(42, 93, 132, 0.2)', fill: false, tension: 0.3, pointRadius: 4 });
+            }
+            if (country === 'both' || country === 'denmark') {
+                newData.push({ label: 'Danmark', data: co2Denmark, borderColor: '#d13d3d', backgroundColor: 'rgba(209, 61, 61, 0.2)', fill: false, tension: 0.3, pointRadius: 4 });
+            }
+        }
+
+        if (chart === waterChart) {
+            if (country === 'both' || country === 'sweden') {
+                newData.push({ label: 'Sverige', data: waterSweden, backgroundColor: 'rgba(50, 160, 100, 0.6)', borderColor: '#2a8c5d', borderWidth: 1 });
+            }
+            if (country === 'both' || country === 'denmark') {
+                newData.push({ label: 'Danmark', data: waterDenmark, backgroundColor: 'rgba(160, 100, 100, 0.6)', borderColor: '#b03c3c', borderWidth: 1 });
+            }
+        }
+
+        chart.data.datasets = newData;
+        chart.update();
+    }
+
+    updateChart(ghgChart, 'both');
+    updateChart(waterChart, 'both');
+</script>
+
+<script>
+document.getElementById('resetForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const confirmed = confirm("Är du säker på att du vill återställa datan?");
+    if (!confirmed) return;
+    try {
+        const response = await fetch('/api/proj/reset', { method: 'POST' });
+        const result = await response.json();
+        alert(result.message);
+        location.reload();
+    } catch (error) {
+        alert("Något gick fel vid återställning.");
+        console.error(error);
+    }
+});
+</script>
+{% endblock %}

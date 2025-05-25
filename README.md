@@ -155,6 +155,36 @@ Nackdelar:
 
 Andra sätt att jobba med “clean code” är t.ex. att använda **code reviews**, skriva **kommentarer med syfte** och ha en tydlig **mapstruktur**. Redan idag vet jag att ett av mina förbättringsområden är att kommentera samt dokumentera min kod, innan jag började studera på BTH använde jag mig aldrig av kommentarer. Nu tvingar jag mig själv att använda de för att det ska bli en god vana. Att alltid hålla sig uppdaterad och att alltid testa kodens funktionalitet häjlper även, i detta kmom såg jag till att alltid testa olikad elar av min sida för att see att allt fungerar som tänkt.
 
+
+## Projekt: Hållbarhet
+
+Detta projekt syftar till att visualisera indikatorer för hållbar utveckling, med fokus på klimat och vatten.
+
+### Funktioner
+
+- Visualisering av CO₂-utsläpp och tillgång till rent vatten för Sverige och Danmark.
+- Interaktiva diagram med Chart.js.
+- JSON API med GET- och POST-endpoints.
+- Knapp för att återställa data till ursprungsläget (2015–2020).
+- ORM via Doctrine och flera aktiva databasanslutningar.
+
+### Använda sidor
+
+- [Startsida för projektet](/proj)
+- [Om projektet](/proj/about)
+- [API-dokumentation och test](/proj/api)
+- [Databassida med ER-diagram](/proj/about/database)
+- [Avancerade tekniska features](/proj/features)
+
+### Teknisk info
+
+- Databasen för projektet är MariaDB och används tillsammans med Doctrine ORM.
+- ER-diagram och tabellbeskrivningar återfinns på databassidan.
+- Projektet har en helt separat layout, navbar och CSS-justering jämfört med me-sidan.
+
+Projektet finns under `proj/` och uppfyller krav 1, 2, 3 samt samtliga optionella krav (4, 5, 6).
+
+
 ---
 
 ## Licens

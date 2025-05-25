@@ -1,0 +1,46 @@
+{% extends 'proj/base_proj.html.twig' %}
+
+{% block title %}Databas – Hållbarhetsprojekt{% endblock %}
+
+{% block body %}
+<section class="project-about">
+    <h1 class="about-title">Databasstruktur</h1>
+
+    <p class="about-intro">
+        Här visas den databasstruktur som används i projektet för att lagra indikatorer och mätvärden kopplade till hållbar utveckling.
+    </p>
+
+    <h2 class="about-sub">ER-diagram</h2>
+    <img src="{{ asset('images/er.png') }}" alt="ER-diagram" style="max-width:100%; border:1px solid #ccc; padding:1rem; background:#fff;">
+
+    <h2 class="about-sub">Tabeller</h2>
+    <ul>
+        <li><strong>indicator</strong>: Sparar indikatorer med namn, beskrivning och tillhörande hållbarhetsmål.</li>
+        <li><strong>measurement</strong>: Sparar mätvärden kopplade till indikatorer, inklusive år, värde, enhet, land och källa.</li>
+        <li><strong>measurement_original</strong>: Innehåller ursprungsdata (2015–2020) som används vid återställning.</li>
+    </ul>
+
+    <h2 class="about-sub">Relationer</h2>
+    <p>Varje rad i <code>measurement</code> är kopplad till en rad i <code>indicator</code> genom <code>indicator_id</code>, vilket skapar en en-till-många-relation.</p>
+
+    <h2 class="about-sub">Databasmotor och ORM</h2>
+    <p>
+        Databasen är byggd i <strong>MariaDB</strong> och används tillsammans med <strong>Doctrine ORM</strong> i Symfony.
+    </p>
+
+    <h2 class="about-sub">Reflektion kring ORM</h2>
+    <p>
+        ORM gör det lättare att jobba objektorienterat, men ibland känns det som ett extra lager ovanpå SQL. Det gör det enklare att fokusera på PHP-logik,
+        men ibland svårare att optimera SQL. Jag saknar ibland full kontroll över joins och queries. I databaskursen skrev vi mycket ren SQL,
+        vilket är mer direkt, men det blir även mer komplex med allt skrivande. Samtidigt är det lätt att göra fel i SQL som ORM skyddar mot. Med Doctrine får man t.ex. automatisk mapping mellan tabeller och klasser.
+        Relationshantering är väldigt smidig. Att lägga till relationer kräver bara en annotation i en klass. Det gör även tester lättare att skriva eftersom man kan mocka entiteter.
+        Jag tycker dock det tar lite tid att förstå hur allt i Doctrine hänger ihop. Dokumentationen är bra men ibland krånglig. Migrationer är smidigt men kräver koll.
+        För små projekt kanske ORM är “overkill” men i större projekt är det mycket användbart. Jag ser ORM som en strukturhjälp, men man måste fortfarande förstå databaser.
+        Sammantaget föredrar jag ORM nu när jag vant mig, men jag vill ändå alltid förstå hur SQL ser ut bakom kulisserna.
+    </p>
+
+    <div class="about-links">
+        <a href="{{ path('proj_about') }}" class="about-button">← Tillbaka till projektbeskrivningen</a>
+    </div>
+</section>
+{% endblock %}

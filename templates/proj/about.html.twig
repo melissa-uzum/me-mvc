@@ -1,0 +1,31 @@
+{% extends 'proj/base_proj.html.twig' %}
+
+{% block title %}Om projektet{% endblock %}
+
+{% block body %}
+<section class="project-about">
+    <h1 class="about-title">Om projektet</h1>
+
+    <p class="about-intro">
+        Detta projekt är en del av kursmoment <strong>Kmom07/10</strong> och fokuserar på att visualisera indikatorer
+        kopplade till <strong>FN:s globala mål för hållbar utveckling</strong>.
+    </p>
+
+    <p class="about-details">
+        Projektet använder verklig statistik för att visa <strong>växthusgasutsläpp per capita</strong> och
+        <strong>tillgång till rent vatten</strong> i Sverige och Danmark mellan 2015 och 2020.
+        Användaren kan även lägga till egna mätvärden och återställa datan till original.
+    </p>
+
+    <p class="about-details">
+        Webbplatsen bygger på Symfony med Twig och Doctrine ORM, och datan presenteras både via
+        <strong>interaktiva diagram</strong> och ett <strong>JSON API</strong>.
+    </p>
+
+    <div class="about-links">
+        <a href="{{ path('proj_about_database') }}" class="about-button">Läs mer om databasens struktur</a>
+        <a href="{{ path('proj_api') }}" class="about-button">Utforska API:et</a>
+        <a href="{{ path('proj_stats') }}" class="about-button">Till statistik</a>
+    </div>
+</section>
+{% endblock %}
