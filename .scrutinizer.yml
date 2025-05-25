@@ -3,15 +3,25 @@ imports:
 
 filter:
   paths:
-    - src/*
+    - src/Card/*
+    - src/Game/*
+    - src/Service/*
   excluded_paths:
-    - vendor/*
-    - test/*
-    - var/*
+    - src/Controller/*
+    - src/Form/*
+    - src/Entity/*
+    - src/Repository/*
     - bin/*
     - config/*
     - docs/*
+    - migrations/*
     - public/*
+    - templates/*
+    - tests/*
+    - tools/*
+    - translations/*
+    - var/*
+    - vendor/*
 
 build:
   image: default-bionic
