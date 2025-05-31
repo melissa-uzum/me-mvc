@@ -162,6 +162,12 @@ Detta projekt syftar till att visualisera indikatorer för hållbar utveckling, 
 
 ### Funktioner
 
+### Projektinnehåll
+
+Projektet innehåller både en frontend och ett backend-API kopplat till en databas med verkliga mätvärden. Visualiseringen sker via Chart.js, och datan hanteras med Symfony + Doctrine ORM.
+
+Två olika delar av applikationen kommunicerar med databasen via olika Entity Managers: en för biblioteket och en för hållbarhetsdelen. Detta har möjliggjort en tydlig separation i både struktur och ansvar.
+
 - Visualisering av CO₂-utsläpp och tillgång till rent vatten för Sverige och Danmark.
 - Interaktiva diagram med Chart.js.
 - JSON API med GET- och POST-endpoints.
@@ -176,6 +182,8 @@ Detta projekt syftar till att visualisera indikatorer för hållbar utveckling, 
 - [Databassida med ER-diagram](/proj/about/database)
 - [Avancerade tekniska features](/proj/features)
 
+Projektet uppfyller krav 1, 2, 3 samt samtliga optionella krav 4, 5 och 6.
+
 ### Teknisk info
 
 - Databasen för projektet är MariaDB och används tillsammans med Doctrine ORM.
@@ -186,6 +194,10 @@ Projektet finns under `proj/` och uppfyller krav 1, 2, 3 samt samtliga optionell
 
 
 ---
+
+[![Build Status](https://scrutinizer-ci.com/g/melissa-uzum/me-mvc/badges/build.png)](https://scrutinizer-ci.com/g/melissa-uzum/me-mvc/)
+[![Code Coverage](https://scrutinizer-ci.com/g/melissa-uzum/me-mvc/badges/coverage.png)](https://scrutinizer-ci.com/g/melissa-uzum/me-mvc/)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/melissa-uzum/me-mvc/badges/quality-score.png)](https://scrutinizer-ci.com/g/melissa-uzum/me-mvc/)
 
 ## Licens
 

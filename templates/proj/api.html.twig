@@ -6,7 +6,7 @@
 <section class="project-api">
     <h1 class="api-title">JSON API – Hållbarhetsprojekt</h1>
     <p class="api-description">
-        Testa projektets API-endpoints nedan. GET-länkar är klickbara och öppnas i ett nytt fönster, medan POST-endpoints används via Postman.
+        Testa projektets API-endpoints nedan. GET-länkar är klickbara och öppnas i ett nytt fönster, medan POST-endpoints används via Postman eller formulär.
     </p>
 
     <table class="api-table">
@@ -39,15 +39,21 @@
             </tr>
             <tr>
                 <td>POST</td>
-                <td><code>/api/proj/indicator/add</code></td>
-                <td>Lägg till indikator (via JSON)</td>
-                <td><span class="postman-note">Testas i Postman</span></td>
-            </tr>
-            <tr>
-                <td>POST</td>
                 <td><code>/api/proj/measurement/add</code></td>
-                <td>Lägg till mätvärde (via JSON)</td>
-                <td><span class="postman-note">Testas i Postman</span></td>
+                <td>Lägg till ett nytt mätvärde (via JSON-body)</td>
+                <td>
+                    <span class="postman-note">Testa i Postman</span><br>
+                    <strong>URL:</strong><br>
+                    <code>{{ app.request.schemeAndHttpHost }}/api/proj/measurement/add</code><br>
+                    <strong>Body (JSON):</strong>
+                    <pre>{
+    "indicator_id": 1,
+    "year": 2025,
+    "value": 9,
+    "unit": "ton",
+    "country": "Sweden"
+}</pre>
+                </td>
             </tr>
             <tr>
                 <td>POST</td>
@@ -70,9 +76,11 @@ document.getElementById('resetForm').addEventListener('submit', async function(e
     if (!confirmed) return;
 
     try {
-        const response = await fetch('/api/proj/reset', { method: 'POST' });
+        const response = await fetch("{{ path('api_proj_reset') }}", {
+            method: 'POST'
+        });
         const result = await response.json();
-        alert(result.message);
+        alert(result.message || "Datan har återställts.");
         location.reload();
     } catch (error) {
         alert("Något gick fel vid återställning.");

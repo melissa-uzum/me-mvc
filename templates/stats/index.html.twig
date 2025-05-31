@@ -154,8 +154,11 @@ document.getElementById('resetForm').addEventListener('submit', async function(e
     e.preventDefault();
     const confirmed = confirm("Är du säker på att du vill återställa datan?");
     if (!confirmed) return;
+
     try {
-        const response = await fetch('/api/proj/reset', { method: 'POST' });
+        const baseUrl = window.location.origin + window.location.pathname.split('/proj')[0];
+        const response = await fetch(baseUrl + '/api/proj/reset', { method: 'POST' });
+
         const result = await response.json();
         alert(result.message);
         location.reload();

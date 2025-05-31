@@ -15,28 +15,24 @@
 
     <h2 class="about-sub">Tabeller</h2>
     <ul>
-        <li><strong>indicator</strong>: Sparar indikatorer med namn, beskrivning och tillhörande hållbarhetsmål.</li>
-        <li><strong>measurement</strong>: Sparar mätvärden kopplade till indikatorer, inklusive år, värde, enhet, land och källa.</li>
+        <li><strong>indicator</strong>: Sparar indikatorer med namn och beskrivning.</li>
+        <li><strong>measurement</strong>: Sparar mätvärden kopplade till indikatorer, inklusive år, värde, enhet och land.</li>
         <li><strong>measurement_original</strong>: Innehåller ursprungsdata (2015–2020) som används vid återställning.</li>
     </ul>
 
     <h2 class="about-sub">Relationer</h2>
-    <p>Varje rad i <code>measurement</code> är kopplad till en rad i <code>indicator</code> genom <code>indicator_id</code>, vilket skapar en en-till-många-relation.</p>
+    <p>
+        Varje mätvärde i <code>measurement</code> är kopplat till en indikator i <code>indicator</code> via <code>indicator_id</code>. Detta hanteras i ORM med en <code>@ManyToOne</code>-relation i klassen <code>Measurement</code>, och en <code>@OneToMany</code>-relation i <code>Indicator</code>.
+    </p>
 
     <h2 class="about-sub">Databasmotor och ORM</h2>
     <p>
-        Databasen är byggd i <strong>MariaDB</strong> och används tillsammans med <strong>Doctrine ORM</strong> i Symfony.
+        Projektet använder <strong>MariaDB</strong> och alla databasoperationer hanteras genom <strong>Doctrine ORM</strong> i Symfony. Jag har använt annoteringar i entitetsklasserna för att definiera tabellstruktur och relationer, vilket möjliggör automatisk schemahantering och migreringar.
     </p>
 
     <h2 class="about-sub">Reflektion kring ORM</h2>
     <p>
-        ORM gör det lättare att jobba objektorienterat, men ibland känns det som ett extra lager ovanpå SQL. Det gör det enklare att fokusera på PHP-logik,
-        men ibland svårare att optimera SQL. Jag saknar ibland full kontroll över joins och queries. I databaskursen skrev vi mycket ren SQL,
-        vilket är mer direkt, men det blir även mer komplex med allt skrivande. Samtidigt är det lätt att göra fel i SQL som ORM skyddar mot. Med Doctrine får man t.ex. automatisk mapping mellan tabeller och klasser.
-        Relationshantering är väldigt smidig. Att lägga till relationer kräver bara en annotation i en klass. Det gör även tester lättare att skriva eftersom man kan mocka entiteter.
-        Jag tycker dock det tar lite tid att förstå hur allt i Doctrine hänger ihop. Dokumentationen är bra men ibland krånglig. Migrationer är smidigt men kräver koll.
-        För små projekt kanske ORM är “overkill” men i större projekt är det mycket användbart. Jag ser ORM som en strukturhjälp, men man måste fortfarande förstå databaser.
-        Sammantaget föredrar jag ORM nu när jag vant mig, men jag vill ändå alltid förstå hur SQL ser ut bakom kulisserna.
+        Att arbeta med Doctrine ORM gör det enklare att strukturera koden objektorienterat och koppla ihop databasen med PHP-klasser. Det minskar risken för SQL-fel och gör det lätt att hantera relationer mellan tabeller. I databaskursen skrev vi all SQL för hand, vilket gav mer kontroll men också mer att hålla reda på. Med ORM räcker det att definiera relationer i PHP-kod och sedan skapa migreringar automatiskt. Det sparar tid och ger bättre överblick. Nackdelen är att man ibland tappar kontrollen över exakt hur SQL-frågorna byggs. Jag tycker dock att fördelen med läsbarhet, struktur och typkontroll väger tyngre. När projekt växer blir ORM ett kraftfullt verktyg. Jag har nu börjat uppskatta det och tycker det underlättar både utveckling och testning.
     </p>
 
     <div class="about-links">

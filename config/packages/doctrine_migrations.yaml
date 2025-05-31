@@ -1,8 +1,6 @@
-doctrine:
-    dbal:
-        default_connection: default
-        connections:
-            default:
-                url: '%env(resolve:DATABASE_URL)%'
-            sustainability:
-                url: '%env(resolve:DATABASE_SUSTAINABILITY_URL)%'
+doctrine_migrations:
+    migrations_paths:
+        'DoctrineMigrations\Sustainability': '%kernel.project_dir%/migrations/sustainability'
+    storage:
+        table_storage:
+            table_name: 'migration_versions'

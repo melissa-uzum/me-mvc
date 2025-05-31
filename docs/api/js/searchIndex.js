@@ -198,8 +198,13 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Controller\\ApiController",
             "name": "ApiController",
-            "summary": "API\u002Dkontroller\u0020som\u0020hanterar\u0020JSON\u002Dendpoints\u0020f\u00F6r\u0020kortlek,\u0020spel\u0020och\u0020b\u00F6cker.",
+            "summary": "API\u002Dkontroller\u0020f\u00F6r\u0020kortspel,\u0020bibliotek\u0020och\u0020h\u00E5llbarhetsdata.",
             "url": "classes/App-Controller-ApiController.html"
+        },                {
+            "fqsen": "\\App\\Controller\\ApiController\u003A\u003AprojApiOverview\u0028\u0029",
+            "name": "projApiOverview",
+            "summary": "",
+            "url": "classes/App-Controller-ApiController.html#method_projApiOverview"
         },                {
             "fqsen": "\\App\\Controller\\ApiController\u003A\u003Aindex\u0028\u0029",
             "name": "index",
@@ -208,13 +213,38 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Controller\\ApiController\u003A\u003AgetAllBooks\u0028\u0029",
             "name": "getAllBooks",
-            "summary": "Returnerar\u0020alla\u0020b\u00F6cker\u0020i\u0020biblioteket\u0020som\u0020JSON.",
+            "summary": "",
             "url": "classes/App-Controller-ApiController.html#method_getAllBooks"
         },                {
             "fqsen": "\\App\\Controller\\ApiController\u003A\u003AgetBookByIsbn\u0028\u0029",
             "name": "getBookByIsbn",
-            "summary": "Returnerar\u0020en\u0020bok\u0020baserat\u0020p\u00E5\u0020ISBN,\u0020eller\u0020404\u0020om\u0020den\u0020inte\u0020hittas.",
+            "summary": "",
             "url": "classes/App-Controller-ApiController.html#method_getBookByIsbn"
+        },                {
+            "fqsen": "\\App\\Controller\\ApiController\u003A\u003AgetIndicators\u0028\u0029",
+            "name": "getIndicators",
+            "summary": "",
+            "url": "classes/App-Controller-ApiController.html#method_getIndicators"
+        },                {
+            "fqsen": "\\App\\Controller\\ApiController\u003A\u003AgetIndicatorById\u0028\u0029",
+            "name": "getIndicatorById",
+            "summary": "",
+            "url": "classes/App-Controller-ApiController.html#method_getIndicatorById"
+        },                {
+            "fqsen": "\\App\\Controller\\ApiController\u003A\u003AgetMeasurementsByIndicator\u0028\u0029",
+            "name": "getMeasurementsByIndicator",
+            "summary": "",
+            "url": "classes/App-Controller-ApiController.html#method_getMeasurementsByIndicator"
+        },                {
+            "fqsen": "\\App\\Controller\\ApiController\u003A\u003AaddMeasurement\u0028\u0029",
+            "name": "addMeasurement",
+            "summary": "",
+            "url": "classes/App-Controller-ApiController.html#method_addMeasurement"
+        },                {
+            "fqsen": "\\App\\Controller\\ApiController\u003A\u003AresetData\u0028\u0029",
+            "name": "resetData",
+            "summary": "",
+            "url": "classes/App-Controller-ApiController.html#method_resetData"
         },                {
             "fqsen": "\\App\\Controller\\BookController",
             "name": "BookController",
@@ -381,6 +411,31 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-Controller-MetricsController.html#method_index"
         },                {
+            "fqsen": "\\App\\Controller\\ProjController",
+            "name": "ProjController",
+            "summary": "Kontroller\u0020som\u0020hanterar\u0020vyer\u0020kopplade\u0020till\u0020projektets\u0020introduktion\u0020och\u0020information.",
+            "url": "classes/App-Controller-ProjController.html"
+        },                {
+            "fqsen": "\\App\\Controller\\ProjController\u003A\u003Aindex\u0028\u0029",
+            "name": "index",
+            "summary": "Visar\u0020projektets\u0020huvudsida.",
+            "url": "classes/App-Controller-ProjController.html#method_index"
+        },                {
+            "fqsen": "\\App\\Controller\\ProjController\u003A\u003Aabout\u0028\u0029",
+            "name": "about",
+            "summary": "Visar\u0020sidan\u0020\u0022Om\u0020projektet\u0022\u0020med\u0020beskrivning\u0020av\u0020syfte\u0020och\u0020inneh\u00E5ll.",
+            "url": "classes/App-Controller-ProjController.html#method_about"
+        },                {
+            "fqsen": "\\App\\Controller\\ProjController\u003A\u003AaboutDatabase\u0028\u0029",
+            "name": "aboutDatabase",
+            "summary": "Visar\u0020information\u0020om\u0020databasens\u0020struktur\u0020och\u0020tabeller.",
+            "url": "classes/App-Controller-ProjController.html#method_aboutDatabase"
+        },                {
+            "fqsen": "\\App\\Controller\\ProjController\u003A\u003Afeatures\u0028\u0029",
+            "name": "features",
+            "summary": "Visar\u0020beskrivning\u0020av\u0020tekniska\u0020utmaningar\u0020och\u0020l\u00F6sningar\u0020i\u0020projektet.",
+            "url": "classes/App-Controller-ProjController.html#method_features"
+        },                {
             "fqsen": "\\App\\Controller\\QuoteApiController",
             "name": "QuoteApiController",
             "summary": "",
@@ -415,6 +470,16 @@ Search.appendIndex(
             "name": "delete",
             "summary": "",
             "url": "classes/App-Controller-SessionController.html#method_delete"
+        },                {
+            "fqsen": "\\App\\Controller\\StatsController",
+            "name": "StatsController",
+            "summary": "",
+            "url": "classes/App-Controller-StatsController.html"
+        },                {
+            "fqsen": "\\App\\Controller\\StatsController\u003A\u003Aindex\u0028\u0029",
+            "name": "index",
+            "summary": "Visar\u0020statistik\u0020\u00F6ver\u0020v\u00E4xthusgasutsl\u00E4pp\u0020och\u0020tillg\u00E5ng\u0020till\u0020rent\u0020vatten\nf\u00F6r\u0020Sverige\u0020och\u0020Danmark\u0020under\u0020\u00E5ren\u00202015\u20132020.",
+            "url": "classes/App-Controller-StatsController.html#method_index"
         },                {
             "fqsen": "\\App\\Entity\\Book",
             "name": "Book",
@@ -1101,6 +1166,26 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-Repository-BookRepository.html#method___construct"
         },                {
+            "fqsen": "\\App\\Repository\\IndicatorRepository",
+            "name": "IndicatorRepository",
+            "summary": "",
+            "url": "classes/App-Repository-IndicatorRepository.html"
+        },                {
+            "fqsen": "\\App\\Repository\\IndicatorRepository\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/App-Repository-IndicatorRepository.html#method___construct"
+        },                {
+            "fqsen": "\\App\\Repository\\MeasurementRepository",
+            "name": "MeasurementRepository",
+            "summary": "",
+            "url": "classes/App-Repository-MeasurementRepository.html"
+        },                {
+            "fqsen": "\\App\\Repository\\MeasurementRepository\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/App-Repository-MeasurementRepository.html#method___construct"
+        },                {
             "fqsen": "\\App\\Service\\BookFormHandler",
             "name": "BookFormHandler",
             "summary": "Tj\u00E4nst\u0020som\u0020hanterar\u0020formul\u00E4r\u0020f\u00F6r\u0020att\u0020skapa\u0020och\u0020uppdatera\u0020b\u00F6cker.",
@@ -1541,6 +1626,171 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-Service-GameViewBuilder.html#property_gameService"
         },                {
+            "fqsen": "\\App\\Sustainability\\Entity\\Indicator",
+            "name": "Indicator",
+            "summary": "",
+            "url": "classes/App-Sustainability-Entity-Indicator.html"
+        },                {
+            "fqsen": "\\App\\Sustainability\\Entity\\Indicator\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/App-Sustainability-Entity-Indicator.html#method___construct"
+        },                {
+            "fqsen": "\\App\\Sustainability\\Entity\\Indicator\u003A\u003AgetId\u0028\u0029",
+            "name": "getId",
+            "summary": "",
+            "url": "classes/App-Sustainability-Entity-Indicator.html#method_getId"
+        },                {
+            "fqsen": "\\App\\Sustainability\\Entity\\Indicator\u003A\u003AgetName\u0028\u0029",
+            "name": "getName",
+            "summary": "",
+            "url": "classes/App-Sustainability-Entity-Indicator.html#method_getName"
+        },                {
+            "fqsen": "\\App\\Sustainability\\Entity\\Indicator\u003A\u003AsetName\u0028\u0029",
+            "name": "setName",
+            "summary": "",
+            "url": "classes/App-Sustainability-Entity-Indicator.html#method_setName"
+        },                {
+            "fqsen": "\\App\\Sustainability\\Entity\\Indicator\u003A\u003AgetDescription\u0028\u0029",
+            "name": "getDescription",
+            "summary": "",
+            "url": "classes/App-Sustainability-Entity-Indicator.html#method_getDescription"
+        },                {
+            "fqsen": "\\App\\Sustainability\\Entity\\Indicator\u003A\u003AsetDescription\u0028\u0029",
+            "name": "setDescription",
+            "summary": "",
+            "url": "classes/App-Sustainability-Entity-Indicator.html#method_setDescription"
+        },                {
+            "fqsen": "\\App\\Sustainability\\Entity\\Indicator\u003A\u003AgetMeasurements\u0028\u0029",
+            "name": "getMeasurements",
+            "summary": "",
+            "url": "classes/App-Sustainability-Entity-Indicator.html#method_getMeasurements"
+        },                {
+            "fqsen": "\\App\\Sustainability\\Entity\\Indicator\u003A\u003A\u0024id",
+            "name": "id",
+            "summary": "",
+            "url": "classes/App-Sustainability-Entity-Indicator.html#property_id"
+        },                {
+            "fqsen": "\\App\\Sustainability\\Entity\\Indicator\u003A\u003A\u0024name",
+            "name": "name",
+            "summary": "",
+            "url": "classes/App-Sustainability-Entity-Indicator.html#property_name"
+        },                {
+            "fqsen": "\\App\\Sustainability\\Entity\\Indicator\u003A\u003A\u0024description",
+            "name": "description",
+            "summary": "",
+            "url": "classes/App-Sustainability-Entity-Indicator.html#property_description"
+        },                {
+            "fqsen": "\\App\\Sustainability\\Entity\\Indicator\u003A\u003A\u0024measurements",
+            "name": "measurements",
+            "summary": "",
+            "url": "classes/App-Sustainability-Entity-Indicator.html#property_measurements"
+        },                {
+            "fqsen": "\\App\\Sustainability\\Entity\\Measurement",
+            "name": "Measurement",
+            "summary": "",
+            "url": "classes/App-Sustainability-Entity-Measurement.html"
+        },                {
+            "fqsen": "\\App\\Sustainability\\Entity\\Measurement\u003A\u003AgetId\u0028\u0029",
+            "name": "getId",
+            "summary": "",
+            "url": "classes/App-Sustainability-Entity-Measurement.html#method_getId"
+        },                {
+            "fqsen": "\\App\\Sustainability\\Entity\\Measurement\u003A\u003AgetYear\u0028\u0029",
+            "name": "getYear",
+            "summary": "",
+            "url": "classes/App-Sustainability-Entity-Measurement.html#method_getYear"
+        },                {
+            "fqsen": "\\App\\Sustainability\\Entity\\Measurement\u003A\u003AsetYear\u0028\u0029",
+            "name": "setYear",
+            "summary": "",
+            "url": "classes/App-Sustainability-Entity-Measurement.html#method_setYear"
+        },                {
+            "fqsen": "\\App\\Sustainability\\Entity\\Measurement\u003A\u003AgetValue\u0028\u0029",
+            "name": "getValue",
+            "summary": "",
+            "url": "classes/App-Sustainability-Entity-Measurement.html#method_getValue"
+        },                {
+            "fqsen": "\\App\\Sustainability\\Entity\\Measurement\u003A\u003AsetValue\u0028\u0029",
+            "name": "setValue",
+            "summary": "",
+            "url": "classes/App-Sustainability-Entity-Measurement.html#method_setValue"
+        },                {
+            "fqsen": "\\App\\Sustainability\\Entity\\Measurement\u003A\u003AgetUnit\u0028\u0029",
+            "name": "getUnit",
+            "summary": "",
+            "url": "classes/App-Sustainability-Entity-Measurement.html#method_getUnit"
+        },                {
+            "fqsen": "\\App\\Sustainability\\Entity\\Measurement\u003A\u003AsetUnit\u0028\u0029",
+            "name": "setUnit",
+            "summary": "",
+            "url": "classes/App-Sustainability-Entity-Measurement.html#method_setUnit"
+        },                {
+            "fqsen": "\\App\\Sustainability\\Entity\\Measurement\u003A\u003AgetCountry\u0028\u0029",
+            "name": "getCountry",
+            "summary": "",
+            "url": "classes/App-Sustainability-Entity-Measurement.html#method_getCountry"
+        },                {
+            "fqsen": "\\App\\Sustainability\\Entity\\Measurement\u003A\u003AsetCountry\u0028\u0029",
+            "name": "setCountry",
+            "summary": "",
+            "url": "classes/App-Sustainability-Entity-Measurement.html#method_setCountry"
+        },                {
+            "fqsen": "\\App\\Sustainability\\Entity\\Measurement\u003A\u003AgetSource\u0028\u0029",
+            "name": "getSource",
+            "summary": "",
+            "url": "classes/App-Sustainability-Entity-Measurement.html#method_getSource"
+        },                {
+            "fqsen": "\\App\\Sustainability\\Entity\\Measurement\u003A\u003AsetSource\u0028\u0029",
+            "name": "setSource",
+            "summary": "",
+            "url": "classes/App-Sustainability-Entity-Measurement.html#method_setSource"
+        },                {
+            "fqsen": "\\App\\Sustainability\\Entity\\Measurement\u003A\u003AgetIndicator\u0028\u0029",
+            "name": "getIndicator",
+            "summary": "",
+            "url": "classes/App-Sustainability-Entity-Measurement.html#method_getIndicator"
+        },                {
+            "fqsen": "\\App\\Sustainability\\Entity\\Measurement\u003A\u003AsetIndicator\u0028\u0029",
+            "name": "setIndicator",
+            "summary": "",
+            "url": "classes/App-Sustainability-Entity-Measurement.html#method_setIndicator"
+        },                {
+            "fqsen": "\\App\\Sustainability\\Entity\\Measurement\u003A\u003A\u0024id",
+            "name": "id",
+            "summary": "",
+            "url": "classes/App-Sustainability-Entity-Measurement.html#property_id"
+        },                {
+            "fqsen": "\\App\\Sustainability\\Entity\\Measurement\u003A\u003A\u0024year",
+            "name": "year",
+            "summary": "",
+            "url": "classes/App-Sustainability-Entity-Measurement.html#property_year"
+        },                {
+            "fqsen": "\\App\\Sustainability\\Entity\\Measurement\u003A\u003A\u0024value",
+            "name": "value",
+            "summary": "",
+            "url": "classes/App-Sustainability-Entity-Measurement.html#property_value"
+        },                {
+            "fqsen": "\\App\\Sustainability\\Entity\\Measurement\u003A\u003A\u0024unit",
+            "name": "unit",
+            "summary": "",
+            "url": "classes/App-Sustainability-Entity-Measurement.html#property_unit"
+        },                {
+            "fqsen": "\\App\\Sustainability\\Entity\\Measurement\u003A\u003A\u0024country",
+            "name": "country",
+            "summary": "",
+            "url": "classes/App-Sustainability-Entity-Measurement.html#property_country"
+        },                {
+            "fqsen": "\\App\\Sustainability\\Entity\\Measurement\u003A\u003A\u0024source",
+            "name": "source",
+            "summary": "",
+            "url": "classes/App-Sustainability-Entity-Measurement.html#property_source"
+        },                {
+            "fqsen": "\\App\\Sustainability\\Entity\\Measurement\u003A\u003A\u0024indicator",
+            "name": "indicator",
+            "summary": "",
+            "url": "classes/App-Sustainability-Entity-Measurement.html#property_indicator"
+        },                {
             "fqsen": "\\",
             "name": "\\",
             "summary": "",
@@ -1600,5 +1850,15 @@ Search.appendIndex(
             "name": "Deck",
             "summary": "",
             "url": "namespaces/app-service-deck.html"
+        },                {
+            "fqsen": "\\App\\Sustainability\\Entity",
+            "name": "Entity",
+            "summary": "",
+            "url": "namespaces/app-sustainability-entity.html"
+        },                {
+            "fqsen": "\\App\\Sustainability",
+            "name": "Sustainability",
+            "summary": "",
+            "url": "namespaces/app-sustainability.html"
         }            ]
 );

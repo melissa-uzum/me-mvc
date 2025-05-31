@@ -4,113 +4,56 @@ namespace App\Controller;
 
 use App\Repository\BookRepository;
 use App\Service\BookTransformer;
+use App\Sustainability\Entity\Indicator;
+use App\Sustainability\Entity\Measurement;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
-use Doctrine\Persistence\ManagerRegistry;
-use Symfony\Component\HttpFoundation\Request;
+use Doctrine\ORM\EntityManagerInterface;
+
 /**
- * API-kontroller som hanterar JSON-endpoints för kortlek, spel och böcker.
+ * API-kontroller för kortspel, bibliotek och hållbarhetsdata.
  */
 class ApiController extends AbstractController
 {
+    #[Route('/proj/api', name: 'proj_api_overview', methods: ['GET'])]
+    public function projApiOverview(): Response
+    {
+        return $this->render('proj/api.html.twig');
+    }
+
     #[Route('/api', name: 'api')]
     public function index(): Response
     {
         return $this->render('api/index.html.twig', [
             'routes' => [
-                [
-                    'name' => 'GET /api/deck',
-                    'path' => $this->generateUrl('api_deck'),
-                    'method' => 'GET',
-                    'description' => 'Returnerar en sorterad kortlek som JSON.',
-                ],
-                [
-                    'name' => 'GET /api/deck/shuffle',
-                    'path' => $this->generateUrl('api_deck_shuffle'),
-                    'method' => 'GET',
-                    'description' => 'Blandar kortleken och returnerar den som JSON.',
-                ],
-                [
-                    'name' => 'GET /api/deck/draw',
-                    'path' => $this->generateUrl('api_draw_one'),
-                    'method' => 'GET',
-                    'description' => 'Drar ett kort från kortleken.',
-                ],
-                [
-                    'name' => 'GET /api/deck/draw/{number}',
-                    'path' => $this->generateUrl('api_draw_number', ['number' => 3]),
-                    'method' => 'GET',
-                    'description' => 'Drar valfritt antal kort från kortleken (exempel 3 kort).',
-                ],
-                [
-                    'name' => 'GET /api/deck/deal/{players}/{cards}',
-                    'path' => $this->generateUrl('api_deal', ['players' => 2, 'cards' => 5]),
-                    'method' => 'GET',
-                    'description' => 'Delar ut kort till flera spelare (exempel 2 spelare, 5 kort vardera).',
-                ],
-                [
-                    'name' => 'GET /api/quote',
-                    'path' => $this->generateUrl('api_quote'),
-                    'method' => 'GET',
-                    'description' => 'Returnerar ett slumpmässigt citat.',
-                ],
-                [
-                    'name' => 'GET /api/game',
-                    'path' => $this->generateUrl('api_game'),
-                    'method' => 'GET',
-                    'description' => 'Returnerar ställning för spelet 21.',
-                ],
-                [
-                    'name' => 'GET /api/library/books',
-                    'path' => $this->generateUrl('api_library_books'),
-                    'method' => 'GET',
-                    'description' => 'Returnerar alla böcker i biblioteket som JSON.',
-                ],
-                [
-                    'name' => 'GET /api/library/book/{isbn}',
-                    'path' => $this->generateUrl('api_library_book', ['isbn' => '9781804940822']),
-                    'method' => 'GET',
-                    'description' => 'Returnerar en specifik bok baserat på ISBN (exempel Wool).',
-                ],
-                [
-                    'name' => 'GET /api/proj/indicators',
-                    'path' => $this->generateUrl('api_proj_indicators'),
-                    'method' => 'GET',
-                    'description' => 'Returnerar alla indikatorer.',
-                ],
-                [
-                    'name' => 'GET /api/proj/indicator/{id}',
-                    'path' => $this->generateUrl('api_proj_indicator', ['id' => 1]),
-                    'method' => 'GET',
-                    'description' => 'Returnerar en indikator med angivet id.',
-                ],
-                [
-                    'name' => 'GET /api/proj/indicator/{id}/measurements',
-                    'path' => $this->generateUrl('api_proj_measurements', ['id' => 1]),
-                    'method' => 'GET',
-                    'description' => 'Returnerar alla mätvärden för en viss indikator.',
-                ],
-                [
-                    'name' => 'POST /api/proj/indicator/add',
-                    'path' => $this->generateUrl('api_proj_indicator_add'),
-                    'method' => 'POST',
-                    'description' => 'Lägger till en ny indikator (kräver JSON body).',
-                ],
-                [
-                    'name' => 'POST /api/proj/measurement/add',
-                    'path' => $this->generateUrl('api_proj_measurement_add'),
-                    'method' => 'POST',
-                    'description' => 'Lägger till ett nytt mätvärde (kräver JSON body).',
-                ],
+                // Kortleks-API
+                ['name' => 'GET /api/deck', 'path' => $this->generateUrl('api_deck'), 'method' => 'GET', 'description' => 'Returnerar en sorterad kortlek.'],
+                ['name' => 'GET /api/deck/shuffle', 'path' => $this->generateUrl('api_deck_shuffle'), 'method' => 'GET', 'description' => 'Blandar kortleken.'],
+                ['name' => 'GET /api/deck/draw', 'path' => $this->generateUrl('api_draw_one'), 'method' => 'GET', 'description' => 'Drar ett kort.'],
+                ['name' => 'GET /api/deck/draw/{number}', 'path' => $this->generateUrl('api_draw_number', ['number' => 3]), 'method' => 'GET', 'description' => 'Drar flera kort.'],
+                ['name' => 'GET /api/deck/deal/{players}/{cards}', 'path' => $this->generateUrl('api_deal', ['players' => 2, 'cards' => 5]), 'method' => 'GET', 'description' => 'Delar ut kort.'],
+
+                // Övriga
+                ['name' => 'GET /api/quote', 'path' => $this->generateUrl('api_quote'), 'method' => 'GET', 'description' => 'Returnerar ett slumpmässigt citat.'],
+                ['name' => 'GET /api/game', 'path' => $this->generateUrl('api_game'), 'method' => 'GET', 'description' => 'Returnerar ställning i spelet 21.'],
+
+                // Biblioteks-API
+                ['name' => 'GET /api/library/books', 'path' => $this->generateUrl('api_library_books'), 'method' => 'GET', 'description' => 'Returnerar alla böcker.'],
+
+                // Hållbarhetsprojekt
+                ['name' => 'GET /api/proj/indicators', 'path' => $this->generateUrl('api_proj_indicators'), 'method' => 'GET', 'description' => 'Returnerar alla indikatorer.'],
+                ['name' => 'GET /api/proj/indicator/{id}', 'path' => $this->generateUrl('api_proj_indicator', ['id' => 1]), 'method' => 'GET', 'description' => 'En specifik indikator.'],
+                ['name' => 'GET /api/proj/indicator/{id}/measurements', 'path' => $this->generateUrl('api_proj_measurements', ['id' => 1]), 'method' => 'GET', 'description' => 'Alla mätvärden för indikator.'],
+                ['name' => 'POST /api/proj/measurement/add', 'path' => $this->generateUrl('api_proj_measurement_add'), 'method' => 'POST', 'description' => 'Lägger till ett mätvärde.'],
+                ['name' => 'POST /api/proj/reset', 'path' => $this->generateUrl('api_proj_reset'), 'method' => 'POST', 'description' => 'Återställer alla mätvärden.'],
             ],
         ]);
     }
 
-    /**
-     * Returnerar alla böcker i biblioteket som JSON.
-     */
     #[Route('/api/library/books', name: 'api_library_books', methods: ['GET'])]
     public function getAllBooks(BookRepository $bookRepository, BookTransformer $transformer): JsonResponse
     {
@@ -118,14 +61,10 @@ class ApiController extends AbstractController
         return $this->json($transformer->transformMany($books));
     }
 
-    /**
-     * Returnerar en bok baserat på ISBN, eller 404 om den inte hittas.
-     */
     #[Route('/api/library/book/{isbn}', name: 'api_library_book', methods: ['GET'])]
     public function getBookByIsbn(string $isbn, BookRepository $bookRepository, BookTransformer $transformer): JsonResponse
     {
         $book = $bookRepository->findOneBy(['isbn' => $isbn]);
-
         if (!$book) {
             return $this->json(['error' => 'Book not found'], 404);
         }
@@ -133,67 +72,61 @@ class ApiController extends AbstractController
         return $this->json($transformer->transform($book));
     }
 
-    #[Route('/api/proj', name: 'api_proj_index', methods: ['GET'])]
-public function projApiIndex(): JsonResponse
-{
-    return $this->json([
-        'message' => 'API för hållbarhetsprojektet',
-        'routes' => [
-            '/api/proj/indicators',
-            '/api/proj/indicator/1',
-            '/api/proj/indicator/1/measurements',
-            '/api/proj/indicator/add',
-            '/api/proj/measurement/add',
-        ]
-    ]);
-}
+    #[Route('/api/proj/indicators', name: 'api_proj_indicators', methods: ['GET'])]
+    public function getIndicators(ManagerRegistry $doctrine): JsonResponse
+    {
+        $em = $doctrine->getManager('sustainability');
+        $indicators = $em->getRepository(Indicator::class)->findAll();
 
-#[Route('/api/proj/indicators', name: 'api_proj_indicators', methods: ['GET'])]
-public function getIndicators(ManagerRegistry $doctrine): JsonResponse
-{
-    $connection = $doctrine->getConnection('sustainability');
-    $data = $connection->fetchAllAssociative('SELECT * FROM indicator');
-    return $this->json($data);
-}
+        $data = array_map(function (Indicator $indicator) {
+            return [
+                'id' => $indicator->getId(),
+                'name' => $indicator->getName(),
+                'description' => $indicator->getDescription(),
+            ];
+        }, $indicators);
 
-#[Route('/api/proj/indicator/{id}', name: 'api_proj_indicator', methods: ['GET'])]
-public function getIndicatorById(int $id, ManagerRegistry $doctrine): JsonResponse
-{
-    $connection = $doctrine->getConnection('sustainability');
-    $data = $connection->fetchAssociative('SELECT * FROM indicator WHERE id = ?', [$id]);
-
-    if (!$data) {
-        return $this->json(['error' => 'Indicator not found'], 404);
+        return $this->json($data);
     }
 
-    return $this->json($data);
-}
+    #[Route('/api/proj/indicator/{id}', name: 'api_proj_indicator', methods: ['GET'])]
+    public function getIndicatorById(int $id, ManagerRegistry $doctrine): JsonResponse
+    {
+        $em = $doctrine->getManager('sustainability');
+        $indicator = $em->getRepository(Indicator::class)->find($id);
+
+        if (!$indicator) {
+            return $this->json(['error' => 'Indicator not found'], 404);
+        }
+
+        return $this->json([
+            'id' => $indicator->getId(),
+            'name' => $indicator->getName(),
+            'description' => $indicator->getDescription(),
+        ]);
+    }
 
     #[Route('/api/proj/indicator/{id}/measurements', name: 'api_proj_measurements', methods: ['GET'])]
     public function getMeasurementsByIndicator(int $id, ManagerRegistry $doctrine): JsonResponse
     {
-        $connection = $doctrine->getConnection('sustainability');
-        $data = $connection->fetchAllAssociative('SELECT * FROM measurement WHERE indicator_id = ? ORDER BY year', [$id]);
-        return $this->json($data);
-    }
+        $em = $doctrine->getManager('sustainability');
+        $indicator = $em->getRepository(Indicator::class)->find($id);
 
-    #[Route('/api/proj/indicator/add', name: 'api_proj_indicator_add', methods: ['POST'])]
-    public function addIndicator(Request $request, ManagerRegistry $doctrine): JsonResponse
-    {
-        $data = json_decode($request->getContent(), true);
-
-        if (!isset($data['name'], $data['description'], $data['goal'])) {
-            return $this->json(['error' => 'Invalid input'], 400);
+        if (!$indicator) {
+            return $this->json(['error' => 'Indicator not found'], 404);
         }
 
-        $connection = $doctrine->getConnection('sustainability');
-        $connection->insert('indicator', [
-            'name' => $data['name'],
-            'description' => $data['description'],
-            'goal' => (int)$data['goal']
-        ]);
+        $data = [];
+        foreach ($indicator->getMeasurements() as $measurement) {
+            $data[] = [
+                'id' => $measurement->getId(),
+                'year' => $measurement->getYear(),
+                'value' => $measurement->getValue(),
+                'country' => $measurement->getCountry(),
+            ];
+        }
 
-        return $this->json(['message' => 'Indicator added']);
+        return $this->json($data);
     }
 
     #[Route('/api/proj/measurement/add', name: 'api_proj_measurement_add', methods: ['POST'])]
@@ -201,53 +134,56 @@ public function getIndicatorById(int $id, ManagerRegistry $doctrine): JsonRespon
     {
         $data = json_decode($request->getContent(), true);
 
-        if (!isset($data['indicator_id'], $data['year'], $data['value'], $data['unit'])) {
+        if (!isset($data['indicator_id'], $data['year'], $data['value'], $data['country'])) {
             return $this->json(['error' => 'Ogiltig inmatning'], 400);
         }
 
-        $connection = $doctrine->getConnection('sustainability');
+        $em = $doctrine->getManager('sustainability');
+        $indicator = $em->getRepository(Indicator::class)->find($data['indicator_id']);
 
-        $connection->insert('measurement', [
-            'indicator_id' => (int)$data['indicator_id'],
-            'year' => (int)$data['year'],
-            'value' => (float)$data['value'],
-            'unit' => $data['unit'],
-            'country' => $data['country'] ?? null,
-            'source' => 'added'
-        ]);
+        if (!$indicator) {
+            return $this->json(['error' => 'Indikator hittades inte'], 404);
+        }
 
+        $measurement = new Measurement();
+        $measurement->setIndicator($indicator);
+        $measurement->setYear((int) $data['year']);
+        $measurement->setValue((float) $data['value']);
+        $measurement->setCountry($data['country']);
+        $measurement->setUnit($data['unit'] ?? '');
+        $measurement->setSource('added');
+
+
+        $em->persist($measurement);
+        $em->flush();
 
         return $this->json(['message' => 'Mätvärde tillagt!']);
+
     }
 
     #[Route('/api/proj/reset', name: 'api_proj_reset', methods: ['POST'])]
-public function resetData(ManagerRegistry $doctrine): JsonResponse
-{
-    try {
-        $connection = $doctrine->getConnection('sustainability');
-
-        $connection->executeStatement("DELETE FROM measurement WHERE source = 'added'");
-
-        return $this->json(['message' => 'Alla tillagda mätvärden har raderats.']);
-    } catch (\Throwable $e) {
-        return $this->json([
-            'error' => 'Fel vid återställning: ' . $e->getMessage()
-        ], 500);
-    }
-}
-#[Route('/proj/api', name: 'proj_api')]
-    public function show(): Response
+    public function resetData(ManagerRegistry $doctrine): JsonResponse
     {
-        return $this->render('proj/api.html.twig', [
-            'routes' => [
-                ['method' => 'GET', 'path' => '/api/proj/indicators'],
-                ['method' => 'GET', 'path' => '/api/proj/indicator/1'],
-                ['method' => 'GET', 'path' => '/api/proj/indicator/1/measurements'],
-                ['method' => 'POST', 'path' => '/api/proj/indicator/add'],
-                ['method' => 'POST', 'path' => '/api/proj/measurement/add'],
-                ['method' => 'POST', 'path' => '/api/proj/reset']
-            ]
-        ]);
-    }
+        try {
+            $em = $doctrine->getManager('sustainability');
+            assert($em instanceof EntityManagerInterface);
 
+            $conn = $em->getConnection();
+
+            $conn->executeStatement("DELETE FROM measurement WHERE source = 'added'");
+            $conn->executeStatement("DELETE FROM measurement WHERE source = 'original'");
+            $conn->executeStatement("
+                INSERT INTO measurement (indicator_id, year, value, unit, country, source)
+                SELECT indicator_id, year, value, unit, country, 'original'
+                FROM measurement_original
+            ");
+
+            return $this->json(['message' => 'Datan har återställts till original.']);
+        } catch (\Throwable $e) {
+            return $this->json([
+                'error' => 'Fel vid återställning',
+                'message' => $e->getMessage()
+            ], 500);
+        }
+    }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\Measurement;
+use App\Sustainability\Entity\Measurement;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

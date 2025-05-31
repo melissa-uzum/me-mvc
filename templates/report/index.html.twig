@@ -11,7 +11,6 @@
     <li><a href="#kmom04">Kmom04</a></li>
     <li><a href="#kmom05">Kmom05</a></li>
     <li><a href="#kmom06">Kmom06</a></li>
-    <li><a href="#kmom07">Kmom07</a></li>
     <li><a href="#kmom10">Kmom10</a></li>
 </ul>
 
@@ -136,17 +135,58 @@ TIL: Jag lärde mig hur Symfony strukturerar kod enligt MVC och hur man skapar r
         </p>
     </section>
 
-
-    <section id="kmom07">
-        <h2>Kmom07</h2>
-        <p>
-        </p>
-    </section>
-
     <section id="kmom10">
-        <h2>Kmom10</h2>
+        <h2>Kmom10 Redovisning av projekt</h2>
+
+        <h3>Krav 1–3: Webbplats</h3>
         <p>
+            Jag valde att visualisera indikatorer kopplade till FN:s globala mål för hållbar utveckling, med fokus på växthusgasutsläpp och tillgång till rent vatten i Sverige och Danmark. Projektet är tillgängligt via en ny sektion under <code>/proj</code> som har en helt egen layout, med separata färger, typsnitt, navbar, header och footer. Jag har använt Twig för att bygga en ren, modern och responsiv design. Två interaktiva diagram implementerades med Chart.js där användaren kan filtrera per land. Det finns också en introduktionssida om projektet och en summering längst ned. Jag har dessutom skapat en separat stylesheet för projektet för att tydligt särskilja den från övriga delar av webbplatsen.
+        </p>
+
+        <h3>Krav 4: JSON API</h3>
+        <p>
+            API:t har fem endpoints: tre GET och två POST. Man kan hämta alla indikatorer, en specifik indikator och tillhörande mätvärden. Via POST går det att lägga till nya mätvärden, samt återställa databasen till original. Allt hanteras med Symfony och Doctrine ORM via en named connection till projektets databas. På sidan <code>/proj/api</code> presenteras alla endpoints i en tabell med klickbara GET-länkar och instruktioner för hur man testar POST i Postman. Jag använder <code>JsonResponse</code> för att returnera svaren och hämtar data via ORM-repositorier i stället för DBAL-metoder. API:t är fullt ORM-baserat för all vanlig datalagring och hämtning. Undantaget är återställningsfunktionen <code>/api/proj/reset</code> som använder DBAL direkt eftersom det rör sig om en bulk-SQL-operation som inte lämpar sig för ORM. Det gjorde API:t enklare att testa och mer integrerat med resten av projektets struktur.
+        </p>
+
+        <h3>Krav 5: ORM och databassida</h3>
+        <p>
+            Jag har använt MariaDB och kopplat Symfony till databasen med Doctrine ORM. Databasen innehåller tre tabeller: <code>indicator</code>, <code>measurement</code> och <code>measurement_original</code>. ER-diagrammet finns som bild på <code>/proj/about/database</code>. Relationerna hanteras genom <code>indicator_id</code> som foreign key. Jag skapade en named connection för att separera projektets databas från resten av webbplatsen.
+        </p>
+        <p>
+            Jag gjorde även en reflektion över skillnaden mellan ORM och att skriva SQL manuellt. ORM underlättar relationshantering och testbarhet men kan kännas abstrakt ibland. Jag föredrar nu ORM för större projekt, men tycker det är viktigt att förstå SQL i grunden.
+        </p>
+
+        <h3>Krav 6: Avancerade features</h3>
+        <ol>
+            <li>Jag har konfigurerat två named connections i Symfony: en för biblioteket och en för projektet, men båda kopplar till samma databas (<code>meuz24</code>) på studentservern eftersom vi endast får ha en fysisk databas enligt kursens regler.</li>
+            <li>Jag har byggt upp en separat layout för <code>/proj</code> med egen base-template, navbar, footer och färgprofil.</li>
+            <li>Visualiseringen sker med Chart.js och laddas med dynamisk JSON från API:t.</li>
+            <li>Alla delar är responsiva och fungerar på både mobil och desktop.</li>
+            <li>En återställningsfunktion tar bort tillagda mätvärden och laddar om sidan automatiskt.</li>
+        </ol>
+
+        <h3>Reflektion kring projektets genomförande</h3>
+        <p>
+            Projektet var roligt att arbeta med men ganska omfattande. Att få ihop allt med JSON, databas, ORM och Chart.js tog tid, särskilt att få layouten att kännas som en "egen webbplats".
+        </p>
+        <p>
+            Det var också en utmaning att strukturera API:t tydligt och dokumentera allt korrekt i vyn. Jag stötte på problem med att hantera flera databaser i Symfony men lyckades lösa det.
+        </p>
+        <p>
+            Det som gick lätt var layout och styling samt att bygga JSON-endpoints. Att skapa en databas från verklig statistik och kombinera det med visualisering gjorde att projektet kändes mer meningsfullt. Sådana projekt där man redovisar statistik inom intressanta och relevanta områden är väldigt trevliga. Det kändes verkligt och jag fick också en tillbakablick till när jag läste samhällskunskap och lärde mig om FN:s globala mål.
+        </p>
+
+        <h3>Tankar om kursen</h3>
+        <p>
+            Jag är väldigt nöjd med den här kursen. Det har varit tydligt vad som ska göras, och jag gillar att man successivt bygger vidare på samma kodbas. Att kombinera Symfony, ORM, REST API och testning har varit givande. Jag lär mig bäst genom praktiskt arbete och att bygga själv, och det har fungerat väldigt bra.
+        </p>
+        <p>
+            Materialet är pedagogiskt och handledningen har varit snabb och hjälpsam. Jag rekommenderar verkligen kursen till andra. Mitt betyg blir en stark 13 av 10.
+        </p>
+        <p>
+            Jag är så otroligt nöjd med BTH och detta program. Jag har delat med mig av min upplevelse och jag går verkligen runt och säger att jag älskar att studera på BTH. Otroligt trevliga och kunniga lärare, väldigt bra material och kursuppläggen är riktigt trevliga.
         </p>
     </section>
+
 
 {% endblock %}

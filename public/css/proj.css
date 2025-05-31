@@ -273,3 +273,21 @@ canvas {
 .back-link:hover {
     background-color: #1c3e5c;
 }
+
+@media (max-width: 768px) {
+    .indicator-section {
+        flex-direction: column;
+        gap: 2rem;
+        padding: 0 1rem;
+    }
+
+    .indicator-graph,
+    .indicator-text {
+        max-width: 100%;
+        flex: 1 1 100%;
+    }
+
+    .indicator-text {
+        font-size: 1rem;
+    }
+}

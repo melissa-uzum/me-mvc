@@ -3,32 +3,44 @@
 {% block title %}Tekniska utmaningar och extra features{% endblock %}
 
 {% block body %}
-<h1>Avancerade features</h1>
+<section class="project-about">
+    <h1 class="about-title">Krav 6: Avancerade features</h1>
 
-<h3>1. Två aktiva databaser</h3>
-<p>
-    Jag har både en databas för biblioteket och en separat databas för hållbarhetsprojektet.
-    Jag använde Doctrine DBAL:s named connections för att koppla mot rätt databas i olika controllers.
-</p>
+    <p class="about-intro">
+        Här beskriver jag fem funktioner som jag anser går utöver baskraven i projektet. Dessa moment har varit tekniskt utmanande, krävt extra efterforskning eller varit viktiga för användarupplevelsen. Jag har försökt motivera varför varje funktion bör räknas till detta krav.
+    </p>
 
-<h3>2. Visualisering med Chart.js</h3>
-<p>
-    För att visa mätvärden för indikatorer används Chart.js som bygger diagram från JSON-data.
-    Jag konverterar SQL-resultatet till JSON direkt i Twig.
-</p>
+    <ol class="about-details">
+        <li>
+        <strong>Två databaskopplingar med olika Entity Managers</strong><br>
+            Jag använder två separata databaskopplingar i samma Symfony-applikation: en för biblioteket och en för hållbarhetsprojektet. Båda använder samma fysiska databas på studentservern, men jag har konfigurerat två named connections och två Entity Managers via Doctrine ORM. Det krävde att jag satte upp olika namespace, migrations-mappar och kopplingar i <code>doctrine.yaml</code>, vilket var både tekniskt krävande och svårt att debugga. Min originella tanke var två separata databaser men jag insåg sedan, när jag dök djupare in i dokumentationen, att det stod: "På servern har du en (1) databas, du har inte rättigheter att skapa fler databaser" vilket innebar att jag behövde tänka om.
+        </li>
 
-<h3>3. JSON API med GET och POST</h3>
-<p>
-    API:t returnerar både data och hanterar nya POST-förfrågningar för att lägga till indikatorer.
-</p>
+        <li>
+            <strong>Visualisering med Chart.js och API</strong><br>
+            Istället för att hårdkoda data i JavaScript laddas allt dynamiskt via Symfony. Jag hämtar data från databasen med Doctrine ORM och skickar den till Twig som JSON, där den används i ett Chart.js-diagram. Det krävde att jag konverterade ORM-objekt till korrekt JSON-format i Twig, skrev responsiv JavaScript för olika länder och indikatorer, och kopplade knappar till logik som uppdaterar diagrammen. Det här momentet tog mycket tid och innebar flera omgångar av felsökning kring hur datan bäst skulle hanteras mellan backend och frontend.
+        </li>
+        
+        <li>
+            <strong>Utbyggt JSON API med GET och POST</strong><br>
+            Jag har implementerat fem endpoints: tre GET och två POST där användaren kan hämta eller lägga till indikatorer och mätvärden. Jag använder Doctrine ORM för all databasinteraktion, JsonResponse i Symfony och fetch() i gränssnittet för att bland annat återställa datan med ett knapptryck. POST-funktionerna är testade i Postman och jag hanterar fel på både server- och klientsidan. Vissa av API-routes är dessutom direktkopplade till gränssnittet, vilket gör projektet mer interaktivt för användaren. <br><br>
+            API:t är fullt ORM-baserat för all vanlig datalagring och -hämtning. Undantaget är återställningsfunktionen <code>/api/proj/reset</code> som använder DBAL direkt, eftersom det rör sig om en effektiv bulk-SQL-operation där ORM inte är lämpligt.
+        </li>
 
-<h3>4. Separat layout för projektet</h3>
-<p>
-    `/proj/`-sidorna har en egen base template (`base_proj.html.twig`) med egen navbar, färg och stil.
-</p>
 
-<h3>5. Två layouts aktiva samtidigt</h3>
-<p>
-    Hela webbplatsen hanterar två olika layouts parallellt: en för me-sidan och en för projektet och helt utan konflikter.
-</p>
+        <li>
+            <strong>Separat layout för projektet</strong><br>
+            Alla sidor under <code>/proj</code> använder en egen base-template (<code>base_proj.html.twig</code>) med unik styling, navbar och footer. Det innebär att jag parallellt hanterar två layoutsystem i samma Symfony-applikation, ett för projektdelen och ett för report-sidan, utan att de krockar med varandra. Den separata CSS:en och HTML-strukturen ger projektet en tydlig identitet och förbättrar läsbarhet och användarupplevelse.
+        </li>
+
+        <li>
+            <strong>Responsiv design och återställningsfunktion</strong><br>
+            Hela projektet är byggt med mobilanpassning i åtanke. Diagrammen anpassar sig till skärmstorleken och layouten byter från två kolumner till en på mindre skärmar. Knapplayouter är flexibla och skalas bra. Jag har även byggt in en återställningsfunktion som via ett POST-anrop (med fetch och JsonResponse) tar bort alla manuellt tillagda mätvärden och laddar om sidan automatiskt. Det ger både bättre UX och gör det enkelt att testa och återgå till grunddata.
+        </li>
+    </ol>
+
+    <p class="about-intro">
+        Jag tycker att dessa moment visar på förståelse för Symfony, Doctrine ORM, API-hantering, databasstruktur och frontend-integration. De har varit krävande både i tid och komplexitet, och jag har fått felsöka mycket längs vägen.
+    </p>
+</section>
 {% endblock %}

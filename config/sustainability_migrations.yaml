@@ -1,0 +1,7 @@
+doctrine_migrations:
+    migrations_paths:
+        'DoctrineMigrations': '%kernel.project_dir%/migrations'
+        'DoctrineMigrations\\Sustainability': '%kernel.project_dir%/migrations/sustainability'
+    storage:
+        table_storage:
+            table_name: 'migration_versions'
